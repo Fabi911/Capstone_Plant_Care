@@ -3,16 +3,16 @@ import Image from "next/image.js";
 
 export default function PlantList({ plants }) {
   return (
-    <>
+    <ul>
       {plants.map((plant) => (
-        <p key={plant.id}>
+        <li key={plant.id}>
           <PlantsPreview
             name={plant.name}
             botanical_name={plant.botanical_name}
             image={plant.image}
           />
-        </p>
+        </li>
       ))}
-    </>
+    </ul>
   );
 }
