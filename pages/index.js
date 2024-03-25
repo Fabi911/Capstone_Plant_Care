@@ -1,7 +1,5 @@
-export default function HomePage() {
-  return (
-    <div>
-      <h1>Hello from Next.js</h1>
-    </div>
-  );
+import PlantList from "@/components/PlantList";
+
+export default function HomePage({ plants }) {
+  return <PlantList plants={plants}></PlantList>;
 }
