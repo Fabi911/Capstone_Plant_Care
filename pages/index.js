@@ -1,5 +1,5 @@
-import PlantList from "@/components/PlantList";
+import PlantsList from "@/components/PlantsList";
 
 export default function HomePage({ plants }) {
-  return <PlantList plants={plants}></PlantList>;
+  return <PlantsList plants={plants}></PlantsList>;
 }

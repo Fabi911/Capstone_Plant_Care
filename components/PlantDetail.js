@@ -1,0 +1,39 @@
+import Image from "next/image";
+import Link from "next/link";
+import styled from "styled-components";
+
+const StyledImage = styled(Image)`
+  border: 1px solid black;
+  border-radius: 20px;
+`;
+
+const StyledLI = styled.li`
+  list-style: none;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+  background-color: white;
+  padding: 2px;
+`;
+
+export default function PlantDetail({ plantDetail }) {
+  return (
+    <section>
+      <h2>{plantDetail.name}</h2>
+      <StyledImage
+        alt={plantDetail.name}
+        src={plantDetail.image}
+        width={200}
+        height={200}
+      />
+      <ul>
+        <StyledLI>botanical name : {plantDetail.botanical_name}</StyledLI>
+        <StyledLI>water need : {plantDetail.water_need}</StyledLI>
+        <StyledLI>fertiliser season: {plantDetail.fertiliser_season}</StyledLI>
+      </ul>
+      <StyledLink href="/"> Back to plant list</StyledLink>
+    </section>
+  );
+}
