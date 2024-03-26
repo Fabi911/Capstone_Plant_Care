@@ -2,18 +2,30 @@ import Image from "next/image";
 import styled from "styled-components";
 import Link from "next/link";
 
-const StyledLink = styled(Link)`
+const StyledCard = styled.div`
   width: 80vw;
   height: auto;
+  border: 1px solid black;
+  background-color: #abd1c6;
+  border-radius: 20px;
+  &:hover {
+    box-shadow: 5px 5px 5px #f9bc60;
+  }
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: #001e1d;
 `;
 
 export default function PlantsPreview({ name, botanical_name, image, id }) {
   return (
     <StyledLink href={`/plants/${id}`}>
-      <p>{name}</p>
-      <p>{botanical_name}</p>
-      <Image src={image} alt={name} width={50} height={50} />
-      <hr />
+      <StyledCard>
+        <p>{name}</p>
+        <p>botanical name: {botanical_name}</p>
+        <Image src={image} alt={name} width={100} height={100} />
+      </StyledCard>
     </StyledLink>
   );
 }
