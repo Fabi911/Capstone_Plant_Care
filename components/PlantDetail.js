@@ -7,6 +7,17 @@ const StyledImage = styled(Image)`
   border-radius: 20px;
 `;
 
+const StyledLI = styled.li`
+  list-style: none;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+  background-color: white;
+  padding: 2px;
+`;
+
 export default function PlantDetail({ plantDetail }) {
   return (
     <section>
@@ -17,12 +28,12 @@ export default function PlantDetail({ plantDetail }) {
         width={200}
         height={200}
       />
-      <p>botanical name : {plantDetail.botanical_name}</p>
-      <p>water need : {plantDetail.water_need}</p>
-      <p>fertiliser season: {plantDetail.fertiliser_season}</p>
-      <Link href="/">
-        <button>Back</button>
-      </Link>
+      <ul>
+        <StyledLI>botanical name : {plantDetail.botanical_name}</StyledLI>
+        <StyledLI>water need : {plantDetail.water_need}</StyledLI>
+        <StyledLI>fertiliser season: {plantDetail.fertiliser_season}</StyledLI>
+      </ul>
+      <StyledLink href="/"> Back to plant list</StyledLink>
     </section>
   );
 }

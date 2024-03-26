@@ -18,12 +18,12 @@ const StyledLink = styled(Link)`
   color: #001e1d;
 `;
 
-export default function PlantsPreview({ name, botanical_name, image, id }) {
+export default function PlantPreview({ name, botanicalName, image, id }) {
   return (
     <StyledLink href={`/plants/${id}`}>
       <StyledCard>
         <p>{name}</p>
-        <p>botanical name: {botanical_name}</p>
+        <p>botanical name: {botanicalName}</p>
         <Image src={image} alt={name} width={100} height={100} />
       </StyledCard>
     </StyledLink>
