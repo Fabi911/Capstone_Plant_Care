@@ -9,6 +9,7 @@ export default function PlantList({ plants }) {
             name={plant.name}
             botanical_name={plant.botanical_name}
             image={plant.image}
+            id={plant.id}
           />
         </li>
       ))}
