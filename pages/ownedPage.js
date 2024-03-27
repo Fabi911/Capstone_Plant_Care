@@ -1,11 +1,29 @@
-import Heart from "./heart.svg";
+import PlantPreview from "@/components/PlantPreview";
+import PlantsList from "@/components/PlantsList";
+import { PlantListItem } from "@/components/PlantsList";
 
-const LikedHeart = () => <Heart height={50} width={50} fill="red" />;
-
-export default function MyPlant({ plants }) {
+export default function OwnedPage({ plants, handleToggleOwnedPlants }) {
+  /* const isMyPlant = plants.filter((plant) => plant.isOwned === true); */
   return (
-    <>
-      <LikedHeart></LikedHeart>
-    </>
+    <ul>
+      {plants.map((plant) => {
+        if (plant.isOwned) {
+          return (
+            <PlantListItem key={plant.id}>
+              <PlantPreview
+                name={plant.name}
+                botanicalName={plant.botanical_name}
+                image={plant.image}
+                id={plant.id}
+                isOwned={plant.isOwned}
+                handleToggleOwnedPlants={() =>
+                  handleToggleOwnedPlants(plant.id)
+                }
+              />
+            </PlantListItem>
+          );
+        }
+      })}
+    </ul>
   );
 }

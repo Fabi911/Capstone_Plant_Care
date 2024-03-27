@@ -1,3 +1,4 @@
+import OwnedPlantButton from "./MyPlant/OwnedPlantButton";
 import PlantPreview from "./PlantPreview";
 import styled from "styled-components";
 
@@ -8,11 +9,11 @@ const PlantListContainer = styled.ul`
   gap: 1.5rem;
 `;
 
-const PlantListItem = styled.li`
+export const PlantListItem = styled.li`
   list-style: none;
 `;
 
-export default function PlantsList({ plants }) {
+export default function PlantsList({ plants, handleToggleOwnedPlants }) {
   return (
     <PlantListContainer>
       {plants.map((plant) => (
@@ -22,6 +23,8 @@ export default function PlantsList({ plants }) {
             botanicalName={plant.botanical_name}
             image={plant.image}
             id={plant.id}
+            isOwned={plant.isOwned}
+            handleToggleOwnedPlants={() => handleToggleOwnedPlants(plant.id)}
           />
         </PlantListItem>
       ))}

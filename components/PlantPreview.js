@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styled from "styled-components";
 import Link from "next/link";
+import OwnedPlantButton from "./MyPlant/OwnedPlantButton";
 
 const StyledCard = styled.div`
   width: 80vw;
@@ -18,14 +19,27 @@ const StyledLink = styled(Link)`
   color: #001e1d;
 `;
 
-export default function PlantPreview({ name, botanicalName, image, id }) {
+export default function PlantPreview({
+  name,
+  botanicalName,
+  image,
+  id,
+  isOwned,
+  handleToggleOwnedPlants,
+}) {
   return (
-    <StyledLink href={`/plants/${id}`}>
-      <StyledCard>
-        <p>{name}</p>
-        <p>botanical name: {botanicalName}</p>
-        <Image src={image} alt={name} width={100} height={100} />
-      </StyledCard>
-    </StyledLink>
+    <>
+      <StyledLink href={`/plants/${id}`}>
+        <StyledCard>
+          <p>{name}</p>
+          <p>botanical name: {botanicalName}</p>
+          <Image src={image} alt={name} width={100} height={100} />
+        </StyledCard>
+      </StyledLink>
+      <OwnedPlantButton
+        isOwned={isOwned}
+        handleToggleOwnedPlants={handleToggleOwnedPlants}
+      />
+    </>
   );
 }
