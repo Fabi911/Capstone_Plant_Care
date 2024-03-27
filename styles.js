@@ -17,5 +17,6 @@ export default createGlobalStyle`
     color: white;
     margin: 0;
     font-family: system-ui;
+    margin-bottom: 80px;
   }
 `;
