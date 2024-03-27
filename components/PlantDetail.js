@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
+import OwnedPlantButton from "./MyPlant/OwnedPlantButton";
 
 const StyledImage = styled(Image)`
   border: 1px solid black;
@@ -18,7 +19,11 @@ const StyledLink = styled(Link)`
   padding: 2px;
 `;
 
-export default function PlantDetail({ plantDetail }) {
+export default function PlantDetail({
+  plantDetail,
+  isOwned,
+  handleToggleOwnedPlants,
+}) {
   return (
     <section>
       <h2>{plantDetail.name}</h2>
@@ -32,6 +37,12 @@ export default function PlantDetail({ plantDetail }) {
         <StyledLI>botanical name : {plantDetail.botanical_name}</StyledLI>
         <StyledLI>water need : {plantDetail.water_need}</StyledLI>
         <StyledLI>fertiliser season: {plantDetail.fertiliser_season}</StyledLI>
+        <OwnedPlantButton
+          isOwned={plantDetail.isOwned}
+          handleToggleOwnedPlants={() =>
+            handleToggleOwnedPlants(plantDetail.id)
+          }
+        />
       </ul>
       <StyledLink href="/"> Back to plant list</StyledLink>
     </section>
