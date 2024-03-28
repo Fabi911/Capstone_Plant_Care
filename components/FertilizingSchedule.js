@@ -38,7 +38,12 @@ export default function FertilizingSchedule({ plantsToFertilize }) {
             plant name: <StyledSpan>{plant.name}</StyledSpan>
             <br />
             fertiliser season:{" "}
-            <FertilizeSpan> {plant.fertiliser_season} </FertilizeSpan>
+            {plant.fertiliser_season.map((season, index) => (
+              <FertilizeSpan key={index}>
+                {season}
+                {index !== plant.fertiliser_season.length - 1 ? ", " : ""}
+              </FertilizeSpan>
+            ))}
           </StyledWaterLi>
         ))}
       </WaterListContainer>

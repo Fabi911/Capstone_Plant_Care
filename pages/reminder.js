@@ -10,11 +10,27 @@ function useDayCount(startDay) {
   return [day, handleNextDay];
 }
 
+function useMonthCount(startMonth) {
+  const [month, setMonth] = useState(startMonth);
+  function handleNextMonth() {
+    if (month < 11) {
+      setMonth(month + 1);
+    } else {
+      setMonth(0);
+    }
+  }
+  return [month, handleNextMonth];
+}
+
 export default function ReminderPage({ plants }) {
   const [plantsToWater, setPlantsToWater] = useState([]);
   const [plantsToFertilize, setPlantsToFertilize] = useState([]);
 
   const [day, nextDay] = useDayCount(0); // only for simulation
+
+  const [month, nextMonth] = useMonthCount(0); // only for simulation
+
+  const myPlants = plants.filter((plant) => plant.isOwned);
 
   let dayOfWeek;
 
@@ -44,16 +60,58 @@ export default function ReminderPage({ plants }) {
       dayOfWeek = "";
   }
 
+  let monthName;
+  switch (month % 12) {
+    case 0:
+      monthName = "January";
+      break;
+    case 1:
+      monthName = "February";
+      break;
+    case 2:
+      monthName = "March";
+      break;
+    case 3:
+      monthName = "April";
+      break;
+    case 4:
+      monthName = "May";
+      break;
+    case 5:
+      monthName = "June";
+      break;
+    case 6:
+      monthName = "July";
+      break;
+    case 7:
+      monthName = "August";
+      break;
+    case 8:
+      monthName = "September";
+      break;
+    case 9:
+      monthName = "October";
+      break;
+    case 10:
+      monthName = "November";
+      break;
+    case 11:
+      monthName = "December";
+      break;
+    default:
+      monthName = "";
+  }
+
   useEffect(() => {
     // const today = new Date().getDay();   ---> deactivated for simulation
 
-    const plantsToday = plants.filter((plant) => {
+    const plantsToday = myPlants.filter((plant) => {
       if (plant.water_need === "High") {
         return true;
       } else if (plant.water_need === "Moderate") {
         return day % 2 === 0;
       } else if (plant.water_need === "Low") {
-        return day === 0;
+        return day % 7 === 0; // % 7 only for simulation
       }
       return false;
     });
@@ -62,10 +120,10 @@ export default function ReminderPage({ plants }) {
   }, [day]);
 
   useEffect(() => {
-    const month = new Date().getMonth();
-    const plantsSeason = plants.filter((plant) => {
+    //const month = new Date().getMonth();   ---> deactivated for simulation
+    const plantsSeason = myPlants.filter((plant) => {
       const seasons = plant.fertiliser_season;
-      return seasons.filter((season) => {
+      return seasons.some((season) => {
         if (season === "Spring") {
           return month >= 2 && month <= 4;
         } else if (season === "Summer") {
@@ -76,16 +134,19 @@ export default function ReminderPage({ plants }) {
         return false;
       });
     });
-    console.log("plantsSeason", plantsSeason);
     setPlantsToFertilize(plantsSeason);
-  }, [plants]);
+  }, [month]);
 
   return (
     <div>
-      <WateringSchedule plantsToWater={plantsToWater} />
-      <FertilizingSchedule plantsToFertilize={plantsToFertilize} />
+      <p>Current month : {monthName}</p>
       <p>Day of the week : {dayOfWeek}</p>
+      <button onClick={nextMonth}>Next month</button>{" "}
+      {/* only for simulation */}
       <button onClick={nextDay}>Next day</button> {/* only for simulation */}
+      <WateringSchedule plantsToWater={plantsToWater} />
+      <br />
+      <FertilizingSchedule plantsToFertilize={plantsToFertilize} />
     </div>
   );
 }

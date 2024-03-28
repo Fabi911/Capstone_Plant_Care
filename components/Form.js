@@ -20,6 +20,18 @@ export default function Form({ onSubmit, entrySucessful }) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
+    delete data.Spring;
+    delete data.Summer;
+    delete data.Fall;
+
+    const fertiliserSeason = [];
+    document
+      .querySelectorAll('input[type="checkbox"]:checked')
+      .forEach((checkbox) => {
+        fertiliserSeason.push(checkbox.value);
+      });
+
+    data.fertiliser_season = fertiliserSeason;
     onSubmit(data);
     entrySucessful();
   }
@@ -50,13 +62,15 @@ export default function Form({ onSubmit, entrySucessful }) {
         maxLength={1}
         placeholder="not allowed"
       />
-      <Label htmlFor="fertiliser_season">fertiliser_season</Label>
-      <select id="fertiliser_season" name="fertiliser_season" required>
-        <option value="Spring">spring</option>
-        <option value="Sommer">sommer</option>
-        <option value="Fall">fall</option>
-      </select>
-
+      <fieldset>
+        <legend>fertiliser season</legend>
+        <Label htmlFor="Spring">Spring</Label>
+        <input type="checkbox" id="Spring" name="Spring" value="Spring" />
+        <Label htmlFor="Summer">Summer</Label>
+        <input type="checkbox" id="Summer" name="Summer" value="Summer" />
+        <Label htmlFor="Fall">Fall</Label>
+        <input type="checkbox" id="Fall" name="Fall" value="Fall" />
+      </fieldset>
       <button type="submit">Submit</button>
     </StyledForm>
   );
