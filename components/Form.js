@@ -38,9 +38,9 @@ export default function Form({ onSubmit, entrySucessful }) {
       />
       <Label htmlFor="water_need">water need</Label>
       <select id="water_need" name="water_need" required>
-        <option value="low">weekly</option>
-        <option value="mid">2 times a week</option>
-        <option value="high">daily</option>
+        <option value="Low">weekly</option>
+        <option value="Moderate">2 times a week</option>
+        <option value="High">daily</option>
       </select>
       <Label htmlFor="image">Image</Label>
       <input
@@ -52,9 +52,9 @@ export default function Form({ onSubmit, entrySucessful }) {
       />
       <Label htmlFor="fertiliser_season">fertiliser_season</Label>
       <select id="fertiliser_season" name="fertiliser_season" required>
-        <option value="spring">spring</option>
-        <option value="sommer">sommer</option>
-        <option value="fall">fall</option>
+        <option value="Spring">spring</option>
+        <option value="Sommer">sommer</option>
+        <option value="Fall">fall</option>
       </select>
 
       <button type="submit">Submit</button>
