@@ -38,7 +38,7 @@ export default function FertilizingSchedule({ plantsToFertilize }) {
             plant name: <StyledSpan>{plant.name}</StyledSpan>
             <br />
             fertiliser season:{" "}
-            <FertilizeSpan>{plant.fertiliser_season}</FertilizeSpan>
+            <FertilizeSpan> {plant.fertiliser_season} </FertilizeSpan>
           </StyledWaterLi>
         ))}
       </WaterListContainer>
