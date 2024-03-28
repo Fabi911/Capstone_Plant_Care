@@ -10,6 +10,7 @@ const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 0.5rem;
 `;
 
 export default function Form({ onSubmit, entrySucessful }) {
@@ -36,23 +37,26 @@ export default function Form({ onSubmit, entrySucessful }) {
         maxLength={150}
       />
       <Label htmlFor="water_need">water need</Label>
-      <input
-        type="text"
-        id="water_need"
-        name="water_need"
-        required
-        maxLength={10}
-      />
+      <select id="water_need" name="water_need" required>
+        <option value="low">weekly</option>
+        <option value="mid">2 times a week</option>
+        <option value="high">daily</option>
+      </select>
       <Label htmlFor="image">Image</Label>
-      <input type="text" id="image" name="image" maxLength={150} />
-      <Label htmlFor="fertiliser_season">fertiliser_season</Label>
       <input
-        type="text"
-        id="fertiliser_season"
-        name="fertiliser_season"
-        required
-        maxLength={150}
+        type="URL"
+        id="image"
+        name="image"
+        maxLength={1}
+        placeholder="not allowed"
       />
+      <Label htmlFor="fertiliser_season">fertiliser_season</Label>
+      <select id="fertiliser_season" name="fertiliser_season" required>
+        <option value="spring">spring</option>
+        <option value="sommer">sommer</option>
+        <option value="fall">fall</option>
+      </select>
+
       <button type="submit">Submit</button>
     </StyledForm>
   );
