@@ -28,6 +28,11 @@ export default function App({ Component, pageProps }) {
     router.push("/ownedPage");
   }
 
+  function handleDeletePlant(id) {
+    setPlants(plants.filter((plant) => plant.id !== id));
+    router.push("/");
+  }
+
   function handleToggleOwnedPlants(id) {
     setPlants(
       plants.map((plant) =>
@@ -44,6 +49,7 @@ export default function App({ Component, pageProps }) {
         plants={plants}
         handleToggleOwnedPlants={handleToggleOwnedPlants}
         handleAddPlant={handleAddPlant}
+        handleDeletePlant={handleDeletePlant}
       />
       <Navbar />
     </>

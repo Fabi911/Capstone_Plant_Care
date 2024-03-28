@@ -2,6 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
 import OwnedPlantButton from "./MyPlant/OwnedPlantButton";
+import { useState } from "react";
+
+import ConfirmDelete from "./ConfirmDelete";
 
 const StyledImage = styled(Image)`
   border: 1px solid black;
@@ -23,7 +26,18 @@ export default function PlantDetail({
   plantDetail,
   isOwned,
   handleToggleOwnedPlants,
+  handleDeletePlant,
 }) {
+  const [confirmDelete, setConfirmDelete] = useState(false);
+
+  function handleDelete() {
+    setConfirmDelete(true);
+  }
+
+  function handleCancel() {
+    setConfirmDelete(false);
+  }
+
   return (
     <section>
       <h2>{plantDetail.name}</h2>
@@ -44,7 +58,13 @@ export default function PlantDetail({
           }
         />
       </ul>
-      <StyledLink href="/"> Back to plant list</StyledLink>
+      <button onClick={handleDelete}>Delete this plant</button>
+      {confirmDelete && (
+        <ConfirmDelete
+          handleConfirm={() => handleDeletePlant(plantDetail.id)}
+          handleCancel={handleCancel}
+        />
+      )}
     </section>
   );
 }
