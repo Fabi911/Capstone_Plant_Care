@@ -3,7 +3,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import OwnedPlantButton from "./MyPlant/OwnedPlantButton";
 import { useState } from "react";
-import { useRouter } from "next/router";
+
 import ConfirmDelete from "./ConfirmDelete";
 
 const StyledImage = styled(Image)`
@@ -29,7 +29,6 @@ export default function PlantDetail({
   handleDeletePlant,
 }) {
   const [confirmDelete, setConfirmDelete] = useState(false);
-  const router = useRouter();
 
   function handleDelete() {
     setConfirmDelete(true);
@@ -39,11 +38,6 @@ export default function PlantDetail({
     setConfirmDelete(false);
   }
 
-  function handleConfirm() {
-    handleDeletePlant(plantDetail.id);
-    setConfirmDelete(false);
-    router.push("/");
-  }
   return (
     <section>
       <h2>{plantDetail.name}</h2>
@@ -67,7 +61,7 @@ export default function PlantDetail({
       <button onClick={handleDelete}>Delete this plant</button>
       {confirmDelete && (
         <ConfirmDelete
-          handleConfirm={handleConfirm}
+          handleConfirm={() => handleDeletePlant(plantDetail.id)}
           handleCancel={handleCancel}
         />
       )}

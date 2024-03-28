@@ -30,6 +30,7 @@ export default function App({ Component, pageProps }) {
 
   function handleDeletePlant(id) {
     setPlants(plants.filter((plant) => plant.id !== id));
+    router.push("/");
   }
 
   function handleToggleOwnedPlants(id) {
