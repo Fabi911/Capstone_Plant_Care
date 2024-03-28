@@ -25,13 +25,13 @@ const StyledSpan = styled.span`
 `;
 
 const FertilizeSpan = styled.span`
-  color: turquoise;
+  color: brown;
 `;
 
 export default function FertilizingSchedule({ plantsToFertilize }) {
   return (
     <Watercard>
-      <h1>Plants to Water Today</h1>
+      <h1>Fertiliser season plan</h1>
       <WaterListContainer>
         {plantsToFertilize.map((plant) => (
           <StyledWaterLi key={plant.id}>

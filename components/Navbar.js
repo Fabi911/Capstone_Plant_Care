@@ -30,7 +30,8 @@ export default function Navbar() {
   return (
     <StyledNavbar>
       <StyledLink href="/">Overview</StyledLink>
-      <StyledLink href="/ownedPage">MyPlants</StyledLink>
+      <StyledLink href="/ownedPage">My Plants</StyledLink>
+      <StyledLink href="/reminder">My Reminder</StyledLink>
     </StyledNavbar>
   );
 }
