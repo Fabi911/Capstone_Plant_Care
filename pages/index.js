@@ -20,4 +20,5 @@ export default function HomePage({ plants, handleToggleOwnedPlants }) {
 
       <StyledLink href="/addPlant">Add Plant</StyledLink>
     </>
+  )}
 
