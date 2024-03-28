@@ -3,13 +3,16 @@ import { useState } from "react";
 import { data } from "@/lib/db";
 import useLocalStorageState from "use-local-storage-state";
 import Navbar from "@/components/Navbar";
+
 import { uid } from "uid";
 import { useRouter } from "next/router";
+
 
 export default function App({ Component, pageProps }) {
   const [plants, setPlants] = useLocalStorageState("Plants", {
     defaultValue: data,
   });
+
 
   const router = useRouter();
 
@@ -17,6 +20,7 @@ export default function App({ Component, pageProps }) {
     setPlants([{ ...data, id: uid(), isOwned: true }, ...plants]);
     router.push("/ownedPage");
   }
+
 
   function handleToggleOwnedPlants(id) {
     setPlants(
@@ -33,7 +37,9 @@ export default function App({ Component, pageProps }) {
         {...pageProps}
         plants={plants}
         handleToggleOwnedPlants={handleToggleOwnedPlants}
+
         handleAddPlant={handleAddPlant}
+
       />
       <Navbar />
     </>
