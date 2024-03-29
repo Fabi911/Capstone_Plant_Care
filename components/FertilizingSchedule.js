@@ -35,9 +35,10 @@ export default function FertilizingSchedule({ plantsToFertilize }) {
       <WaterListContainer>
         {plantsToFertilize.map((plant) => (
           <StyledWaterLi key={plant.id}>
-            plant name: <StyledSpan>{plant.name}</StyledSpan>
+            Plant: <StyledSpan>{plant.name}</StyledSpan>
             <br />
             fertiliser season:{" "}
+            {/* if there are more than two strings, they are separated by a comma */}
             {plant.fertiliser_season.map((season, index) => (
               <FertilizeSpan key={index}>
                 {season}

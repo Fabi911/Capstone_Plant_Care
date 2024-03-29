@@ -50,7 +50,7 @@ export default function WateringSchedule({ plantsToWater, water_need }) {
           }
           return (
             <StyledWaterLi key={plant.id}>
-              plant name: <StyledSpan>{plant.name}</StyledSpan>
+              Plant: <StyledSpan>{plant.name}</StyledSpan>
               <br />
               water need: <WaterSpan>{wateringTime}</WaterSpan>
             </StyledWaterLi>

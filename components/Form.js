@@ -1,6 +1,4 @@
-import { useRouter } from "next/router";
 import styled from "styled-components";
-import { useState } from "react";
 
 const Label = styled.label`
   font-weight: bold;
@@ -14,16 +12,17 @@ const StyledForm = styled.form`
 `;
 
 export default function Form({ onSubmit, entrySucessful }) {
-  const router = useRouter();
-
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
+
+    //delete entries from data
     delete data.Spring;
     delete data.Summer;
     delete data.Fall;
 
+    //input type checkbox saved as a array
     const fertiliserSeason = [];
     document
       .querySelectorAll('input[type="checkbox"]:checked')
@@ -31,7 +30,7 @@ export default function Form({ onSubmit, entrySucessful }) {
         fertiliserSeason.push(checkbox.value);
       });
 
-    data.fertiliser_season = fertiliserSeason;
+    data.fertiliser_season = fertiliserSeason; //save checkbox array in object
     onSubmit(data);
     entrySucessful();
   }
