@@ -28,26 +28,19 @@ const WaterSpan = styled.span`
   color: turquoise;
 `;
 
+const wateringSchedule = {
+  Low: "Weekly",
+  Moderate: "Every 2nd day",
+  High: "Daily",
+};
+
 export default function WateringSchedule({ plantsToWater, water_need }) {
   return (
     <Watercard>
       <h1>Plants to Water Today</h1>
       <WaterListContainer>
         {plantsToWater.map((plant) => {
-          let wateringTime = "";
-          switch (plant.water_need) {
-            case "Low":
-              wateringTime = "Weekly";
-              break;
-            case "Moderate":
-              wateringTime = "Every 2nd day";
-              break;
-            case "High":
-              wateringTime = "Daily";
-              break;
-            default:
-              wateringTime = "Unknown";
-          }
+          const wateringTime = wateringSchedule[plant.water_need] || "Unknown";
           return (
             <StyledWaterLi key={plant.id}>
               Plant: <StyledSpan>{plant.name}</StyledSpan>

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useState } from "react";
 
 const Label = styled.label`
   font-weight: bold;
@@ -11,7 +12,20 @@ const StyledForm = styled.form`
   gap: 0.5rem;
 `;
 
-export default function Form({ onSubmit, entrySucessful }) {
+export default function Form({ onSubmit, entrySuccessful }) {
+  const [checkedSeasons, setCheckedSeasons] = useState({
+    Spring: false,
+    Summer: false,
+    Fall: false,
+  });
+  function handleCheckboxChange(event) {
+    const { name, checked } = event.target;
+    setCheckedSeasons((checkedSeason) => ({
+      ...checkedSeason,
+      [name]: checked,
+    }));
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -23,16 +37,26 @@ export default function Form({ onSubmit, entrySucessful }) {
     delete data.Fall;
 
     //input type checkbox saved as a array
-    const fertiliserSeason = [];
-    document
-      .querySelectorAll('input[type="checkbox"]:checked')
-      .forEach((checkbox) => {
-        fertiliserSeason.push(checkbox.value);
-      });
+    //   const fertiliserSeason = [];
+    //   document
+    //     .querySelectorAll('input[type="checkbox"]:checked')
+    //     .forEach((checkbox) => {
+    //       fertiliserSeason.push(checkbox.value);
+    //     });
 
-    data.fertiliser_season = fertiliserSeason; //save checkbox array in object
+    //   data.fertiliser_season = fertiliserSeason; //save checkbox array in object
+    //   onSubmit(data);
+    //   entrySucessful();
+    // }
+
+    // Filter the checked seasons based on the state
+    const fertiliserSeason = Object.entries(checkedSeasons)
+      .filter(([season, isChecked]) => isChecked)
+      .map(([season]) => season);
+
+    data.fertiliser_season = fertiliserSeason;
     onSubmit(data);
-    entrySucessful();
+    entrySuccessful();
   }
 
   return (
@@ -64,11 +88,33 @@ export default function Form({ onSubmit, entrySucessful }) {
       <fieldset>
         <legend>fertiliser season</legend>
         <Label htmlFor="Spring">Spring</Label>
-        <input type="checkbox" id="Spring" name="Spring" value="Spring" />
+        <input
+          type="checkbox"
+          id="Spring"
+          name="Spring"
+          value="Spring"
+          checked={checkedSeasons.Spring}
+          onChange={handleCheckboxChange}
+        />
         <Label htmlFor="Summer">Summer</Label>
-        <input type="checkbox" id="Summer" name="Summer" value="Summer" />
+        <input
+          type="checkbox"
+          id="Summer"
+          name="Summer"
+          value="Summer"
+          checked={checkedSeasons.Summer}
+          onChange={handleCheckboxChange}
+        />
+
         <Label htmlFor="Fall">Fall</Label>
-        <input type="checkbox" id="Fall" name="Fall" value="Fall" />
+        <input
+          type="checkbox"
+          id="Fall"
+          name="Fall"
+          value="Fall"
+          checked={checkedSeasons.Fall}
+          onChange={handleCheckboxChange}
+        />
       </fieldset>
       <button type="submit">Submit</button>
     </StyledForm>

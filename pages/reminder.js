@@ -32,75 +32,32 @@ export default function ReminderPage({ plants }) {
 
   const myPlants = plants.filter((plant) => plant.isOwned);
 
-  let dayOfWeek;
+  const daysOfWeek = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  const dayOfWeek = daysOfWeek[day % 7];
 
-  switch (day % 7) {
-    case 0:
-      dayOfWeek = "Sunday";
-      break;
-    case 1:
-      dayOfWeek = "Monday";
-      break;
-    case 2:
-      dayOfWeek = "Tuesday";
-      break;
-    case 3:
-      dayOfWeek = "Wednesday";
-      break;
-    case 4:
-      dayOfWeek = "Thursday";
-      break;
-    case 5:
-      dayOfWeek = "Friday";
-      break;
-    case 6:
-      dayOfWeek = "Saturday";
-      break;
-    default:
-      dayOfWeek = "";
-  }
-
-  let monthName;
-  switch (month % 12) {
-    case 0:
-      monthName = "January";
-      break;
-    case 1:
-      monthName = "February";
-      break;
-    case 2:
-      monthName = "March";
-      break;
-    case 3:
-      monthName = "April";
-      break;
-    case 4:
-      monthName = "May";
-      break;
-    case 5:
-      monthName = "June";
-      break;
-    case 6:
-      monthName = "July";
-      break;
-    case 7:
-      monthName = "August";
-      break;
-    case 8:
-      monthName = "September";
-      break;
-    case 9:
-      monthName = "October";
-      break;
-    case 10:
-      monthName = "November";
-      break;
-    case 11:
-      monthName = "December";
-      break;
-    default:
-      monthName = "";
-  }
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const monthName = months[month % 12];
 
   useEffect(() => {
     // const today = new Date().getDay();   ---> deactivated for simulation

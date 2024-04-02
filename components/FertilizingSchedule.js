@@ -39,8 +39,8 @@ export default function FertilizingSchedule({ plantsToFertilize }) {
             <br />
             fertiliser season:{" "}
             {/* if there are more than two strings, they are separated by a comma */}
-            {plant.fertiliser_season.map((season, index) => (
-              <FertilizeSpan key={index}>
+            {plant.fertiliser_season.map((season, index, id) => (
+              <FertilizeSpan key={id}>
                 {season}
                 {index !== plant.fertiliser_season.length - 1 ? ", " : ""}
               </FertilizeSpan>
