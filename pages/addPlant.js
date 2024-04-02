@@ -10,13 +10,13 @@ const StyledLink = styled(Link)`
 `;
 
 export default function AddPlant({ handleAddPlant }) {
-  function entrySucessful() {
+  function entrySuccessful() {
     return alert("Plant added sucessfully");
   }
 
   return (
     <>
-      <Form onSubmit={handleAddPlant} entrySucessful={entrySucessful} />
+      <Form onSubmit={handleAddPlant} entrySuccessful={entrySuccessful} />
       <br />
       <StyledLink href="/">Back to Homepage</StyledLink>
     </>

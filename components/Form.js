@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import styled from "styled-components";
 import { useState } from "react";
 
@@ -13,15 +12,51 @@ const StyledForm = styled.form`
   gap: 0.5rem;
 `;
 
-export default function Form({ onSubmit, entrySucessful }) {
-  const router = useRouter();
+export default function Form({ onSubmit, entrySuccessful }) {
+  const [checkedSeasons, setCheckedSeasons] = useState({
+    Spring: false,
+    Summer: false,
+    Fall: false,
+  });
+  function handleCheckboxChange(event) {
+    const { name, checked } = event.target;
+    setCheckedSeasons((checkedSeason) => ({
+      ...checkedSeason,
+      [name]: checked,
+    }));
+  }
 
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
+
+    //delete entries from data
+    delete data.Spring;
+    delete data.Summer;
+    delete data.Fall;
+
+    //input type checkbox saved as a array
+    //   const fertiliserSeason = [];
+    //   document
+    //     .querySelectorAll('input[type="checkbox"]:checked')
+    //     .forEach((checkbox) => {
+    //       fertiliserSeason.push(checkbox.value);
+    //     });
+
+    //   data.fertiliser_season = fertiliserSeason; //save checkbox array in object
+    //   onSubmit(data);
+    //   entrySucessful();
+    // }
+
+    // Filter the checked seasons based on the state
+    const fertiliserSeason = Object.entries(checkedSeasons)
+      .filter(([season, isChecked]) => isChecked)
+      .map(([season]) => season);
+
+    data.fertiliser_season = fertiliserSeason;
     onSubmit(data);
-    entrySucessful();
+    entrySuccessful();
   }
 
   return (
@@ -38,9 +73,9 @@ export default function Form({ onSubmit, entrySucessful }) {
       />
       <Label htmlFor="water_need">water need</Label>
       <select id="water_need" name="water_need" required>
-        <option value="low">weekly</option>
-        <option value="mid">2 times a week</option>
-        <option value="high">daily</option>
+        <option value="Low">weekly</option>
+        <option value="Moderate">2 times a week</option>
+        <option value="High">daily</option>
       </select>
       <Label htmlFor="image">Image</Label>
       <input
@@ -50,13 +85,37 @@ export default function Form({ onSubmit, entrySucessful }) {
         maxLength={1}
         placeholder="not allowed"
       />
-      <Label htmlFor="fertiliser_season">fertiliser_season</Label>
-      <select id="fertiliser_season" name="fertiliser_season" required>
-        <option value="spring">spring</option>
-        <option value="sommer">sommer</option>
-        <option value="fall">fall</option>
-      </select>
+      <fieldset>
+        <legend>fertiliser season</legend>
+        <Label htmlFor="Spring">Spring</Label>
+        <input
+          type="checkbox"
+          id="Spring"
+          name="Spring"
+          value="Spring"
+          checked={checkedSeasons.Spring}
+          onChange={handleCheckboxChange}
+        />
+        <Label htmlFor="Summer">Summer</Label>
+        <input
+          type="checkbox"
+          id="Summer"
+          name="Summer"
+          value="Summer"
+          checked={checkedSeasons.Summer}
+          onChange={handleCheckboxChange}
+        />
 
+        <Label htmlFor="Fall">Fall</Label>
+        <input
+          type="checkbox"
+          id="Fall"
+          name="Fall"
+          value="Fall"
+          checked={checkedSeasons.Fall}
+          onChange={handleCheckboxChange}
+        />
+      </fieldset>
       <button type="submit">Submit</button>
     </StyledForm>
   );
