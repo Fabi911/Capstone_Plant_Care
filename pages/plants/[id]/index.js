@@ -7,6 +7,7 @@ export default function DetailPage({
   plants,
   handleToggleOwnedPlants,
   handleDeletePlant,
+  handleEditPlant,
 }) {
   const router = useRouter();
   const { id } = router.query;
@@ -19,6 +20,7 @@ export default function DetailPage({
       plantDetail={plantDetail}
       handleToggleOwnedPlants={handleToggleOwnedPlants}
       handleDeletePlant={handleDeletePlant}
+      handleEditPlant={handleEditPlant}
     />
   );
 }
