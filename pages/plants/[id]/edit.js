@@ -10,10 +10,16 @@ export default function EditPage({ plants, handleEditPlant }) {
 
   if (!editPlant) return null;
 
+  function handleSubmit(data) {
+    const editedPlant = { ...editPlant, ...data };
+    handleEditPlant(editedPlant);
+    router.push("/");
+  }
+
   return (
     <>
       <Form
-        onSubmit={handleEditPlant}
+        onSubmit={handleSubmit}
         defaultData={editPlant}
         formName={"editPlant"}
       />
