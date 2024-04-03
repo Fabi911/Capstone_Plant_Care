@@ -88,8 +88,10 @@ export default function Form({ onSubmit, defaultData, formName }) {
         type="URL"
         id="image"
         name="image"
-        maxLength={1}
+        disabled
+        maxLength={0}
         placeholder="not allowed"
+        defaultValue={defaultData?.image}
       />
       <fieldset>
         <legend>fertiliser season</legend>
@@ -99,7 +101,7 @@ export default function Form({ onSubmit, defaultData, formName }) {
           id="Spring"
           name="Spring"
           value="Spring"
-          defaultChecked={defaultData.fertiliser_season.includes("Spring")}
+          defaultChecked={defaultData?.fertiliser_season.includes("Spring")}
           onChange={handleCheckboxChange}
         />
         <Label htmlFor="Summer">Summer</Label>
@@ -108,7 +110,7 @@ export default function Form({ onSubmit, defaultData, formName }) {
           id="Summer"
           name="Summer"
           value="Summer"
-          defaultChecked={defaultData.fertiliser_season.includes("Summer")}
+          defaultChecked={defaultData?.fertiliser_season.includes("Summer")}
           onChange={handleCheckboxChange}
         />
 
@@ -118,7 +120,7 @@ export default function Form({ onSubmit, defaultData, formName }) {
           id="Fall"
           name="Fall"
           value="Fall"
-          defaultChecked={defaultData.fertiliser_season.includes("Fall")}
+          defaultChecked={defaultData?.fertiliser_season.includes("Fall")}
           onChange={handleCheckboxChange}
         />
       </fieldset>
