@@ -40,6 +40,12 @@ export default function App({ Component, pageProps }) {
       )
     );
   }
+  function handleEditPlant(editPlant) {
+    setPlants(
+      plants.map((plant) => (plant.id === editPlant.id ? editPlant : plant))
+    );
+  }
+
   console.log("plants: ", plants);
   return (
     <>
@@ -50,6 +56,7 @@ export default function App({ Component, pageProps }) {
         handleToggleOwnedPlants={handleToggleOwnedPlants}
         handleAddPlant={handleAddPlant}
         handleDeletePlant={handleDeletePlant}
+        handleEditPlant={handleEditPlant}
       />
       <Navbar />
     </>
