@@ -18,6 +18,9 @@ export default function Form({ onSubmit, defaultData, formName }) {
     Summer: false,
     Fall: false,
   });
+
+  console.log("defaultData", defaultData);
+
   function handleCheckboxChange(event) {
     const { name, checked } = event.target;
     setCheckedSeasons((checkedSeason) => ({
@@ -39,23 +42,10 @@ export default function Form({ onSubmit, defaultData, formName }) {
     delete data.Summer;
     delete data.Fall;
 
-    //input type checkbox saved as a array
-    //   const fertiliserSeason = [];
-    //   document
-    //     .querySelectorAll('input[type="checkbox"]:checked')
-    //     .forEach((checkbox) => {
-    //       fertiliserSeason.push(checkbox.value);
-    //     });
-
-    //   data.fertiliser_season = fertiliserSeason; //save checkbox array in object
-    //   onSubmit(data);
-    //   entrySucessful();
-    // }
-
     // Filter the checked seasons based on the state
-    const fertiliserSeason = Object.entries(checkedSeasons)
-      .filter(([season, isChecked]) => isChecked)
-      .map(([season]) => season);
+    const fertiliserSeason = Object.entries(checkedSeasons).map(
+      ([season]) => season
+    );
 
     data.fertiliser_season = fertiliserSeason;
     onSubmit(data);
@@ -109,9 +99,8 @@ export default function Form({ onSubmit, defaultData, formName }) {
           id="Spring"
           name="Spring"
           value="Spring"
-          checked={checkedSeasons.Spring}
+          defaultChecked={defaultData.fertiliser_season.includes("Spring")}
           onChange={handleCheckboxChange}
-          defaultValue={defaultData?.fertiliser_season}
         />
         <Label htmlFor="Summer">Summer</Label>
         <input
@@ -119,9 +108,8 @@ export default function Form({ onSubmit, defaultData, formName }) {
           id="Summer"
           name="Summer"
           value="Summer"
-          checked={checkedSeasons.Summer}
+          defaultChecked={defaultData.fertiliser_season.includes("Summer")}
           onChange={handleCheckboxChange}
-          defaultValue={defaultData?.fertiliser_season}
         />
 
         <Label htmlFor="Fall">Fall</Label>
@@ -130,9 +118,8 @@ export default function Form({ onSubmit, defaultData, formName }) {
           id="Fall"
           name="Fall"
           value="Fall"
-          checked={checkedSeasons.Fall}
+          defaultChecked={defaultData.fertiliser_season.includes("Fall")}
           onChange={handleCheckboxChange}
-          defaultValue={defaultData?.fertiliser_season}
         />
       </fieldset>
       <button type="submit">Submit</button>
