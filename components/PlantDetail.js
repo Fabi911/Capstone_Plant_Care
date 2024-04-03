@@ -58,6 +58,7 @@ export default function PlantDetail({
           }
         />
       </ul>
+
       <button onClick={handleDelete}>Delete this plant</button>
       {confirmDelete && (
         <ConfirmDelete

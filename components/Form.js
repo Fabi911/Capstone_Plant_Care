@@ -26,7 +26,7 @@ export default function Form({ onSubmit, entrySuccessful }) {
     }));
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
@@ -36,28 +36,35 @@ export default function Form({ onSubmit, entrySuccessful }) {
     delete data.Summer;
     delete data.Fall;
 
-    //input type checkbox saved as a array
-    //   const fertiliserSeason = [];
-    //   document
-    //     .querySelectorAll('input[type="checkbox"]:checked')
-    //     .forEach((checkbox) => {
-    //       fertiliserSeason.push(checkbox.value);
-    //     });
-
-    //   data.fertiliser_season = fertiliserSeason; //save checkbox array in object
-    //   onSubmit(data);
-    //   entrySucessful();
-    // }
-
-    // Filter the checked seasons based on the state
     const fertiliserSeason = Object.entries(checkedSeasons)
       .filter(([season, isChecked]) => isChecked)
       .map(([season]) => season);
 
     data.fertiliser_season = fertiliserSeason;
+
+    const imageFile = formData.get("image");
+    const imageUrl = await uploadImage(imageFile);
+    data.image = imageUrl;
+
     onSubmit(data);
     entrySuccessful();
   }
+  const uploadImage = async (imageFile) => {
+    const formData = new FormData();
+    formData.append("file", imageFile);
+    formData.append("upload_preset", "koxbtlu9");
+
+    const response = await fetch(
+      "https://api.cloudinary.com/v1_1/ddqqfiwvi/image/upload",
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+
+    const data = await response.json();
+    return data.secure_url;
+  };
 
   return (
     <StyledForm onSubmit={handleSubmit}>
@@ -78,13 +85,7 @@ export default function Form({ onSubmit, entrySuccessful }) {
         <option value="High">daily</option>
       </select>
       <Label htmlFor="image">Image</Label>
-      <input
-        type="URL"
-        id="image"
-        name="image"
-        maxLength={1}
-        placeholder="not allowed"
-      />
+      <input type="file" id="image" name="image" accept="image/*" required />
       <fieldset>
         <legend>fertiliser season</legend>
         <Label htmlFor="Spring">Spring</Label>
