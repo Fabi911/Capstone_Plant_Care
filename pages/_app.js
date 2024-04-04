@@ -4,6 +4,7 @@ import useLocalStorageState from "use-local-storage-state";
 import Navbar from "@/components/Navbar";
 import { uid } from "uid";
 import { useRouter } from "next/router";
+import { SWRConfig } from "swr";
 
 export default function App({ Component, pageProps }) {
   const [plants, setPlants] = useLocalStorageState("Plants", {
