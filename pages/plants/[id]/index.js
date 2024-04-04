@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import PlantDetail from "@/components/PlantDetail";
+import { CldUploadWidget } from "next-cloudinary";
 
 import { uid } from "uid";
 import useSWR from "swr";
@@ -18,11 +19,10 @@ export default function DetailPage({
 
   const { data, error, isLoading } = useSWR("/api/cloudinary", fetcher);
 
+  console.log("data", data);
+
   if (error) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
-
-  const imageUrls = data;
-  console.log("dfdf", data);
 
   if (!plantDetail) return null;
   return (
@@ -32,16 +32,27 @@ export default function DetailPage({
         handleToggleOwnedPlants={handleToggleOwnedPlants}
         handleDeletePlant={handleDeletePlant}
       />
-      {imageUrls.map((url) => (
-        <CldImage
-          key={uid()}
-          width="960"
-          height="600"
-          src={url}
-          sizes="20vw"
-          alt="Description of my image"
-        />
-      ))}
+      <CldUploadWidget uploadPreset="gallery-plant">
+        {({ open }) => {
+          return <button onClick={() => open()}>Upload an Image</button>;
+        }}
+      </CldUploadWidget>
+      <br></br>
+      {Array.isArray(data) &&
+        data.length > 0 &&
+        data.map((url) => (
+          <li key={uid()}>
+            <CldImage
+              width="200"
+              height="160"
+              src={url}
+              sizes="(max-width: 768px) 20vw,
+          (max-width: 1200px) 50vw,
+          100vw"
+              alt="Description"
+            />
+          </li>
+        ))}
     </>
   );
 }
