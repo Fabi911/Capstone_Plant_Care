@@ -41,7 +41,6 @@ export default function App({ Component, pageProps }) {
     );
   }
 
-
   function handleGalleryPlant(detailPlant) {
     setPlants(
       plants.map((plant) => (plant.id === detailPlant.id ? detailPlant : plant))
@@ -54,7 +53,6 @@ export default function App({ Component, pageProps }) {
     );
   }
 
-  console.log("plants: ", plants);
   return (
     <>
       <GlobalStyle />
@@ -64,11 +62,8 @@ export default function App({ Component, pageProps }) {
         handleToggleOwnedPlants={handleToggleOwnedPlants}
         handleAddPlant={handleAddPlant}
         handleDeletePlant={handleDeletePlant}
-
         handleGalleryPlant={handleGalleryPlant}
-
         handleEditPlant={handleEditPlant}
-
       />
       <Navbar />
     </>

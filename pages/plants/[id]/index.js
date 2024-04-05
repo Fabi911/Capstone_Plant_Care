@@ -11,11 +11,12 @@ export default function DetailPage({
   handleGalleryPlant,
 
   handleEditPlant,
-
 }) {
   const router = useRouter();
   const { id } = router.query;
   const plantDetail = plants.find((plant) => plant.id === id);
+  if (!plantDetail) return null;
+
   const gallery = plantDetail.gallery || [];
 
   async function handleSubmit(event) {
@@ -30,7 +31,6 @@ export default function DetailPage({
         ...plantDetail,
         gallery: [...gallery, imageUrl],
       };
-      console.log("url", addGalleryImgToDb);
       handleGalleryPlant(addGalleryImgToDb);
     } catch (error) {
       console.error("Error uploading image:", error);
@@ -59,14 +59,6 @@ export default function DetailPage({
         throw error;
       });
   }
-
-  // const { data, error, isLoading } = useSWR("/api/cloudinary", fetcher);
-
-  // console.log("data", data);
-
-  // if (error) return <div>failed to load</div>;
-  // if (isLoading) return <div>loading...</div>;
-
   if (!plantDetail) return null;
 
   return (
@@ -75,7 +67,7 @@ export default function DetailPage({
         plantDetail={plantDetail}
         handleToggleOwnedPlants={handleToggleOwnedPlants}
         handleDeletePlant={handleDeletePlant}
-   handleEditPlant={handleEditPlant}
+        handleEditPlant={handleEditPlant}
       />
       <form onSubmit={handleSubmit}>
         <label htmlFor="image">choose image</label>
@@ -99,6 +91,5 @@ export default function DetailPage({
           </li>
         ))}
     </>
-
   );
 }
