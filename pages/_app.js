@@ -41,11 +41,19 @@ export default function App({ Component, pageProps }) {
     );
   }
 
+
   function handleGalleryPlant(detailPlant) {
     setPlants(
       plants.map((plant) => (plant.id === detailPlant.id ? detailPlant : plant))
     );
   }
+
+  function handleEditPlant(editPlant) {
+    setPlants(
+      plants.map((plant) => (plant.id === editPlant.id ? editPlant : plant))
+    );
+  }
+
   console.log("plants: ", plants);
   return (
     <>
@@ -56,7 +64,11 @@ export default function App({ Component, pageProps }) {
         handleToggleOwnedPlants={handleToggleOwnedPlants}
         handleAddPlant={handleAddPlant}
         handleDeletePlant={handleDeletePlant}
+
         handleGalleryPlant={handleGalleryPlant}
+
+        handleEditPlant={handleEditPlant}
+
       />
       <Navbar />
     </>

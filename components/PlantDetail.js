@@ -27,6 +27,7 @@ export default function PlantDetail({
   isOwned,
   handleToggleOwnedPlants,
   handleDeletePlant,
+  handleEditPlant,
 }) {
   const [confirmDelete, setConfirmDelete] = useState(false);
 
@@ -59,6 +60,7 @@ export default function PlantDetail({
         />
       </ul>
 
+      <StyledLink href={`/plants/${plantDetail.id}/edit`}>edit</StyledLink>
       <button onClick={handleDelete}>Delete this plant</button>
       {confirmDelete && (
         <ConfirmDelete

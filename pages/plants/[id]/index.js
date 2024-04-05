@@ -7,7 +7,11 @@ export default function DetailPage({
   plants,
   handleToggleOwnedPlants,
   handleDeletePlant,
+
   handleGalleryPlant,
+
+  handleEditPlant,
+
 }) {
   const router = useRouter();
   const { id } = router.query;
@@ -71,6 +75,7 @@ export default function DetailPage({
         plantDetail={plantDetail}
         handleToggleOwnedPlants={handleToggleOwnedPlants}
         handleDeletePlant={handleDeletePlant}
+   handleEditPlant={handleEditPlant}
       />
       <form onSubmit={handleSubmit}>
         <label htmlFor="image">choose image</label>
@@ -94,5 +99,6 @@ export default function DetailPage({
           </li>
         ))}
     </>
+
   );
 }

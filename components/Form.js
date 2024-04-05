@@ -12,18 +12,24 @@ const StyledForm = styled.form`
   gap: 0.5rem;
 `;
 
-export default function Form({ onSubmit, entrySuccessful }) {
+export default function Form({ onSubmit, defaultData, formName }) {
   const [checkedSeasons, setCheckedSeasons] = useState({
     Spring: false,
     Summer: false,
     Fall: false,
   });
+
+  console.log("defaultData", defaultData);
+
   function handleCheckboxChange(event) {
     const { name, checked } = event.target;
     setCheckedSeasons((checkedSeason) => ({
       ...checkedSeason,
       [name]: checked,
     }));
+  }
+  function entrySuccessful() {
+    return alert("Plant added successfully");
   }
 
   async function handleSubmit(event) {
@@ -36,9 +42,11 @@ export default function Form({ onSubmit, entrySuccessful }) {
     delete data.Summer;
     delete data.Fall;
 
-    const fertiliserSeason = Object.entries(checkedSeasons)
-      .filter(([season, isChecked]) => isChecked)
-      .map(([season]) => season);
+
+    // Filter the checked seasons based on the state
+    const fertiliserSeason = Object.entries(checkedSeasons).map(
+      ([season]) => season
+    );
 
     data.fertiliser_season = fertiliserSeason;
 
@@ -67,9 +75,16 @@ export default function Form({ onSubmit, entrySuccessful }) {
   };
 
   return (
-    <StyledForm onSubmit={handleSubmit}>
+    <StyledForm onSubmit={handleSubmit} aria-labelledby={formName}>
       <Label htmlFor="name">Name</Label>
-      <input type="text" id="name" name="name" required maxLength={150} />
+      <input
+        type="text"
+        id="name"
+        name="name"
+        required
+        maxLength={150}
+        defaultValue={defaultData?.name}
+      />
       <Label htmlFor="botanical_name">botanical name</Label>
       <input
         type="text"
@@ -77,15 +92,22 @@ export default function Form({ onSubmit, entrySuccessful }) {
         name="botanical_name"
         required
         maxLength={150}
+        defaultValue={defaultData?.botanical_name}
       />
       <Label htmlFor="water_need">water need</Label>
-      <select id="water_need" name="water_need" required>
+      <select
+        id="water_need"
+        name="water_need"
+        required
+        defaultValue={defaultData?.water_need}
+      >
         <option value="Low">weekly</option>
         <option value="Moderate">2 times a week</option>
         <option value="High">daily</option>
       </select>
       <Label htmlFor="image">Image</Label>
       <input type="file" id="image" name="image" accept="image/*" required />
+
       <fieldset>
         <legend>fertiliser season</legend>
         <Label htmlFor="Spring">Spring</Label>
@@ -94,7 +116,7 @@ export default function Form({ onSubmit, entrySuccessful }) {
           id="Spring"
           name="Spring"
           value="Spring"
-          checked={checkedSeasons.Spring}
+          defaultChecked={defaultData?.fertiliser_season.includes("Spring")}
           onChange={handleCheckboxChange}
         />
         <Label htmlFor="Summer">Summer</Label>
@@ -103,7 +125,7 @@ export default function Form({ onSubmit, entrySuccessful }) {
           id="Summer"
           name="Summer"
           value="Summer"
-          checked={checkedSeasons.Summer}
+          defaultChecked={defaultData?.fertiliser_season.includes("Summer")}
           onChange={handleCheckboxChange}
         />
 
@@ -113,7 +135,7 @@ export default function Form({ onSubmit, entrySuccessful }) {
           id="Fall"
           name="Fall"
           value="Fall"
-          checked={checkedSeasons.Fall}
+          defaultChecked={defaultData?.fertiliser_season.includes("Fall")}
           onChange={handleCheckboxChange}
         />
       </fieldset>
