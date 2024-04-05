@@ -1,30 +1,69 @@
 import { useRouter } from "next/router";
 import PlantDetail from "@/components/PlantDetail";
-import { CldUploadWidget } from "next-cloudinary";
-
 import { uid } from "uid";
-import useSWR from "swr";
-import { CldImage } from "next-cloudinary";
-
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
+import Image from "next/image";
 
 export default function DetailPage({
   plants,
   handleToggleOwnedPlants,
   handleDeletePlant,
+  handleGalleryPlant,
 }) {
   const router = useRouter();
   const { id } = router.query;
   const plantDetail = plants.find((plant) => plant.id === id);
 
-  const { data, error, isLoading } = useSWR("/api/cloudinary", fetcher);
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const imageFile = formData.get("image");
 
-  console.log("data", data);
+    try {
+      const imageUrl = await uploadImage(imageFile);
 
-  if (error) return <div>failed to load</div>;
-  if (isLoading) return <div>loading...</div>;
+      const addGalleryImgToDb = {
+        ...plantDetail,
+        gallery: [...plantDetail.gallery, imageUrl],
+      };
+      console.log("url", addGalleryImgToDb);
+      handleGalleryPlant(addGalleryImgToDb);
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  }
+
+  function uploadImage(imageFile) {
+    const formData = new FormData();
+    formData.append("file", imageFile);
+    formData.append("upload_preset", "gallery-plant");
+
+    return fetch("https://api.cloudinary.com/v1_1/ddqqfiwvi/image/upload", {
+      method: "POST",
+      body: formData,
+    })
+      .then(async (response) => {
+        if (!response.ok) {
+          throw new Error("Failed to upload image");
+        }
+
+        const data = await response.json();
+        return data.secure_url;
+      })
+      .catch((error) => {
+        console.error("Error uploading image to Cloudinary:", error);
+        throw error;
+      });
+  }
+
+  // const { data, error, isLoading } = useSWR("/api/cloudinary", fetcher);
+
+  // console.log("data", data);
+
+  // if (error) return <div>failed to load</div>;
+  // if (isLoading) return <div>loading...</div>;
 
   if (!plantDetail) return null;
+
   return (
     <>
       <PlantDetail
@@ -32,17 +71,17 @@ export default function DetailPage({
         handleToggleOwnedPlants={handleToggleOwnedPlants}
         handleDeletePlant={handleDeletePlant}
       />
-      <CldUploadWidget uploadPreset="gallery-plant">
-        {({ open }) => {
-          return <button onClick={() => open()}>Upload an Image</button>;
-        }}
-      </CldUploadWidget>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="image">choose image</label>
+        <input type="file" id="image" name="image" accept="image/*" required />
+        <button type="submit">Upload</button>
+      </form>
       <br></br>
-      {Array.isArray(data) &&
-        data.length > 0 &&
-        data.map((url) => (
+      {Array.isArray(plantDetail.gallery) &&
+        plantDetail.gallery.length > 0 &&
+        plantDetail.gallery.map((url) => (
           <li key={uid()}>
-            <CldImage
+            <Image
               width="200"
               height="160"
               src={url}

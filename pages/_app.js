@@ -19,6 +19,7 @@ export default function App({ Component, pageProps }) {
         ...data,
         id: uid(),
         isOwned: true,
+        gallery: [],
         // image:
         //   "https://images.unsplash.com/photo-1469598614039-ccfeb0a21111?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fGZsb3dlciUyMHVnbHl8ZW58MHx8MHx8fDA%3D",
       },
@@ -39,6 +40,12 @@ export default function App({ Component, pageProps }) {
       )
     );
   }
+
+  function handleGalleryPlant(detailPlant) {
+    setPlants(
+      plants.map((plant) => (plant.id === detailPlant.id ? detailPlant : plant))
+    );
+  }
   console.log("plants: ", plants);
   return (
     <>
@@ -49,6 +56,7 @@ export default function App({ Component, pageProps }) {
         handleToggleOwnedPlants={handleToggleOwnedPlants}
         handleAddPlant={handleAddPlant}
         handleDeletePlant={handleDeletePlant}
+        handleGalleryPlant={handleGalleryPlant}
       />
       <Navbar />
     </>
