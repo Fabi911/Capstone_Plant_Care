@@ -12,6 +12,7 @@ export default function DetailPage({
   const router = useRouter();
   const { id } = router.query;
   const plantDetail = plants.find((plant) => plant.id === id);
+  const gallery = plantDetail.gallery || [];
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -23,7 +24,7 @@ export default function DetailPage({
 
       const addGalleryImgToDb = {
         ...plantDetail,
-        gallery: [...plantDetail.gallery, imageUrl],
+        gallery: [...gallery, imageUrl],
       };
       console.log("url", addGalleryImgToDb);
       handleGalleryPlant(addGalleryImgToDb);
