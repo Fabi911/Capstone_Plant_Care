@@ -32,7 +32,7 @@ export default function Form({ onSubmit, defaultData, formName }) {
     return alert("Plant added successfully");
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
@@ -42,15 +42,37 @@ export default function Form({ onSubmit, defaultData, formName }) {
     delete data.Summer;
     delete data.Fall;
 
+
     // Filter the checked seasons based on the state
     const fertiliserSeason = Object.entries(checkedSeasons).map(
       ([season]) => season
     );
 
     data.fertiliser_season = fertiliserSeason;
+
+    const imageFile = formData.get("image");
+    const imageUrl = await uploadImage(imageFile);
+    data.image = imageUrl;
+
     onSubmit(data);
     entrySuccessful();
   }
+  const uploadImage = async (imageFile) => {
+    const formData = new FormData();
+    formData.append("file", imageFile);
+    formData.append("upload_preset", "gallery-plant");
+
+    const response = await fetch(
+      "https://api.cloudinary.com/v1_1/ddqqfiwvi/image/upload",
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+
+    const data = await response.json();
+    return data.secure_url;
+  };
 
   return (
     <StyledForm onSubmit={handleSubmit} aria-labelledby={formName}>
@@ -84,15 +106,8 @@ export default function Form({ onSubmit, defaultData, formName }) {
         <option value="High">daily</option>
       </select>
       <Label htmlFor="image">Image</Label>
-      <input
-        type="URL"
-        id="image"
-        name="image"
-        disabled
-        maxLength={0}
-        placeholder="not allowed"
-        defaultValue={defaultData?.image}
-      />
+      <input type="file" id="image" name="image" accept="image/*" required />
+
       <fieldset>
         <legend>fertiliser season</legend>
         <Label htmlFor="Spring">Spring</Label>
