@@ -45,9 +45,17 @@ export default createGlobalStyle`
   body {
     display: flex;
     flex-direction: column;
-    align-items: center;
+
+
     background-color: var(--bg3-color); 
     color: var(--text3-color);
+
+    align-items: flex-start;
+
+    text-align: center;
+    gap: 1.5rem;
+
+
     margin: 0;
     font-family: system-ui;
     margin-bottom: 80px;
