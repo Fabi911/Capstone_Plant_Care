@@ -14,12 +14,10 @@ const StyledForm = styled.form`
 
 export default function Form({ onSubmit, defaultData, formName }) {
   const [checkedSeasons, setCheckedSeasons] = useState({
-    Spring: false,
-    Summer: false,
-    Fall: false,
+    spring: false,
+    summer: false,
+    fall: false,
   });
-
-  console.log("defaultData", defaultData);
 
   function handleCheckboxChange(event) {
     const { name, checked } = event.target;
@@ -28,51 +26,33 @@ export default function Form({ onSubmit, defaultData, formName }) {
       [name]: checked,
     }));
   }
-  function entrySuccessful() {
-    return alert("Plant added successfully");
-  }
 
   async function handleSubmit(event) {
     event.preventDefault();
+
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
 
-    //delete entries from data
-    delete data.Spring;
-    delete data.Summer;
-    delete data.Fall;
+    const fertiliserSeason = Object.entries(checkedSeasons)
+      .filter(([_, value]) => value)
+      .map(([key]) => key);
 
+    const response = await fetch("/api/upload", {
+      method: "POST",
+      body: formData,
+    });
 
-    // Filter the checked seasons based on the state
-    const fertiliserSeason = Object.entries(checkedSeasons).map(
-      ([season]) => season
-    );
+    const { url } = await response.json();
 
-    data.fertiliser_season = fertiliserSeason;
-
-    const imageFile = formData.get("image");
-    const imageUrl = await uploadImage(imageFile);
-    data.image = imageUrl;
-
-    onSubmit(data);
-    entrySuccessful();
+    onSubmit({
+      name: data.name,
+      botanical_name: data.botanical_name,
+      water_need: data.water_need,
+      fertiliser_season: fertiliserSeason,
+      image: url,
+    });
+    // alert("Plant added successfully");
   }
-  const uploadImage = async (imageFile) => {
-    const formData = new FormData();
-    formData.append("file", imageFile);
-    formData.append("upload_preset", "gallery-plant");
-
-    const response = await fetch(
-      "https://api.cloudinary.com/v1_1/ddqqfiwvi/image/upload",
-      {
-        method: "POST",
-        body: formData,
-      }
-    );
-
-    const data = await response.json();
-    return data.secure_url;
-  };
 
   return (
     <StyledForm onSubmit={handleSubmit} aria-labelledby={formName}>
@@ -106,36 +86,36 @@ export default function Form({ onSubmit, defaultData, formName }) {
         <option value="High">daily</option>
       </select>
       <Label htmlFor="image">Image</Label>
-      <input type="file" id="image" name="image" accept="image/*" required />
+      <input type="file" id="image" name="image" accept="image/*" />
 
       <fieldset>
         <legend>fertiliser season</legend>
         <Label htmlFor="Spring">Spring</Label>
         <input
           type="checkbox"
-          id="Spring"
-          name="Spring"
-          value="Spring"
-          defaultChecked={defaultData?.fertiliser_season.includes("Spring")}
+          id="spring"
+          name="spring"
+          value="spring"
+          defaultChecked={defaultData?.fertiliser_season.includes("spring")}
           onChange={handleCheckboxChange}
         />
         <Label htmlFor="Summer">Summer</Label>
         <input
           type="checkbox"
-          id="Summer"
-          name="Summer"
-          value="Summer"
-          defaultChecked={defaultData?.fertiliser_season.includes("Summer")}
+          id="summer"
+          name="summer"
+          value="summer"
+          defaultChecked={defaultData?.fertiliser_season.includes("summer")}
           onChange={handleCheckboxChange}
         />
 
         <Label htmlFor="Fall">Fall</Label>
         <input
           type="checkbox"
-          id="Fall"
-          name="Fall"
-          value="Fall"
-          defaultChecked={defaultData?.fertiliser_season.includes("Fall")}
+          id="fall"
+          name="fall"
+          value="fall"
+          defaultChecked={defaultData?.fertiliser_season.includes("fall")}
           onChange={handleCheckboxChange}
         />
       </fieldset>
