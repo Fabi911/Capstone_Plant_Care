@@ -1,12 +1,15 @@
 import styled, { createGlobalStyle } from "styled-components";
+import Background from "@/img/background.jpg";
 
 // Define global styles
 export default createGlobalStyle`
 :root {
   // Main color scheme
-  --bg-color: #004643;
+  /* --bg-color: #004643; */
+  --bg-color: white;
   --second-bg-color: #abd1c6;
-  --text-color: #e8e4e6;
+  /* --text-color: #e8e4e6; */
+  --text-color: black;
   --main-color: #2de2e6;
   --headline-color: "#fffffe";
   --paragraph-color: #abd1c6;
@@ -15,6 +18,7 @@ export default createGlobalStyle`
   --stroke-color: #001e1d;
   --button-color: #f9bc60;
   --div-color: #abd1c6;
+  --link-color: #abd1c6;
   // Alternative color scheme
   --bg2-color: #e3f6f5;
   --second-bg2-color: #abd1c6,
@@ -22,7 +26,8 @@ export default createGlobalStyle`
   --main2-color: #2de2e6;
   --headline2-color: #272343;
   --subHeadline-color: #2d334a;
-  --card-color: #fffffe;
+  /* --card-color: #fffffe; */
+  --card-color: #b3d9b3;
   --paragraph2-color: #abd1c6;
   --highlight2-color: #ffd803;
   --tertiary2-color: #bae8e8;
@@ -34,6 +39,7 @@ export default createGlobalStyle`
   --main3-color: #fff5f6;
   --highlight2-color: #f92aad;
   --tertiary3-color: #f97e72;
+  --box-shadow: #303030;
 
 }
   *,
@@ -45,20 +51,27 @@ export default createGlobalStyle`
   body {
     display: flex;
     flex-direction: column;
+    align-items: center;
+
+    /* background: src={Background};
+    background-color: var(--bg-color);  */
+
+    background-image: url(${Background});
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: var(--bg-color);
+    color: var(--text2-color);
 
 
-    background-color: var(--bg3-color); 
-    color: var(--text3-color);
-
-    align-items: flex-start;
 
     text-align: center;
     gap: 1.5rem;
 
 
-    margin-top: 80px;
+    margin-top: 70px;
     margin-left: 0;
-    font-family: system-ui;
+    /* font-family: system-ui; */
     margin-bottom: 80px;
     text-align: center;
   }
@@ -66,7 +79,7 @@ export default createGlobalStyle`
 
 // Styled component for Container
 export const Container = styled.div`
-  background: var(--second-bg-color);
+  background: var(--bg2-color);
   color: var(--text-color);
   width: 80vw;
   height: auto;

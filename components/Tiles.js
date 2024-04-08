@@ -1,15 +1,14 @@
 import styled from "styled-components";
 import Tile from "./Tile";
 import { uid } from "uid";
+import iconHome from "@/img/iconHome.png";
 
-const StyledTiles = styled.ul`
+const StyledTiles = styled.div`
   list-style-type: none;
   display: flex;
   flex-wrap: wrap;
   gap: 32px;
-  padding: 0;
-  margin: 0;
-  justify-content: center;
+  justify-content: space-around;
 `;
 
 export default function Tiles() {
@@ -20,11 +19,12 @@ export default function Tiles() {
   ];
   return (
     <StyledTiles>
-      {tilesData.map((tile) => (
-        <li key={uid()}>
-          <Tile tilesDate={tilesData}></Tile>
-        </li>
-      ))}
+      {/* {tilesData.map((tile) => (
+        <li key={uid()}> */}
+      <Tile icon={iconHome}></Tile>
+      <Tile icon={iconHome}></Tile>
+      {/* </li> */}
+      {/* ))} */}
     </StyledTiles>
   );
 }
