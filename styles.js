@@ -56,7 +56,8 @@ export default createGlobalStyle`
     gap: 1.5rem;
 
 
-    margin: 0;
+    margin-top: 80px;
+    margin-left: 0;
     font-family: system-ui;
     margin-bottom: 80px;
     text-align: center;

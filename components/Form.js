@@ -41,13 +41,12 @@ export default function Form({ onSubmit, defaultData, formName }) {
     delete data.Spring;
     delete data.Summer;
     delete data.Fall;
-
-
+    console.log(checkedSeasons);
     // Filter the checked seasons based on the state
-    const fertiliserSeason = Object.entries(checkedSeasons).map(
-      ([season]) => season
+    const fertiliserSeason = Object.keys(checkedSeasons).filter(
+      (season) => checkedSeasons[season]
     );
-
+    console.log(fertiliserSeason);
     data.fertiliser_season = fertiliserSeason;
 
     const imageFile = formData.get("image");
