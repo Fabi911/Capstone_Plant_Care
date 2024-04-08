@@ -60,7 +60,7 @@ export default function Form({ onSubmit, defaultData, formName }) {
   const uploadImage = async (imageFile) => {
     const formData = new FormData();
     formData.append("file", imageFile);
-    formData.append("upload_preset", "koxbtlu9");
+    formData.append("upload_preset", "gallery-plant");
 
     const response = await fetch(
       "https://api.cloudinary.com/v1_1/ddqqfiwvi/image/upload",
