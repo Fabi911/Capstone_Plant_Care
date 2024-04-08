@@ -1,13 +1,13 @@
 import { Header, Footer } from "./StyledLayout";
 import Logo from "./Logo";
 
-export default function Layout({ childrens }) {
+export default function Layout({ children }) {
   return (
     <>
       <Header>
         <Logo />
       </Header>
-      {childrens}
+      {children}
       <Footer>Impressum</Footer>
     </>
   );
