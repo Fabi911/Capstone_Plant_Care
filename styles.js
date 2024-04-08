@@ -10,7 +10,7 @@ export default createGlobalStyle`
   body {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     background-color: #004643;
     text-align: center;
     gap: 1.5rem;

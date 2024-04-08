@@ -2,7 +2,7 @@ import GlobalStyle from "../styles";
 import { useState } from "react";
 import { data } from "@/lib/db";
 import useLocalStorageState from "use-local-storage-state";
-import Navbar from "@/components/Navbar";
+import Layout from "@/components/Layout";
 
 import { uid } from "uid";
 import { useRouter } from "next/router";
@@ -50,15 +50,16 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <GlobalStyle />
-      <Component
-        {...pageProps}
-        plants={plants}
-        handleToggleOwnedPlants={handleToggleOwnedPlants}
-        handleAddPlant={handleAddPlant}
-        handleDeletePlant={handleDeletePlant}
-        handleEditPlant={handleEditPlant}
-      />
-      <Navbar />
+      <Layout>
+        <Component
+          {...pageProps}
+          plants={plants}
+          handleToggleOwnedPlants={handleToggleOwnedPlants}
+          handleAddPlant={handleAddPlant}
+          handleDeletePlant={handleDeletePlant}
+          handleEditPlant={handleEditPlant}
+        />
+      </Layout>
     </>
   );
 }
