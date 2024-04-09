@@ -1,6 +1,7 @@
 import WateringSchedule from "@/components/WateringSchedule";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import BackArrow from "@/components/MyPlant/BackArrow";
 
 function useDayCount(startDay) {
   const [day, setDay] = useState(startDay);
@@ -47,6 +48,7 @@ export default function ReminderPage({ plants }) {
 
   return (
     <div>
+      <BackArrow />
       <Image src="/img/iconWater.png" width={80} height={80} alt="iconWater" />
       <p>Day of the week : {dayOfWeek}</p>
       {/* only for simulation */}

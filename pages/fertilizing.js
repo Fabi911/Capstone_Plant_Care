@@ -1,6 +1,7 @@
 import FertilizingSchedule from "@/components/FertilizingSchedule";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import BackArrow from "@/components/MyPlant/BackArrow";
 
 function useMonthCount(startMonth) {
   const [month, setMonth] = useState(startMonth);
@@ -57,6 +58,7 @@ export default function ReminderPage({ plants }) {
 
   return (
     <div>
+      <BackArrow />
       <Image
         src="/img/iconFertilizing.png"
         width={80}
