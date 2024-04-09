@@ -16,10 +16,10 @@ const StyledCard = styled.div`
   padding-right: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
-  background-color: #abd1c6;
+  background-color: var(--main-color3);
   border-radius: 20px;
   &:active {
-    box-shadow: inset 0px 0px 5px var(--box-shadow);
+    box-shadow: inset 2px 2px 2px var(--box-shadow);
   }
 `;
 

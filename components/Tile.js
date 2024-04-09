@@ -13,6 +13,9 @@ const StyledTile = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  &:active {
+    box-shadow: inset 2px 2px 2px var(--box-shadow);
+  }
 `;
 
 const StyledIcon = styled(Image)`

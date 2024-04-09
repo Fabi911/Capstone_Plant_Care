@@ -1,6 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
 
-
 // Define global styles
 export default createGlobalStyle`
 :root {
