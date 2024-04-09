@@ -61,7 +61,7 @@ export default function ReminderPage({ plants }) {
         src="/img/iconFertilizing.png"
         width={80}
         height={80}
-        alt={IconFertilizing}
+        alt="IconFertilizing"
       />
       <p>Current month : {monthName}</p>
       <button onClick={nextMonth}>Next month</button>{" "}
