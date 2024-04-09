@@ -10,7 +10,6 @@ const StyledCard = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  flex-basis: 80%;
   padding-left: 20px;
   padding-right: 20px;
   background-color: #abd1c6;
@@ -20,21 +19,28 @@ const StyledCard = styled.div`
   }
 `;
 
+const StyledImage = styled(Image)`
+  margin-right: 20px;
+`;
+
 const StyledDiv = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  align-items: stretch;
+  justify-content: flex-start;
+  align-items: center;
+  flex-grow: 1;
 `;
 
 const StyledDiv2 = styled.div`
   display: flex;
-  justify-content: right;
+  justify-content: flex-end;
+  align-items: center;
 `;
 
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: #001e1d;
+  flex-grow: 2;
 `;
 
 export default function PlantPreview({
@@ -50,7 +56,7 @@ export default function PlantPreview({
       <StyledCard>
         <StyledLink href={`/plants/${id}`}>
           <StyledDiv>
-            <Image src={image} alt={name} width={100} height={100} />
+            <StyledImage src={image} alt={name} width={100} height={100} />
             <div>
               <p>{name}</p>
               <p>botanical name: {botanicalName}</p>
