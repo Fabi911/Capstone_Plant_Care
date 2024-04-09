@@ -18,7 +18,7 @@ export default function Overview({ plants, handleToggleOwnedPlants }) {
      <BackArrow link="/" />
 
    
-
+<AddPlantLink />
       <PlantsList
         plants={plants}
         handleToggleOwnedPlants={handleToggleOwnedPlants}
