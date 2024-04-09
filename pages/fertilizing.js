@@ -58,7 +58,7 @@ export default function ReminderPage({ plants }) {
 
   return (
     <div>
-      <BackArrow />
+      <BackArrow link="/" />
       <Image
         src="/img/iconFertilizing.png"
         width={80}

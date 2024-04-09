@@ -1,14 +1,14 @@
 import PlantPreview from "@/components/PlantPreview";
-import PlantsList from "@/components/PlantsList";
 import { PlantListItem } from "@/components/PlantsList";
 import BackArrow from "@/components/MyPlant/BackArrow";
+import { PlantListContainer } from "@/components/PlantsList";
 
 export default function OwnedPage({ plants, handleToggleOwnedPlants }) {
   /* const isMyPlant = plants.filter((plant) => plant.isOwned === true); */
   return (
     <>
-      <BackArrow />
-      <ul>
+      <BackArrow link="/" />
+      <PlantListContainer>
         {plants.map((plant) => {
           if (plant.isOwned) {
             return (
@@ -27,7 +27,7 @@ export default function OwnedPage({ plants, handleToggleOwnedPlants }) {
             );
           }
         })}
-      </ul>
+      </PlantListContainer>
     </>
   );
 }

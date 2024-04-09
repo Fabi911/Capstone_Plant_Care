@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import PlantDetail from "@/components/PlantDetail";
 import { uid } from "uid";
 import Image from "next/image";
+import BackArrow from "@/components/MyPlant/BackArrow";
 
 export default function DetailPage({
   plants,
@@ -63,6 +64,7 @@ export default function DetailPage({
 
   return (
     <>
+      <BackArrow link="/overview" />
       <PlantDetail
         plantDetail={plantDetail}
         handleToggleOwnedPlants={handleToggleOwnedPlants}

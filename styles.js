@@ -30,10 +30,10 @@ export default createGlobalStyle`
     gap: 1.5rem;
 
 
-    margin-top: 70px;
+    margin-top: 80px;
     margin-left: 0;
   font-family: system-ui;
-    margin-bottom: 80px;
+    margin-bottom: 25px;
     text-align: center;
   }
   h1{

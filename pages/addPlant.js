@@ -13,7 +13,7 @@ const StyledLink = styled(Link)`
 export default function AddPlant({ handleAddPlant }) {
   return (
     <>
-      <BackArrow />
+      <BackArrow link="/overview" />
       <Form onSubmit={handleAddPlant} />
       <br />
     </>

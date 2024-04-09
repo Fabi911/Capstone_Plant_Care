@@ -26,6 +26,10 @@ const StyledImage = styled(Image)`
   margin-right: 20px;
   border-radius: 5px;
   width: 15vw;
+
+=======
+  height: auto;
+
 `;
 
 const StyledUpper = styled.div`
@@ -48,6 +52,10 @@ const StyledLink = styled(Link)`
   flex-grow: 2;
 `;
 
+const StyledTextBox = styled.div`
+  width: 38vw;
+`;
+
 export default function PlantPreview({
   name,
   botanicalName,
@@ -62,11 +70,13 @@ export default function PlantPreview({
         <StyledLink href={`/plants/${id}`}>
           <StyledUpper>
             <StyledImage src={image} alt={name} width={100} height={100} />
-            <StyledMiddle>
+
+            <StyledTextBox>
               <p>{name}</p>
               <p>botanical name: {botanicalName}</p>
-            </StyledMiddle>
-          </StyledUpper>
+            </StyledTextBox>
+          </StyledDiv>
+
         </StyledLink>
         <StyledLowest>
           <OwnedPlantButton
