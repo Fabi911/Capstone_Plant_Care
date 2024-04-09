@@ -5,8 +5,8 @@ export const Header = styled.div`
   top: 0;
   left: 0;
   height: 3.5rem;
-  /* background: #70a19f; */
-  background: black;
+  background: #70a19f;
+  //background: black;
   width: 100vw;
   color: white;
 `;

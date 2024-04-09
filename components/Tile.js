@@ -15,7 +15,9 @@ const StyledTile = styled.div`
   justify-content: flex-start;
 `;
 
-const StyledIcon = styled(Image)``;
+const StyledIcon = styled(Image)`
+  margin-top: 10px;
+`;
 
 const StyledText = styled.p`
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -32,7 +34,7 @@ export default function Tile({ href, name, icon }) {
   return (
     <Link href="/">
       <StyledTile>
-        <StyledIcon src={icon} width={150} height={150} alt={name} />
+        <StyledIcon src={icon} width={80} height={80} alt={name} />
         <StyledText>home</StyledText>
       </StyledTile>
     </Link>
