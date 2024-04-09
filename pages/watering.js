@@ -1,7 +1,7 @@
 import WateringSchedule from "@/components/WateringSchedule";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import icon from "@/public/img/iconWater.png";
+import IconWater from "@/public/img/iconWater.png";
 
 function useDayCount(startDay) {
   const [day, setDay] = useState(startDay);
@@ -48,7 +48,7 @@ export default function ReminderPage({ plants }) {
 
   return (
     <div>
-      <Image src={icon} width={80} height={80} alt={name} />
+      <Image src={IconWater} width={80} height={80} alt={name} />
       <p>Day of the week : {dayOfWeek}</p>
       {/* only for simulation */}
       <button onClick={nextDay}>Next day</button> {/* only for simulation */}

@@ -1,7 +1,7 @@
 import FertilizingSchedule from "@/components/FertilizingSchedule";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import icon from "@/public/img/iconFertilizing.png";
+import Icon from "@/public/img/iconFertilizing.png";
 
 function useMonthCount(startMonth) {
   const [month, setMonth] = useState(startMonth);
@@ -58,7 +58,7 @@ export default function ReminderPage({ plants }) {
 
   return (
     <div>
-      <Image src={icon} width={80} height={80} alt={name} />
+      <Image src={Icon} width={80} height={80} alt={name} />
       <p>Current month : {monthName}</p>
       <button onClick={nextMonth}>Next month</button>{" "}
       <FertilizingSchedule plantsToFertilize={plantsToFertilize} />
