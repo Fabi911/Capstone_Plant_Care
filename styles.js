@@ -5,40 +5,10 @@ import Background from "@/img/background.jpg";
 export default createGlobalStyle`
 :root {
   // Main color scheme
-  /* --bg-color: #004643; */
-  --bg-color: white;
-  --second-bg-color: #abd1c6;
-  /* --text-color: #e8e4e6; */
-  --text-color: black;
-  --main-color: #2de2e6;
-  --headline-color: "#fffffe";
-  --paragraph-color: #abd1c6;
-  --highlight-color: #f9bc60;
-  --tertiary-color: #e16162;
-  --stroke-color: #001e1d;
-  --button-color: #f9bc60;
-  --div-color: #abd1c6;
-  --link-color: #abd1c6;
-  // Alternative color scheme
-  --bg2-color: #e3f6f5;
-  --second-bg2-color: #abd1c6,
-  --text2-color: #e8e4e6;
-  --main2-color: #2de2e6;
-  --headline2-color: #272343;
-  --subHeadline-color: #2d334a;
-  /* --card-color: #fffffe; */
-  --card-color: #b3d9b3;
-  --paragraph2-color: #abd1c6;
-  --highlight2-color: #ffd803;
-  --tertiary2-color: #bae8e8;
-  --stroke2-color: #272343;
-  --button2-color: #f9bc60;
-  // Synthwave Colors
-  --bg3-color: #241B2F;
-  --text3-color: #72f1b8;
-  --main3-color: #fff5f6;
-  --highlight2-color: #f92aad;
-  --tertiary3-color: #f97e72;
+  --bg-color1:#e3f6f5;
+  --main-color1:#70a19f;
+  --main-color2:#a67c53;
+  --main-color3: #abd1c6;
   --box-shadow: #303030;
 
 }
