@@ -2,7 +2,6 @@ import PlantsList from "@/components/PlantsList";
 import Link from "next/link";
 import styled from "styled-components";
 
-
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: black;
@@ -16,9 +15,8 @@ export default function HomePage({ plants, handleToggleOwnedPlants }) {
       <PlantsList
         plants={plants}
         handleToggleOwnedPlants={handleToggleOwnedPlants}
-      ></PlantsList>
-
+      />
       <StyledLink href="/addPlant">Add Plant</StyledLink>
     </>
-  )}
-
+  );
+}
