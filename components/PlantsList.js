@@ -2,7 +2,7 @@ import OwnedPlantButton from "./MyPlant/OwnedPlantButton";
 import PlantPreview from "./PlantPreview";
 import styled from "styled-components";
 
-const PlantListContainer = styled.div`
+export const PlantListContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

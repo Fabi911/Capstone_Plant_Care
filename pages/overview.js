@@ -13,7 +13,7 @@ const StyledLink = styled(Link)`
 export default function Overview({ plants, handleToggleOwnedPlants }) {
   return (
     <>
-      <BackArrow />
+      <BackArrow link="/" />
       <PlantsList
         plants={plants}
         handleToggleOwnedPlants={handleToggleOwnedPlants}

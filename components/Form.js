@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useState } from "react";
+import Image from "next/image";
 
 const Label = styled.label`
   font-weight: bold;
@@ -18,6 +19,8 @@ export default function Form({ onSubmit, defaultData, formName }) {
     Summer: false,
     Fall: false,
   });
+
+  const defaultImg = defaultData.image;
 
   console.log("defaultData", defaultData);
 
@@ -72,7 +75,6 @@ export default function Form({ onSubmit, defaultData, formName }) {
     const data = await response.json();
     return data.secure_url;
   };
-
   return (
     <StyledForm onSubmit={handleSubmit} aria-labelledby={formName}>
       <Label htmlFor="name">Name</Label>
@@ -105,7 +107,7 @@ export default function Form({ onSubmit, defaultData, formName }) {
         <option value="High">daily</option>
       </select>
       <Label htmlFor="image">Image</Label>
-      <input type="file" id="image" name="image" accept="image/*" required />
+      <input type="file" id="image" name="image" />
 
       <fieldset>
         <legend>fertiliser season</legend>

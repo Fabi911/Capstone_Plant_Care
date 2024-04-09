@@ -9,6 +9,7 @@ export const Header = styled.div`
   //background: black;
   width: 100vw;
   color: white;
+  box-shadow: 0 1px 2px 2px var(--box-shadow);
 `;
 
 export const Footer = styled.div`
@@ -19,4 +20,5 @@ export const Footer = styled.div`
   background: var(--main-color2);
   width: 100vw;
   font-size: 22px;
+  box-shadow: 0 1px 2px 2px var(--box-shadow);
 `;

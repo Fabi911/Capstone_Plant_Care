@@ -14,18 +14,16 @@ export default function EditPage({ plants, handleEditPlant }) {
   function handleSubmit(data) {
     const editedPlant = { ...editPlant, ...data };
     handleEditPlant(editedPlant);
-    router.push("/");
   }
 
   return (
     <>
-      <BackArrow />
+      <BackArrow link={`/plants/${id}`} />
       <Form
         onSubmit={handleSubmit}
         defaultData={editPlant}
         formName={"editPlant"}
       />
-      ;<Link href="/">Back to Homepage</Link>
     </>
   );
 }

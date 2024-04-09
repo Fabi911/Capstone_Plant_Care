@@ -10,10 +10,10 @@ const StyledArrow = styled(Link)`
   background: transparent;
 `;
 
-export default function BackArrow() {
+export default function BackArrow({ link }) {
   return (
     <>
-      <StyledArrow href="/">
+      <StyledArrow href={link}>
         <Image src={back_arrow} alt="arrow" height={30} width={35} />
       </StyledArrow>
     </>
