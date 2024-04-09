@@ -27,7 +27,6 @@ const StyledImage = styled(Image)`
   border-radius: 5px;
   width: 15vw;
 
-=======
   height: auto;
 
 `;
