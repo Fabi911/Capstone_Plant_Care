@@ -1,5 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
-import Background from "@/public/img/background.jpg";
+
 
 // Define global styles
 export default createGlobalStyle`
@@ -22,15 +22,7 @@ export default createGlobalStyle`
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    /* background: src={Background};
-    background-color: var(--bg-color);  */
-
-    background-image: url(${Background});
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: var(--bg-color);
+    background-color: var(--bg-color1);
     color: var(--text2-color);
 
 
@@ -41,10 +33,13 @@ export default createGlobalStyle`
 
     margin-top: 70px;
     margin-left: 0;
-    /* font-family: system-ui; */
+  font-family: system-ui;
     margin-bottom: 80px;
     text-align: center;
   }
+  h1{
+font-size: 20px;
+}
 `;
 
 // Styled component for Container

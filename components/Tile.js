@@ -6,7 +6,7 @@ import Link from "next/link";
 const StyledTile = styled.div`
   width: 130px;
   height: 130px;
-  background: var(--card-color);
+  background: var(--main-color3);
   border-radius: 10px;
   box-shadow: 2px 2px 2px var(--box-shadow);
   display: flex;
@@ -25,17 +25,12 @@ const StyledText = styled.p`
   color: var(--text-color);
 `;
 
-export default function Tile({ href, name, icon }) {
-  const router = useRouter();
-
-  const handleClick = () => {
-    router.push(href);
-  };
+export default function Tile({ link, name, icon }) {
   return (
-    <Link href="/">
+    <Link href={link}>
       <StyledTile>
         <StyledIcon src={icon} width={80} height={80} alt={name} />
-        <StyledText>home</StyledText>
+        <StyledText>{name}</StyledText>
       </StyledTile>
     </Link>
   );

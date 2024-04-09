@@ -1,40 +1,48 @@
 import styled from "styled-components";
 
-const Watercard = styled.div`
-  border: 1px solid black;
+const Fertilisercard = styled.div`
+  background: var(--main-color3);
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 2px 2px 2px var(--box-shadow);
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80vw;
 `;
 
-const StyledWaterLi = styled.li`
-  border: 1px solid black;
-  width: 80%;
+const StyledFertiliser = styled.div`
+  box-shadow: 1px 1px 1px var(--box-shadow);
+  width: 65vw;
   list-style: none;
-  background-color: #303030;
+  background-color: var(--main-color1);
   padding: 5px;
   border-radius: 5px;
 `;
 
-const WaterListContainer = styled.ul`
+const FertiliserListContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 1rem;
 `;
 
 const StyledSpan = styled.span`
-  color: yellow;
+  font-weight: bold;
 `;
 
 const FertilizeSpan = styled.span`
-  color: brown;
+  font-weight: bold;
 `;
 
 export default function FertilizingSchedule({ plantsToFertilize }) {
   return (
-    <Watercard>
-      <h1>Fertiliser season plan</h1>
-      <WaterListContainer>
+    <Fertilisercard>
+      <h1>Fertiliser season Plan</h1>
+      <FertiliserListContainer>
         {plantsToFertilize.map((plant) => (
-          <StyledWaterLi key={plant.id}>
+          <StyledFertiliser key={plant.id}>
             Plant: <StyledSpan>{plant.name}</StyledSpan>
             <br />
             fertiliser season:{" "}
@@ -45,9 +53,9 @@ export default function FertilizingSchedule({ plantsToFertilize }) {
                 {index !== plant.fertiliser_season.length - 1 ? ", " : ""}
               </FertilizeSpan>
             ))}
-          </StyledWaterLi>
+          </StyledFertiliser>
         ))}
-      </WaterListContainer>
-    </Watercard>
+      </FertiliserListContainer>
+    </Fertilisercard>
   );
 }

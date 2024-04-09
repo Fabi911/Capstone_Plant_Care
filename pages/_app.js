@@ -1,18 +1,42 @@
 import GlobalStyle from "../styles";
 import { data } from "@/lib/db";
 import useLocalStorageState from "use-local-storage-state";
-
 import Layout from "@/components/Layout";
-
-
 import { uid } from "uid";
 import { useRouter } from "next/router";
-import { SWRConfig } from "swr";
+import { useState } from "react";
 
 export default function App({ Component, pageProps }) {
   const [plants, setPlants] = useLocalStorageState("Plants", {
     defaultValue: data,
   });
+
+  const [landingData, setLandingData] = useState([
+    {
+      id: 0,
+      name: "Plantlist",
+      link: "/overview",
+      icon: "/img/iconOverview.png",
+    },
+    {
+      id: 1,
+      name: "My Plants",
+      link: "/ownedPage",
+      icon: "/img/iconOverview.png",
+    },
+    {
+      id: 2,
+      name: "Watering Plan",
+      link: "/watering",
+      icon: "/img/iconWater.png",
+    },
+    {
+      id: 3,
+      name: "Fertilizing Plan",
+      link: "/fertilizing",
+      icon: "/img/iconFertilizing.png",
+    },
+  ]);
 
   const router = useRouter();
 
@@ -33,7 +57,7 @@ export default function App({ Component, pageProps }) {
 
   function handleDeletePlant(id) {
     setPlants(plants.filter((plant) => plant.id !== id));
-    router.push("/");
+    router.push("/overview");
   }
 
   function handleToggleOwnedPlants(id) {
@@ -54,6 +78,7 @@ export default function App({ Component, pageProps }) {
     setPlants(
       plants.map((plant) => (plant.id === editPlant.id ? editPlant : plant))
     );
+    router.push(`/plants/${editPlant.id}`);
   }
 
   return (
@@ -62,18 +87,16 @@ export default function App({ Component, pageProps }) {
 
       <Layout>
         <Component
-        {...pageProps}
-        plants={plants}
-        handleToggleOwnedPlants={handleToggleOwnedPlants}
-        handleAddPlant={handleAddPlant}
-        handleDeletePlant={handleDeletePlant}
-        handleGalleryPlant={handleGalleryPlant}
-        handleEditPlant={handleEditPlant}
-      />
+          {...pageProps}
+          plants={plants}
+          handleToggleOwnedPlants={handleToggleOwnedPlants}
+          handleAddPlant={handleAddPlant}
+          handleDeletePlant={handleDeletePlant}
+          handleGalleryPlant={handleGalleryPlant}
+          handleEditPlant={handleEditPlant}
+          landingData={landingData}
+        />
       </Layout>
-
-     
-
     </>
   );
 }
