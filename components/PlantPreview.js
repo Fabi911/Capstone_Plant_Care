@@ -2,8 +2,6 @@ import Image from "next/image";
 import styled from "styled-components";
 import Link from "next/link";
 import OwnedPlantButton from "./MyPlant/OwnedPlantButton";
-import BackArrow from "./MyPlant/BackArrow";
-
 const StyledCard = styled.div`
   width: 80vw;
   height: auto;
