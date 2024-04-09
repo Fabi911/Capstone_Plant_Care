@@ -42,7 +42,7 @@ const wateringSchedule = {
   High: "Daily",
 };
 
-export default function WateringSchedule({ plantsToWater, water_need }) {
+export default function WateringSchedule({ plantsToWater }) {
   return (
     <Watercard>
       <h1>Plants to Water</h1>
