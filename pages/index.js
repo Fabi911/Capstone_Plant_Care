@@ -1,10 +1,9 @@
-import Tile from "@/components/Tile";
 import Tiles from "@/components/Tiles";
 
-export default function HomePage() {
+export default function HomePage({ landingData }) {
   return (
     <>
-      <Tiles />
+      <Tiles landingData={landingData} />
     </>
   );
 }

@@ -1,14 +1,7 @@
 import FertilizingSchedule from "@/components/FertilizingSchedule";
-import WateringSchedule from "@/components/WateringSchedule";
+import Image from "next/image";
 import { useEffect, useState } from "react";
-
-function useDayCount(startDay) {
-  const [day, setDay] = useState(startDay);
-  function handleNextDay() {
-    setDay(day + 1);
-  }
-  return [day, handleNextDay];
-}
+import icon from "@/public/img/iconFertilizing.png";
 
 function useMonthCount(startMonth) {
   const [month, setMonth] = useState(startMonth);
@@ -23,25 +16,11 @@ function useMonthCount(startMonth) {
 }
 
 export default function ReminderPage({ plants }) {
-  const [plantsToWater, setPlantsToWater] = useState([]);
   const [plantsToFertilize, setPlantsToFertilize] = useState([]);
-
-  const [day, nextDay] = useDayCount(0); // only for simulation
 
   const [month, nextMonth] = useMonthCount(0); // only for simulation
 
   const myPlants = plants.filter((plant) => plant.isOwned);
-
-  const daysOfWeek = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  const dayOfWeek = daysOfWeek[day % 7];
 
   const months = [
     "January",
@@ -58,23 +37,6 @@ export default function ReminderPage({ plants }) {
     "December",
   ];
   const monthName = months[month % 12];
-
-  useEffect(() => {
-    // const today = new Date().getDay();   ---> deactivated for simulation
-
-    const plantsToday = myPlants.filter((plant) => {
-      if (plant.water_need === "High") {
-        return true;
-      } else if (plant.water_need === "Moderate") {
-        return day % 2 === 0;
-      } else if (plant.water_need === "Low") {
-        return day % 7 === 0; // % 7 only for simulation
-      }
-      return false;
-    });
-
-    setPlantsToWater(plantsToday);
-  }, [day]);
 
   useEffect(() => {
     //const month = new Date().getMonth();   ---> deactivated for simulation
@@ -96,13 +58,9 @@ export default function ReminderPage({ plants }) {
 
   return (
     <div>
+      <Image src={icon} width={80} height={80} alt={name} />
       <p>Current month : {monthName}</p>
-      <p>Day of the week : {dayOfWeek}</p>
       <button onClick={nextMonth}>Next month</button>{" "}
-      {/* only for simulation */}
-      <button onClick={nextDay}>Next day</button> {/* only for simulation */}
-      <WateringSchedule plantsToWater={plantsToWater} />
-      <br />
       <FertilizingSchedule plantsToFertilize={plantsToFertilize} />
     </div>
   );

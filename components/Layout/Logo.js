@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import AppLogo from "@/img/StrangerPlants_black.png";
+//import AppLogo from "/img/StrangerPlants_black.png";
 import Image from "next/image";
 
 const StyledLogo = styled(Image)`
@@ -9,6 +9,11 @@ const StyledLogo = styled(Image)`
 
 export default function Logo() {
   return (
-    <StyledLogo src={AppLogo} width={160} height={140} alt="GreenThumpCare" />
+    <StyledLogo
+      src="/img/StrangerPlants_black.png"
+      width={160}
+      height={140}
+      alt="GreenThumpCare"
+    />
   );
 }
