@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import AppLogo from "@/img/StrangerPlants_black.png";
+import AppLogo from "@/public/img/StrangerPlants_black.png";
 import Image from "next/image";
 
 const StyledLogo = styled(Image)`

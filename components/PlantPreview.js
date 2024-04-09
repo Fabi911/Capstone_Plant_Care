@@ -2,25 +2,30 @@ import Image from "next/image";
 import styled from "styled-components";
 import Link from "next/link";
 import OwnedPlantButton from "./MyPlant/OwnedPlantButton";
+import BackArrow from "./MyPlant/BackArrow";
 
 const StyledCard = styled.div`
   width: 80vw;
   height: auto;
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  box-shadow: 2px 2px 2px var(--box-shadow);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding-left: 20px;
   padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   background-color: #abd1c6;
   border-radius: 20px;
-  &:hover {
-    box-shadow: 5px 5px 5px #f9bc60;
+  &:active {
+    box-shadow: inset 0px 0px 5px var(--box-shadow);
   }
 `;
 
 const StyledImage = styled(Image)`
   margin-right: 20px;
+  border-radius: 5px;
 `;
 
 const StyledDiv = styled.div`
@@ -35,6 +40,7 @@ const StyledDiv2 = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  cursor: not-allowed;
 `;
 
 const StyledLink = styled(Link)`
