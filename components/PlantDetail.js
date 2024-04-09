@@ -3,24 +3,9 @@ import Link from "next/link";
 import styled from "styled-components";
 import OwnedPlantButton from "./MyPlant/OwnedPlantButton";
 import { useState } from "react";
-
 import ConfirmDelete from "./ConfirmDelete";
-
-const StyledImage = styled(Image)`
-  border: 1px solid black;
-  border-radius: 20px;
-`;
-
-const StyledLI = styled.li`
-  list-style: none;
-`;
-
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: black;
-  background-color: white;
-  padding: 2px;
-`;
+import trash_icon from "@/public/img/trash.png";
+import EditButton from "./MyPlant/EditButton";
 
 export default function PlantDetail({
   plantDetail,
@@ -40,7 +25,7 @@ export default function PlantDetail({
   }
 
   return (
-    <section>
+    <StyledBox>
       <h2>{plantDetail.name}</h2>
       <StyledImage
         alt={plantDetail.name}
@@ -59,15 +44,45 @@ export default function PlantDetail({
           }
         />
       </ul>
-
-      <StyledLink href={`/plants/${plantDetail.id}/edit`}>edit</StyledLink>
-      <button onClick={handleDelete}>Delete this plant</button>
+      <div>
+        <EditButton plantDetail={plantDetail} />
+        <TrashButton onClick={handleDelete}>
+          <Image src={trash_icon} alt="arrow" height={50} width={50} />
+        </TrashButton>
+      </div>
       {confirmDelete && (
         <ConfirmDelete
           handleConfirm={() => handleDeletePlant(plantDetail.id)}
           handleCancel={handleCancel}
         />
       )}
-    </section>
+    </StyledBox>
   );
 }
+
+// Styled Components
+const StyledImage = styled(Image)`
+  border: 1px solid black;
+  border-radius: 20px;
+`;
+
+const StyledLI = styled.li`
+  list-style: none;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+  background-color: white;
+  padding: 2px;
+`;
+
+const TrashButton = styled.button`
+  background: transparent;
+`;
+
+const StyledBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;

@@ -2,7 +2,6 @@ import Image from "next/image";
 import styled from "styled-components";
 import Link from "next/link";
 import OwnedPlantButton from "./MyPlant/OwnedPlantButton";
-import BackArrow from "./MyPlant/BackArrow";
 
 const StyledCard = styled.div`
   width: 80vw;
@@ -26,21 +25,21 @@ const StyledCard = styled.div`
 const StyledImage = styled(Image)`
   margin-right: 20px;
   border-radius: 5px;
+  width: 15vw;
 `;
 
-const StyledDiv = styled.div`
+const StyledUpper = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  flex-grow: 1;
+  /* flex-direction: row; */
 `;
 
-const StyledDiv2 = styled.div`
+const StyledLowest = styled.div`
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
   cursor: not-allowed;
+`;
+
+const StyledMiddle = styled.div`
+  width: 38vw;
 `;
 
 const StyledLink = styled(Link)`
@@ -61,20 +60,20 @@ export default function PlantPreview({
     <>
       <StyledCard>
         <StyledLink href={`/plants/${id}`}>
-          <StyledDiv>
+          <StyledUpper>
             <StyledImage src={image} alt={name} width={100} height={100} />
-            <div>
+            <StyledMiddle>
               <p>{name}</p>
               <p>botanical name: {botanicalName}</p>
-            </div>
-          </StyledDiv>
+            </StyledMiddle>
+          </StyledUpper>
         </StyledLink>
-        <StyledDiv2>
+        <StyledLowest>
           <OwnedPlantButton
             isOwned={isOwned}
             handleToggleOwnedPlants={handleToggleOwnedPlants}
           />
-        </StyledDiv2>
+        </StyledLowest>
       </StyledCard>
     </>
   );
