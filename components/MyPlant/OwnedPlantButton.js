@@ -1,9 +1,10 @@
 import Heart from "./heart.svg";
 import styled from "styled-components";
+import Favorite2 from "@/img/Favorite2.svg";
 
-const ownedHeart = <Heart height={30} width={30} fill="red" />;
+const ownedHeart = <Favorite2 height={50} width={50} fill="#b7e4a7" />;
 const notOwnedHeart = (
-  <Heart height={30} width={30} fill="transparent" stroke="white" />
+  <Favorite2 height={50} width={50} fill="transparent" stroke="black" />
 );
 
 const StyledHeart = styled.button`
