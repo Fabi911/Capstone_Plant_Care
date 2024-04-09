@@ -48,7 +48,7 @@ export default function ReminderPage({ plants }) {
 
   return (
     <div>
-      <BackArrow />
+      <BackArrow link="/" />
       <Image src="/img/iconWater.png" width={80} height={80} alt="iconWater" />
       <p>Day of the week : {dayOfWeek}</p>
       {/* only for simulation */}
