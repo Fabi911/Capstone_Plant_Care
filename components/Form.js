@@ -20,7 +20,7 @@ export default function Form({ onSubmit, defaultData, formName }) {
     Fall: false,
   });
 
-  const defaultImg = defaultData.image;
+
 
   console.log("defaultData", defaultData);
 
