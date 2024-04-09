@@ -2,14 +2,14 @@ import OwnedPlantButton from "./MyPlant/OwnedPlantButton";
 import PlantPreview from "./PlantPreview";
 import styled from "styled-components";
 
-const PlantListContainer = styled.ul`
+const PlantListContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
 `;
 
-export const PlantListItem = styled.li`
+export const PlantListItem = styled.div`
   list-style: none;
 `;
 

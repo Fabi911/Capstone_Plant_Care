@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Form from "@/components/Form";
+import BackArrow from "@/components/MyPlant/BackArrow";
 
 export default function EditPage({ plants, handleEditPlant }) {
   const router = useRouter();
@@ -18,6 +19,7 @@ export default function EditPage({ plants, handleEditPlant }) {
 
   return (
     <>
+      <BackArrow />
       <Form
         onSubmit={handleSubmit}
         defaultData={editPlant}

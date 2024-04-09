@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Tile from "./Tile";
 import { uid } from "uid";
-import iconHome from "@/img/iconHome.png";
+import iconHome from "@/public/img/iconHome.png";
 
 const StyledTiles = styled.div`
   list-style-type: none;
