@@ -26,7 +26,7 @@ const Watercard = styled.div`
   background: var(--main-color3);
   padding: 15px;
   border-radius: 15px;
-  box-shadow: 2px 2px 2px var(--box-shadow);
+  box-shadow: var(--box-shadow-default);
   margin-top: 5px;
   display: flex;
   flex-direction: column;

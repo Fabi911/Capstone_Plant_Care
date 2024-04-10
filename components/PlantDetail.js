@@ -9,10 +9,8 @@ import EditButton from "./MyPlant/EditButton";
 
 export default function PlantDetail({
   plantDetail,
-  isOwned,
   handleToggleOwnedPlants,
   handleDeletePlant,
-  handleEditPlant,
 }) {
   const [confirmDelete, setConfirmDelete] = useState(false);
 
@@ -30,8 +28,13 @@ export default function PlantDetail({
       <StyledImage
         alt={plantDetail.name}
         src={plantDetail.image}
-        width={200}
-        height={200}
+        sizes="40vh"
+        style={{
+          width: "50%",
+          height: "auto",
+        }}
+        width={400}
+        height={400}
       />
       <DetailTextBox>
         botanical name : {plantDetail.botanical_name}
@@ -63,8 +66,9 @@ export default function PlantDetail({
 
 // Styled Components
 const StyledImage = styled(Image)`
-  border: 1px solid black;
   border-radius: 20px;
+  box-shadow: var(--box-shadow-default);
+  margin-bottom: 20px;
 `;
 
 const DetailTextBox = styled.p`
@@ -80,6 +84,10 @@ const StyledBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: var(--main-color3);
+  box-shadow: var(--box-shadow-default);
+  border-radius: 15px;
+  width: 80vw;
 `;
 
 const IconBox = styled.div`

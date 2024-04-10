@@ -22,7 +22,7 @@ export default function App({ Component, pageProps }) {
       id: 1,
       name: "My Plants",
       link: "/ownedPage",
-      icon: "/img/iconOverview.png",
+      icon: "/img/iconOwned.png",
     },
     {
       id: 2,

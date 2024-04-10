@@ -21,13 +21,13 @@ const StyledTile = styled.div`
   height: 130px;
   background: var(--main-color3);
   border-radius: 10px;
-  box-shadow: 2px 2px 2px var(--box-shadow);
+  box-shadow: var(--box-shadow-default);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   &:active {
-    box-shadow: inset 2px 2px 2px var(--box-shadow);
+    box-shadow: inset var(--box-shadow-default);
   }
 `;
 

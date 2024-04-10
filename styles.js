@@ -9,6 +9,7 @@ export default createGlobalStyle`
   --main-color2:#a67c53;
   --main-color3: #abd1c6;
   --box-shadow: #303030;
+  --box-shadow-default: 2px 2px 2px #303030;
 
 }
   *,
@@ -31,7 +32,6 @@ export default createGlobalStyle`
 
 
     margin-top: 80px;
-    margin-left: 0;
   font-family: system-ui;
     margin-bottom: 25px;
     text-align: center;

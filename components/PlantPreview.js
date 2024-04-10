@@ -40,7 +40,7 @@ const StyledCard = styled.div`
   width: 80vw;
   height: auto;
   /* border: 1px solid black; */
-  box-shadow: 2px 2px 2px var(--box-shadow);
+  box-shadow: var(--box-shadow-default);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -51,7 +51,7 @@ const StyledCard = styled.div`
   background-color: var(--main-color3);
   border-radius: 20px;
   &:active {
-    box-shadow: inset 2px 2px 2px var(--box-shadow);
+    box-shadow: inset var(--box-shadow-default);
   }
 `;
 
