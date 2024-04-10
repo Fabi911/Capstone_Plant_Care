@@ -36,6 +36,7 @@ export default function PlantDetail({
         width={400}
         height={400}
       />
+      <h3>Plant Details</h3>
       <DetailTextBox>
         botanical name : {plantDetail.botanical_name}
         <br />
@@ -44,6 +45,8 @@ export default function PlantDetail({
         fertiliser season: {plantDetail.fertiliser_season}
       </DetailTextBox>
       <OwnedPlantButton
+        height={90}
+        width={90}
         isOwned={plantDetail.isOwned}
         handleToggleOwnedPlants={() => handleToggleOwnedPlants(plantDetail.id)}
       />
@@ -51,7 +54,7 @@ export default function PlantDetail({
       <IconBox>
         <EditButton plantDetail={plantDetail} />
         <TrashButton onClick={handleDelete}>
-          <Image src={trash_icon} alt="arrow" height={35} width={35} />
+          <Image src={trash_icon} alt="arrow" height={25} width={25} />
         </TrashButton>
       </IconBox>
       {confirmDelete && (
@@ -95,4 +98,7 @@ const IconBox = styled.div`
   gap: 1.5rem;
   margin-top: 10px;
   margin-bottom: 10px;
+  justify-content: space-between;
+  width: 70vw;
+  flex-direction: row-reverse;
 `;

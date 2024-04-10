@@ -73,7 +73,7 @@ export default function Form({ onSubmit, defaultData, formName }) {
         maxLength={150}
         defaultValue={defaultData?.name}
       />
-      <Label htmlFor="botanical_name">botanical name</Label>
+      <Label htmlFor="botanical_name">Botanical Name</Label>
       <input
         type="text"
         id="botanical_name"
@@ -82,7 +82,7 @@ export default function Form({ onSubmit, defaultData, formName }) {
         maxLength={150}
         defaultValue={defaultData?.botanical_name}
       />
-      <Label htmlFor="water_need">water need</Label>
+      <Label htmlFor="water_need">Watering</Label>
       <select
         id="water_need"
         name="water_need"
@@ -97,7 +97,7 @@ export default function Form({ onSubmit, defaultData, formName }) {
       <input type="file" id="image" name="image" />
 
       <fieldset>
-        <legend>fertiliser season</legend>
+        <legend>Fertiliser Season</legend>
         <Label htmlFor="Spring">Spring</Label>
         <input
           type="checkbox"
@@ -143,4 +143,8 @@ const StyledForm = styled.form`
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+  background: var(--main-color3);
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: var(--box-shadow-default);
 `;

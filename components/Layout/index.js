@@ -8,7 +8,7 @@ export default function Layout({ children }) {
         <Logo />
       </Header>
       {children}
-      <Footer>Impressum</Footer>
+      <Footer>&copy; Copyright</Footer>
     </>
   );
 }

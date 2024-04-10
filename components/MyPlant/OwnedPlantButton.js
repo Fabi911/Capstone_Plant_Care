@@ -2,7 +2,23 @@ import Heart from "./heart.svg";
 import styled from "styled-components";
 import Favorite2 from "@/public/img/Favorite2.svg";
 
-export default function OwnedPlantButton({ isOwned, handleToggleOwnedPlants }) {
+export default function OwnedPlantButton({
+  isOwned,
+  handleToggleOwnedPlants,
+  height,
+  width,
+}) {
+  const ownedHeart = (
+    <Favorite2 height={height} width={width} fill="var(--main-color2)" />
+  );
+  const notOwnedHeart = (
+    <Favorite2
+      height={height}
+      width={width}
+      fill="transparent"
+      stroke="black"
+    />
+  );
   return (
     <>
       <StyledHeart onClick={handleToggleOwnedPlants}>
@@ -13,13 +29,6 @@ export default function OwnedPlantButton({ isOwned, handleToggleOwnedPlants }) {
 }
 
 //styled components
-
-const ownedHeart = (
-  <Favorite2 height={60} width={60} fill="var(--main-color2)" />
-);
-const notOwnedHeart = (
-  <Favorite2 height={60} width={60} fill="transparent" stroke="black" />
-);
 
 const StyledHeart = styled.button`
   background-color: transparent;
