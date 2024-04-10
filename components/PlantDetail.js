@@ -5,7 +5,7 @@ import OwnedPlantButton from "./MyPlant/OwnedPlantButton";
 import { useState } from "react";
 import ConfirmDelete from "./ConfirmDelete";
 import trash_icon from "@/public/img/trash.png";
-import EditButton from "./MyPlant/EditButton";
+import EditLink from "./MyPlant/EditLink";
 
 export default function PlantDetail({
   plantDetail,
@@ -53,7 +53,7 @@ export default function PlantDetail({
       />
 
       <IconBox>
-        <EditButton plantDetail={plantDetail} />
+        <EditLink plantDetail={plantDetail} />
         <TrashButton onClick={handleDelete}>
           <Image src={trash_icon} alt="arrow" height={25} width={25} />
         </TrashButton>
