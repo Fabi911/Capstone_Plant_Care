@@ -3,6 +3,19 @@ import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
 
+export default function Tile({ link, name, icon }) {
+  return (
+    <Link href={link}>
+      <StyledTile>
+        <StyledIcon src={icon} width={80} height={80} alt={name} />
+        <StyledText>{name}</StyledText>
+      </StyledTile>
+    </Link>
+  );
+}
+
+// styled components
+
 const StyledTile = styled.div`
   width: 130px;
   height: 130px;
@@ -27,14 +40,3 @@ const StyledText = styled.p`
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   color: var(--text-color);
 `;
-
-export default function Tile({ link, name, icon }) {
-  return (
-    <Link href={link}>
-      <StyledTile>
-        <StyledIcon src={icon} width={80} height={80} alt={name} />
-        <StyledText>{name}</StyledText>
-      </StyledTile>
-    </Link>
-  );
-}

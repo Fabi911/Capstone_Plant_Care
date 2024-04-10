@@ -2,6 +2,40 @@ import Image from "next/image";
 import styled from "styled-components";
 import Link from "next/link";
 import OwnedPlantButton from "./MyPlant/OwnedPlantButton";
+
+export default function PlantPreview({
+  name,
+  botanicalName,
+  image,
+  id,
+  isOwned,
+  handleToggleOwnedPlants,
+}) {
+  return (
+    <>
+      <StyledCard>
+        <StyledLink href={`/plants/${id}`}>
+          <StyledDiv>
+            <StyledImage src={image} alt={name} width={100} height={100} />
+            <StyledTextBox>
+              <p>{name}</p>
+              <p>botanical name: {botanicalName}</p>
+            </StyledTextBox>
+          </StyledDiv>
+        </StyledLink>
+        <StyledDiv2>
+          <OwnedPlantButton
+            isOwned={isOwned}
+            handleToggleOwnedPlants={handleToggleOwnedPlants}
+          />
+        </StyledDiv2>
+      </StyledCard>
+    </>
+  );
+}
+
+// styled components
+
 const StyledCard = styled.div`
   width: 80vw;
   height: auto;
@@ -52,34 +86,3 @@ const StyledLink = styled(Link)`
 const StyledTextBox = styled.div`
   width: 38vw;
 `;
-
-export default function PlantPreview({
-  name,
-  botanicalName,
-  image,
-  id,
-  isOwned,
-  handleToggleOwnedPlants,
-}) {
-  return (
-    <>
-      <StyledCard>
-        <StyledLink href={`/plants/${id}`}>
-          <StyledDiv>
-            <StyledImage src={image} alt={name} width={100} height={100} />
-            <StyledTextBox>
-              <p>{name}</p>
-              <p>botanical name: {botanicalName}</p>
-            </StyledTextBox>
-          </StyledDiv>
-        </StyledLink>
-        <StyledDiv2>
-          <OwnedPlantButton
-            isOwned={isOwned}
-            handleToggleOwnedPlants={handleToggleOwnedPlants}
-          />
-        </StyledDiv2>
-      </StyledCard>
-    </>
-  );
-}

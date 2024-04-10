@@ -1,5 +1,27 @@
 import styled from "styled-components";
 
+export default function WateringSchedule({ plantsToWater }) {
+  return (
+    <Watercard>
+      <h1>Plants to Water</h1>
+      <WaterListContainer>
+        {plantsToWater.map((plant) => {
+          const wateringTime = wateringSchedule[plant.water_need] || "Unknown";
+          return (
+            <StyledWater key={plant.id}>
+              Plant: <StyledSpan>{plant.name}</StyledSpan>
+              <br />
+              water need: <WaterSpan>{wateringTime}</WaterSpan>
+            </StyledWater>
+          );
+        })}
+      </WaterListContainer>
+    </Watercard>
+  );
+}
+
+// styled components
+
 const Watercard = styled.div`
   background: var(--main-color3);
   padding: 15px;
@@ -41,23 +63,3 @@ const wateringSchedule = {
   Moderate: "Every 2nd day",
   High: "Daily",
 };
-
-export default function WateringSchedule({ plantsToWater }) {
-  return (
-    <Watercard>
-      <h1>Plants to Water</h1>
-      <WaterListContainer>
-        {plantsToWater.map((plant) => {
-          const wateringTime = wateringSchedule[plant.water_need] || "Unknown";
-          return (
-            <StyledWater key={plant.id}>
-              Plant: <StyledSpan>{plant.name}</StyledSpan>
-              <br />
-              water need: <WaterSpan>{wateringTime}</WaterSpan>
-            </StyledWater>
-          );
-        })}
-      </WaterListContainer>
-    </Watercard>
-  );
-}

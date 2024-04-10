@@ -1,11 +1,6 @@
 import styled from "styled-components";
 import Image from "next/image";
 
-const StyledLogo = styled(Image)`
-  position: relative;
-  top: -45px;
-`;
-
 export default function Logo() {
   return (
     <StyledLogo
@@ -16,3 +11,8 @@ export default function Logo() {
     />
   );
 }
+
+const StyledLogo = styled(Image)`
+  position: relative;
+  top: -45px;
+`;

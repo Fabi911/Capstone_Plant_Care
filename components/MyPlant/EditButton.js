@@ -3,10 +3,6 @@ import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
 
-const StyledEdit = styled(Link)`
-  background: transparent;
-`;
-
 export default function EditButton({ plantDetail }) {
   return (
     <>
@@ -16,3 +12,7 @@ export default function EditButton({ plantDetail }) {
     </>
   );
 }
+
+const StyledEdit = styled(Link)`
+  background: transparent;
+`;

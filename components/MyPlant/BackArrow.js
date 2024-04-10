@@ -3,13 +3,6 @@ import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
 
-const StyledArrow = styled(Link)`
-  position: fixed;
-  left: 15px;
-  top: 15px;
-  background: transparent;
-`;
-
 export default function BackArrow({ link }) {
   return (
     <>
@@ -19,3 +12,10 @@ export default function BackArrow({ link }) {
     </>
   );
 }
+
+const StyledArrow = styled(Link)`
+  position: fixed;
+  left: 15px;
+  top: 15px;
+  background: transparent;
+`;

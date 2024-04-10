@@ -2,25 +2,12 @@ import styled from "styled-components";
 import { useState } from "react";
 import Image from "next/image";
 
-const Label = styled.label`
-  font-weight: bold;
-`;
-
-const StyledForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-`;
-
 export default function Form({ onSubmit, defaultData, formName }) {
   const [checkedSeasons, setCheckedSeasons] = useState({
     Spring: false,
     Summer: false,
     Fall: false,
   });
-
-
 
   console.log("defaultData", defaultData);
 
@@ -144,3 +131,16 @@ export default function Form({ onSubmit, defaultData, formName }) {
     </StyledForm>
   );
 }
+
+// styled components
+
+const Label = styled.label`
+  font-weight: bold;
+`;
+
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+`;

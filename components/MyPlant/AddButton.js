@@ -3,6 +3,20 @@ import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
 
+export default function AddPlantLink() {
+  return (
+    <>
+      <StyledPlus href="/addPlant">
+        <StyledDivPlus>
+          <Image src={PlusButton} alt="arrow" height={50} width={50} />
+        </StyledDivPlus>
+      </StyledPlus>
+    </>
+  );
+}
+
+// styled components
+
 const StyledPlus = styled(Link)`
   position: fixed;
   right: 5px;
@@ -23,15 +37,3 @@ const StyledDivPlus = styled.div`
     box-shadow: inset 1px 1px 1px var(--box-shadow);
   }
 `;
-
-export default function AddPlantLink() {
-  return (
-    <>
-      <StyledPlus href="/addPlant">
-        <StyledDivPlus>
-          <Image src={PlusButton} alt="arrow" height={50} width={50} />
-        </StyledDivPlus>
-      </StyledPlus>
-    </>
-  );
-}
