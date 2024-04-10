@@ -9,9 +9,6 @@ export default function DetailPage({
   plants,
   handleToggleOwnedPlants,
   handleDeletePlant,
-
-  handleGalleryPlant,
-
   handleEditPlant,
 }) {
   const router = useRouter();
@@ -19,47 +16,18 @@ export default function DetailPage({
   const plantDetail = plants.find((plant) => plant.id === id);
   if (!plantDetail) return null;
 
-  const gallery = plantDetail.gallery || [];
-
   async function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
-    const imageFile = formData.get("image");
 
-    try {
-      const imageUrl = await uploadImage(imageFile);
-
-      const addGalleryImgToDb = {
-        ...plantDetail,
-        gallery: [...gallery, imageUrl],
-      };
-      handleGalleryPlant(addGalleryImgToDb);
-    } catch (error) {
-      console.error("Error uploading image:", error);
-    }
-  }
-
-  function uploadImage(imageFile) {
-    const formData = new FormData();
-    formData.append("file", imageFile);
-    formData.append("upload_preset", "gallery-plant");
-
-    return fetch("https://api.cloudinary.com/v1_1/ddqqfiwvi/image/upload", {
+    const response = await fetch("/api/upload", {
       method: "POST",
       body: formData,
-    })
-      .then(async (response) => {
-        if (!response.ok) {
-          throw new Error("Failed to upload image");
-        }
+    });
 
-        const data = await response.json();
-        return data.secure_url;
-      })
-      .catch((error) => {
-        console.error("Error uploading image to Cloudinary:", error);
-        throw error;
-      });
+    const { url } = await response.json();
+
+    handleEditPlant({ ...plantDetail, gallery: [...plantDetail.gallery, url] });
   }
   if (!plantDetail) return null;
 
@@ -72,6 +40,7 @@ export default function DetailPage({
         handleDeletePlant={handleDeletePlant}
         handleEditPlant={handleEditPlant}
       />
+
 
       <GalleryContainer>
         <h2>Gallery</h2>
@@ -106,6 +75,7 @@ export default function DetailPage({
             ))}
         </GalleryImageContainer>
       </GalleryContainer>
+
     </>
   );
 }

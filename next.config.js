@@ -13,6 +13,7 @@ const nextConfig = {
 
     return config;
   },
+
   images: {
     remotePatterns: [
       {
@@ -26,6 +27,9 @@ const nextConfig = {
         port: "",
       },
     ],
+
+    domains: ["res.cloudinary.com", "images.unsplash.com"],
+
   },
 };
 
