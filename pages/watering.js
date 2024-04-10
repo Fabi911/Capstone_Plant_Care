@@ -3,10 +3,20 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import BackArrow from "@/components/MyPlant/BackArrow";
 
+const daysOfWeek = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+
 function useDayCount(startDay) {
   const [day, setDay] = useState(startDay);
   function handleNextDay() {
-    setDay(day + 1);
+    setDay((currentDay) => currentDay + 1);
   }
   return [day, handleNextDay];
 }
@@ -17,18 +27,7 @@ export default function ReminderPage({ plants }) {
   const [day, nextDay] = useDayCount(0); // only for simulation
 
   const myPlants = plants.filter((plant) => plant.isOwned);
-
-  const daysOfWeek = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
   const dayOfWeek = daysOfWeek[day % 7];
-
   useEffect(() => {
     // const today = new Date().getDay();   ---> deactivated for simulation
 

@@ -1,6 +1,6 @@
 import PlantsList from "@/components/PlantsList";
 import BackArrow from "@/components/MyPlant/BackArrow";
-import AddPlantLink from "@/components/MyPlant/AddButton";
+import AddPlantLink from "@/components/MyPlant/AddPlantLink";
 import Image from "next/image";
 
 export default function Overview({ plants, handleToggleOwnedPlants }) {

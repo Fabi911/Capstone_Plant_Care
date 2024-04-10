@@ -1,4 +1,3 @@
-import OwnedPlantButton from "./MyPlant/OwnedPlantButton";
 import PlantPreview from "./PlantPreview";
 import styled from "styled-components";
 

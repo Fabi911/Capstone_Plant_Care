@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export default function FertilizingSchedule({ plantsToFertilize }) {
+  let fertilizedSeasons;
   return (
     <Fertilisercard>
       <h1>Fertiliser season Plan</h1>
@@ -9,14 +10,10 @@ export default function FertilizingSchedule({ plantsToFertilize }) {
           <StyledFertiliser key={plant.id}>
             Plant: <StyledSpan>{plant.name}</StyledSpan>
             <br />
-            fertiliser season:{" "}
-            {/* if there are more than two strings, they are separated by a comma */}
-            {plant.fertiliser_season.map((season, index, id) => (
-              <FertilizeSpan key={id}>
-                {season}
-                {index !== plant.fertiliser_season.length - 1 ? ", " : ""}
-              </FertilizeSpan>
-            ))}
+            Fertiliser season:{" "}
+            <FertilizeSpan>
+              {(fertilizedSeasons = plant.fertiliser_season.join(", "))}
+            </FertilizeSpan>
           </StyledFertiliser>
         ))}
       </FertiliserListContainer>
@@ -41,7 +38,6 @@ const Fertilisercard = styled.div`
 const StyledFertiliser = styled.div`
   box-shadow: 1px 1px 1px var(--box-shadow);
   width: 65vw;
-  list-style: none;
   background-color: var(--main-color1);
   padding: 5px;
   border-radius: 5px;

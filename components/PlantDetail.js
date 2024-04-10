@@ -21,7 +21,7 @@ export default function PlantDetail({
   function handleCancel() {
     setConfirmDelete(false);
   }
-
+  let fertilizedSeasons;
   return (
     <StyledBox>
       <h2>{plantDetail.name}</h2>
@@ -42,7 +42,8 @@ export default function PlantDetail({
         <br />
         water need : {plantDetail.water_need}
         <br />
-        fertiliser season: {plantDetail.fertiliser_season}
+        fertiliser season:{" "}
+        {(fertilizedSeasons = plantDetail.fertiliser_season.join(", "))}
       </DetailTextBox>
       <OwnedPlantButton
         height={90}

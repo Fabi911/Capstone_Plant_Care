@@ -5,11 +5,9 @@ import Link from "next/link";
 
 export default function BackArrow({ link }) {
   return (
-    <>
-      <StyledArrow href={link}>
-        <Image src={back_arrow} alt="arrow" height={30} width={35} />
-      </StyledArrow>
-    </>
+    <StyledArrow href={link}>
+      <Image src={back_arrow} alt="go-back-button" height={30} width={35} />
+    </StyledArrow>
   );
 }
 

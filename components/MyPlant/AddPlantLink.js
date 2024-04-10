@@ -5,13 +5,11 @@ import Image from "next/image";
 
 export default function AddPlantLink() {
   return (
-    <>
-      <StyledPlus href="/addPlant">
-        <StyledDivPlus>
-          <Image src={PlusButton} alt="arrow" height={50} width={50} />
-        </StyledDivPlus>
-      </StyledPlus>
-    </>
+    <StyledPlus href="/addPlant">
+      <StyledDivPlus>
+        <Image src={PlusButton} alt="add-button" height={50} width={50} />
+      </StyledDivPlus>
+    </StyledPlus>
   );
 }
 
@@ -29,7 +27,7 @@ const StyledDivPlus = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 30px;
+  border-radius: 50%;
   opacity: 0.8;
   background-color: var(--main-color2);
   box-shadow: 1px 1px 1px var(--box-shadow);
