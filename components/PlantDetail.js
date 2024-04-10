@@ -33,23 +33,24 @@ export default function PlantDetail({
         width={200}
         height={200}
       />
-      <ul>
-        <StyledLI>botanical name : {plantDetail.botanical_name}</StyledLI>
-        <StyledLI>water need : {plantDetail.water_need}</StyledLI>
-        <StyledLI>fertiliser season: {plantDetail.fertiliser_season}</StyledLI>
-        <OwnedPlantButton
-          isOwned={plantDetail.isOwned}
-          handleToggleOwnedPlants={() =>
-            handleToggleOwnedPlants(plantDetail.id)
-          }
-        />
-      </ul>
-      <div>
+      <DetailTextBox>
+        botanical name : {plantDetail.botanical_name}
+        <br />
+        water need : {plantDetail.water_need}
+        <br />
+        fertiliser season: {plantDetail.fertiliser_season}
+      </DetailTextBox>
+      <OwnedPlantButton
+        isOwned={plantDetail.isOwned}
+        handleToggleOwnedPlants={() => handleToggleOwnedPlants(plantDetail.id)}
+      />
+
+      <IconBox>
         <EditButton plantDetail={plantDetail} />
         <TrashButton onClick={handleDelete}>
-          <Image src={trash_icon} alt="arrow" height={50} width={50} />
+          <Image src={trash_icon} alt="arrow" height={35} width={35} />
         </TrashButton>
-      </div>
+      </IconBox>
       {confirmDelete && (
         <ConfirmDelete
           handleConfirm={() => handleDeletePlant(plantDetail.id)}
@@ -66,23 +67,24 @@ const StyledImage = styled(Image)`
   border-radius: 20px;
 `;
 
-const StyledLI = styled.li`
-  list-style: none;
-`;
-
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: black;
-  background-color: white;
-  padding: 2px;
+const DetailTextBox = styled.p`
+  text-align: left;
 `;
 
 const TrashButton = styled.button`
   background: transparent;
+  border: none;
 `;
 
 const StyledBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+const IconBox = styled.div`
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
 `;

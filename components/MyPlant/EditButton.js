@@ -7,7 +7,7 @@ export default function EditButton({ plantDetail }) {
   return (
     <>
       <StyledEdit href={`/plants/${plantDetail.id}/edit`}>
-        <Image src="/img/edit.png" alt="edit" height={50} width={50} />
+        <Image src="/img/edit.png" alt="edit" height={35} width={35} />
       </StyledEdit>
     </>
   );
