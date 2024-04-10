@@ -39,7 +39,9 @@ export default createGlobalStyle`
   h1{
 font-size: 20px;
 }
-`;
+h3 {
+  margin: 0;
+}`;
 
 // Styled component for Container
 export const Container = styled.div`

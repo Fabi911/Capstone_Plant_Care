@@ -27,6 +27,8 @@ export default function PlantPreview({
           <OwnedPlantButton
             isOwned={isOwned}
             handleToggleOwnedPlants={handleToggleOwnedPlants}
+            height={60}
+            width={60}
           />
         </StyledDiv2>
       </StyledCard>
