@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Form from "@/components/Form";
+import BackArrow from "@/components/MyPlant/BackArrow";
 
 export default function EditPage({ plants, handleEditPlant }) {
   const router = useRouter();
@@ -13,17 +14,16 @@ export default function EditPage({ plants, handleEditPlant }) {
   function handleSubmit(data) {
     const editedPlant = { ...editPlant, ...data };
     handleEditPlant(editedPlant);
-    router.push("/");
   }
 
   return (
     <>
+      <BackArrow link={`/plants/${id}`} />
       <Form
         onSubmit={handleSubmit}
         defaultData={editPlant}
         formName={"editPlant"}
       />
-      ;<Link href="/">Back to Homepage</Link>
     </>
   );
 }

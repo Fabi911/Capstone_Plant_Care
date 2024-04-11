@@ -1,20 +1,13 @@
-import Link from "next/link";
 import Form from "@/components/Form";
-import styled from "styled-components";
 
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: black;
-  background-color: white;
-  padding: 2px;
-`;
+import BackArrow from "@/components/MyPlant/BackArrow";
 
 export default function AddPlant({ handleAddPlant }) {
   return (
     <>
+      <BackArrow link="/overview" />
       <Form onSubmit={handleAddPlant} />
       <br />
-      <StyledLink href="/">Back to Homepage</StyledLink>
     </>
   );
 }

@@ -23,6 +23,7 @@
     "react-loader-spinner": "^6.1.6",
     "styled-components": "^6.0.2",
     "swr": "^2.2.5",
+    "typeface-roboto": "^1.1.13",
     "uid": "^2.0.2",
     "use-local-storage-state": "^19.2.0"
   },

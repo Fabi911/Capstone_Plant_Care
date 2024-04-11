@@ -2,6 +2,8 @@ import { useRouter } from "next/router";
 import PlantDetail from "@/components/PlantDetail";
 import { uid } from "uid";
 import Image from "next/image";
+import BackArrow from "@/components/MyPlant/BackArrow";
+import styled from "styled-components";
 
 export default function DetailPage({
   plants,
@@ -31,34 +33,77 @@ export default function DetailPage({
 
   return (
     <>
+      <BackArrow link="/overview" />
       <PlantDetail
         plantDetail={plantDetail}
         handleToggleOwnedPlants={handleToggleOwnedPlants}
         handleDeletePlant={handleDeletePlant}
         handleEditPlant={handleEditPlant}
       />
-      <h2>Add more images</h2>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="image">choose image</label>
-        <input type="file" id="image" name="image" accept="image/*" required />
-        <button type="submit">Upload</button>
-      </form>
-      <br></br>
-      {Array.isArray(plantDetail.gallery) &&
-        plantDetail.gallery.length > 0 &&
-        plantDetail.gallery.map((url) => (
-          <li key={url}>
-            <Image
-              width="200"
-              height="160"
-              src={url}
-              sizes="(max-width: 768px) 20vw,
-          (max-width: 1200px) 50vw,
-          100vw"
-              alt="Description"
-            />
-          </li>
-        ))}
+
+
+      <GalleryContainer>
+        <h2>Gallery</h2>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="image">choose image</label>
+          <input
+            type="file"
+            id="image"
+            name="image"
+            accept="image/*"
+            required
+          />
+          <button type="submit">Upload</button>
+        </form>
+        <br></br>
+        <GalleryImageContainer>
+          {Array.isArray(plantDetail.gallery) &&
+            plantDetail.gallery.length > 0 &&
+            plantDetail.gallery.map((url) => (
+              <GalleryImage
+                key={uid()}
+                src={url}
+                sizes="20vh"
+                style={{
+                  width: "40%",
+                  height: "auto",
+                }}
+                width={400}
+                height={400}
+                alt="Description"
+              />
+            ))}
+        </GalleryImageContainer>
+      </GalleryContainer>
+
     </>
   );
 }
+
+// styled components
+
+const GalleryContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 25px;
+  background: var(--main-color3);
+  box-shadow: var(--box-shadow-default);
+  border-radius: 15px;
+  padding-bottom: 15px;
+  gap: 10px;
+  width: 80vw;
+  align-items: center;
+`;
+
+const GalleryImageContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 70vw;
+  justify-content: space-around;
+`;
+
+const GalleryImage = styled(Image)`
+  border-radius: 10px;
+  box-shadow: var(--box-shadow-default);
+`;

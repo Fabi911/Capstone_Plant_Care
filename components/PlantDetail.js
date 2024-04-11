@@ -3,31 +3,14 @@ import Link from "next/link";
 import styled from "styled-components";
 import OwnedPlantButton from "./MyPlant/OwnedPlantButton";
 import { useState } from "react";
-
 import ConfirmDelete from "./ConfirmDelete";
-
-const StyledImage = styled(Image)`
-  border: 1px solid black;
-  border-radius: 20px;
-`;
-
-const StyledLI = styled.li`
-  list-style: none;
-`;
-
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: black;
-  background-color: white;
-  padding: 2px;
-`;
+import trash_icon from "@/public/img/trash.png";
+import EditLink from "./MyPlant/EditLink";
 
 export default function PlantDetail({
   plantDetail,
-  isOwned,
   handleToggleOwnedPlants,
   handleDeletePlant,
-  handleEditPlant,
 }) {
   const [confirmDelete, setConfirmDelete] = useState(false);
 
@@ -38,36 +21,85 @@ export default function PlantDetail({
   function handleCancel() {
     setConfirmDelete(false);
   }
-
+  let fertilizedSeasons;
   return (
-    <section>
+    <StyledBox>
       <h2>{plantDetail.name}</h2>
       <StyledImage
         alt={plantDetail.name}
         src={plantDetail.image}
-        width={200}
-        height={200}
+        sizes="40vh"
+        style={{
+          width: "50%",
+          height: "auto",
+        }}
+        width={400}
+        height={400}
       />
-      <ul>
-        <StyledLI>botanical name : {plantDetail.botanical_name}</StyledLI>
-        <StyledLI>water need : {plantDetail.water_need}</StyledLI>
-        <StyledLI>fertiliser season: {plantDetail.fertiliser_season}</StyledLI>
-        <OwnedPlantButton
-          isOwned={plantDetail.isOwned}
-          handleToggleOwnedPlants={() =>
-            handleToggleOwnedPlants(plantDetail.id)
-          }
-        />
-      </ul>
+      <h3>Plant Details</h3>
+      <DetailTextBox>
+        botanical name : {plantDetail.botanical_name}
+        <br />
+        water need : {plantDetail.water_need}
+        <br />
+        fertiliser season:{" "}
+        {(fertilizedSeasons = plantDetail.fertiliser_season.join(", "))}
+      </DetailTextBox>
+      <OwnedPlantButton
+        height={90}
+        width={90}
+        isOwned={plantDetail.isOwned}
+        handleToggleOwnedPlants={() => handleToggleOwnedPlants(plantDetail.id)}
+      />
 
-      <StyledLink href={`/plants/${plantDetail.id}/edit`}>edit</StyledLink>
-      <button onClick={handleDelete}>Delete this plant</button>
+      <IconBox>
+        <EditLink plantDetail={plantDetail} />
+        <TrashButton onClick={handleDelete}>
+          <Image src={trash_icon} alt="arrow" height={25} width={25} />
+        </TrashButton>
+      </IconBox>
       {confirmDelete && (
         <ConfirmDelete
           handleConfirm={() => handleDeletePlant(plantDetail.id)}
           handleCancel={handleCancel}
         />
       )}
-    </section>
+    </StyledBox>
   );
 }
+
+// Styled Components
+const StyledImage = styled(Image)`
+  border-radius: 20px;
+  box-shadow: var(--box-shadow-default);
+  margin-bottom: 20px;
+`;
+
+const DetailTextBox = styled.p`
+  text-align: left;
+`;
+
+const TrashButton = styled.button`
+  background: transparent;
+  border: none;
+`;
+
+const StyledBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--main-color3);
+  box-shadow: var(--box-shadow-default);
+  border-radius: 15px;
+  width: 80vw;
+`;
+
+const IconBox = styled.div`
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  justify-content: space-between;
+  width: 70vw;
+  flex-direction: row-reverse;
+`;

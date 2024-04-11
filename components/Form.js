@@ -1,16 +1,6 @@
 import styled from "styled-components";
 import { useState } from "react";
-
-const Label = styled.label`
-  font-weight: bold;
-`;
-
-const StyledForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-`;
+import Image from "next/image";
 
 export default function Form({ onSubmit, defaultData, formName }) {
   const [checkedSeasons, setCheckedSeasons] = useState({
@@ -33,7 +23,8 @@ export default function Form({ onSubmit, defaultData, formName }) {
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
 
-    const fertiliserSeason = Object.entries(checkedSeasons)
+
+  const fertiliserSeason = Object.entries(checkedSeasons)
       .filter(([_, value]) => value)
       .map(([key]) => key);
 
@@ -65,7 +56,7 @@ export default function Form({ onSubmit, defaultData, formName }) {
         maxLength={150}
         defaultValue={defaultData?.name}
       />
-      <Label htmlFor="botanical_name">botanical name</Label>
+      <Label htmlFor="botanical_name">Botanical Name</Label>
       <input
         type="text"
         id="botanical_name"
@@ -74,7 +65,7 @@ export default function Form({ onSubmit, defaultData, formName }) {
         maxLength={150}
         defaultValue={defaultData?.botanical_name}
       />
-      <Label htmlFor="water_need">water need</Label>
+      <Label htmlFor="water_need">Watering</Label>
       <select
         id="water_need"
         name="water_need"
@@ -86,10 +77,12 @@ export default function Form({ onSubmit, defaultData, formName }) {
         <option value="High">daily</option>
       </select>
       <Label htmlFor="image">Image</Label>
+
       <input type="file" id="image" name="image" accept="image/*" />
 
+
       <fieldset>
-        <legend>fertiliser season</legend>
+        <legend>Fertiliser Season</legend>
         <Label htmlFor="Spring">Spring</Label>
         <input
           type="checkbox"
@@ -123,3 +116,20 @@ export default function Form({ onSubmit, defaultData, formName }) {
     </StyledForm>
   );
 }
+
+// styled components
+
+const Label = styled.label`
+  font-weight: bold;
+`;
+
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--main-color3);
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: var(--box-shadow-default);
+`;

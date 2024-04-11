@@ -1,29 +1,41 @@
 import PlantPreview from "@/components/PlantPreview";
-import PlantsList from "@/components/PlantsList";
 import { PlantListItem } from "@/components/PlantsList";
+import BackArrow from "@/components/MyPlant/BackArrow";
+import { PlantListContainer } from "@/components/PlantsList";
+import AddPlantLink from "@/components/MyPlant/AddPlantLink";
+import Image from "next/image";
 
 export default function OwnedPage({ plants, handleToggleOwnedPlants }) {
-  /* const isMyPlant = plants.filter((plant) => plant.isOwned === true); */
   return (
-    <ul>
-      {plants.map((plant) => {
-        if (plant.isOwned) {
+    <>
+      <BackArrow link="/" />
+      <Image
+        src="/img/iconOwned.png"
+        width={80}
+        height={80}
+        alt="IconFertilizing"
+      />
+      <AddPlantLink />
+      <PlantListContainer>
+        {plants.map((plant) => {
           return (
-            <PlantListItem key={plant.id}>
-              <PlantPreview
-                name={plant.name}
-                botanicalName={plant.botanical_name}
-                image={plant.image}
-                id={plant.id}
-                isOwned={plant.isOwned}
-                handleToggleOwnedPlants={() =>
-                  handleToggleOwnedPlants(plant.id)
-                }
-              />
-            </PlantListItem>
+            plant.isOwned && (
+              <PlantListItem key={plant.id}>
+                <PlantPreview
+                  name={plant.name}
+                  botanicalName={plant.botanical_name}
+                  image={plant.image}
+                  id={plant.id}
+                  isOwned={plant.isOwned}
+                  handleToggleOwnedPlants={() =>
+                    handleToggleOwnedPlants(plant.id)
+                  }
+                />
+              </PlantListItem>
+            )
           );
-        }
-      })}
-    </ul>
+        })}
+      </PlantListContainer>
+    </>
   );
 }

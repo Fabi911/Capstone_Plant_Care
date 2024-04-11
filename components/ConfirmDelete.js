@@ -1,7 +1,9 @@
+import styled from "styled-components";
+
 export default function ConfirmDelete({ handleConfirm, handleCancel }) {
   return (
     <>
-      <div>
+      <DeleteConfirmBox>
         <p>Sure you want to delete this plant?</p>
         <button type="button" onClick={handleConfirm}>
           Yes
@@ -9,7 +11,15 @@ export default function ConfirmDelete({ handleConfirm, handleCancel }) {
         <button type="button" onClick={handleCancel}>
           No
         </button>
-      </div>
+      </DeleteConfirmBox>
     </>
   );
 }
+
+const DeleteConfirmBox = styled.div`
+  background: var(--main-color3);
+  padding: 10px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  box-shadow: 2px 2px 2px var(--box-shadow);
+`;

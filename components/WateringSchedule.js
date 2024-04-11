@@ -1,19 +1,49 @@
 import styled from "styled-components";
 
+export default function WateringSchedule({ plantsToWater }) {
+  return (
+    <Watercard>
+      <h1>Plants to Water</h1>
+      <WaterListContainer>
+        {plantsToWater.map((plant) => {
+          const wateringTime = wateringSchedule[plant.water_need] || "Unknown";
+          return (
+            <StyledWater key={plant.id}>
+              Plant: <StyledSpan>{plant.name}</StyledSpan>
+              <br />
+              water need: <WaterSpan>{wateringTime}</WaterSpan>
+            </StyledWater>
+          );
+        })}
+      </WaterListContainer>
+    </Watercard>
+  );
+}
+
+// styled components
+
 const Watercard = styled.div`
-  border: 1px solid black;
+  background: var(--main-color3);
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: var(--box-shadow-default);
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80vw;
 `;
 
-const StyledWaterLi = styled.li`
-  border: 1px solid black;
-  width: 80%;
+const StyledWater = styled.div`
+  box-shadow: 1px 1px 1px var(--box-shadow);
+  width: 65vw;
   list-style: none;
-  background-color: #303030;
+  background-color: var(--main-color1);
   padding: 5px;
   border-radius: 5px;
 `;
 
-const WaterListContainer = styled.ul`
+const WaterListContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,11 +51,11 @@ const WaterListContainer = styled.ul`
 `;
 
 const StyledSpan = styled.span`
-  color: yellow;
+  font-weight: bold;
 `;
 
 const WaterSpan = styled.span`
-  color: turquoise;
+  font-weight: bold;
 `;
 
 const wateringSchedule = {
@@ -33,23 +63,3 @@ const wateringSchedule = {
   Moderate: "Every 2nd day",
   High: "Daily",
 };
-
-export default function WateringSchedule({ plantsToWater, water_need }) {
-  return (
-    <Watercard>
-      <h1>Plants to Water Today</h1>
-      <WaterListContainer>
-        {plantsToWater.map((plant) => {
-          const wateringTime = wateringSchedule[plant.water_need] || "Unknown";
-          return (
-            <StyledWaterLi key={plant.id}>
-              Plant: <StyledSpan>{plant.name}</StyledSpan>
-              <br />
-              water need: <WaterSpan>{wateringTime}</WaterSpan>
-            </StyledWaterLi>
-          );
-        })}
-      </WaterListContainer>
-    </Watercard>
-  );
-}

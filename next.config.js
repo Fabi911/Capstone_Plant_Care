@@ -15,7 +15,21 @@ const nextConfig = {
   },
 
   images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        port: "",
+      },
+    ],
+
     domains: ["res.cloudinary.com", "images.unsplash.com"],
+
   },
 };
 
