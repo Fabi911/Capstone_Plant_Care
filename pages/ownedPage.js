@@ -6,7 +6,7 @@ import AddPlantLink from "@/components/MyPlant/AddPlantLink";
 import Image from "next/image";
 import useSWR from "swr";
 
-export default function OwnedPage({ plants, handleToggleOwnedPlants }) {
+export default function OwnedPage({ handleToggleOwnedPlants }) {
   const { data, mutate } = useSWR("/api/plants", { fallbackData: [] });
   return (
     <>
