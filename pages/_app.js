@@ -86,7 +86,7 @@ export default function App({ Component, pageProps }) {
     }
   }
 
-  async function handleEditPlant(plant, id) {
+  async function handleEditPlant(plant, id, mutate) {
     console.log("Plant edited");
     const respone = await fetch(`/api/plants/${id}`, {
       method: "PUT",
@@ -97,6 +97,7 @@ export default function App({ Component, pageProps }) {
     });
 
     if (respone.ok) {
+      mutate();
       router.push(`/plants/${id}`);
     } else {
       console.error(respone.error);

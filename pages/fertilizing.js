@@ -16,7 +16,7 @@ function useMonthCount(startMonth) {
   return [month, handleNextMonth];
 }
 
-export default function ReminderPage() {
+export default function Fertilizing() {
   const { data } = useSWR("/api/plants", { fallbackData: [] });
   const [plantsToFertilize, setPlantsToFertilize] = useState([]);
 

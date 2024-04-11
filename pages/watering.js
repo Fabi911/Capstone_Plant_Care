@@ -22,7 +22,7 @@ function useDayCount(startDay) {
   return [day, handleNextDay];
 }
 
-export default function ReminderPage() {
+export default function Watering() {
   const { data } = useSWR("/api/plants", { fallbackData: [] });
   const [plantsToWater, setPlantsToWater] = useState([]);
 

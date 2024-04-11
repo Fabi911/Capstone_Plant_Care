@@ -35,7 +35,7 @@ export default function DetailPage({
       gallery: [...plant.gallery, url],
     };
 
-    handleEditPlant(imageData);
+    handleEditPlant(imageData, id, mutate);
   }
   if (!plant) return null;
 

@@ -9,7 +9,7 @@ export default function EditPage({ handleEditPlant }) {
   const { isReady } = router;
   const { id } = router.query;
 
-  const { data: plant, isLoading, error } = useSWR(`/api/plants/${id}`);
+  const { data: plant, isLoading, error, mutate } = useSWR(`/api/plants/${id}`);
 
   if (!isReady || isLoading || error) return <h2>Loading...</h2>;
 
@@ -17,7 +17,7 @@ export default function EditPage({ handleEditPlant }) {
 
   function handleSubmit(data) {
     console.log("data: ", data);
-    handleEditPlant(data, id);
+    handleEditPlant(data, id, mutate);
   }
   return (
     <>
