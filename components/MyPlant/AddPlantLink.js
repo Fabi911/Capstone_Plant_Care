@@ -20,6 +20,18 @@ const StyledPlus = styled(Link)`
   right: 5px;
   bottom: 45px;
   z-index: 10;
+
+  @media (min-width: 600px) {
+    right: var(--distance-edge-mobile);
+  }
+
+  @media (min-width: 900px) {
+    right: var(--distance-edge-tablet);
+  }
+
+  @media (min-width: 1200px) {
+    right: var(--distance-edge-desktop);
+  }
 `;
 
 const StyledDivPlus = styled.div`
@@ -31,6 +43,7 @@ const StyledDivPlus = styled.div`
   opacity: 0.8;
   background-color: var(--main-color2);
   box-shadow: 1px 1px 1px var(--box-shadow);
+
   &:active {
     box-shadow: inset 1px 1px 1px var(--box-shadow);
   }

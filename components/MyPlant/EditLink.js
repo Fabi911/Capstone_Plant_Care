@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function EditLink({ plantDetail }) {
   return (
     <StyledEdit href={`/plants/${plantDetail.id}/edit`}>
-      <Image
+      <StyledImage
         src="/img/edit.png"
         alt="edit-plant-button"
         height={25}
@@ -18,4 +18,21 @@ export default function EditLink({ plantDetail }) {
 
 const StyledEdit = styled(Link)`
   background: transparent;
+`;
+
+const StyledImage = styled(Image)`
+  /*  @media (min-width: 600px) {
+    height: var(--icon-height-mobile);
+    width: var(--icon-width-mobile);
+  }
+ */
+  @media (min-width: 600px) {
+    height: var(--icon-height-tablet);
+    width: var(--icon-width-tablet);
+  }
+
+  @media (min-width: 900px) {
+    height: var(--icon-height-desktop);
+    width: var(--icon-width-desktop);
+  }
 `;

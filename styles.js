@@ -8,15 +8,30 @@ export default createGlobalStyle`
   --main-color1:#70a19f;
   --main-color2:#a67c53;
   --main-color3: #abd1c6;
+  // box shadows
   --box-shadow: #303030;
   --box-shadow-default: 2px 2px 2px #303030;
-
+  // responsive design variables
+--card-mobile:  80vw;
+--card-tablet:  90vw;
+--card-browser: 95vw; 
+--distance-edge-mobile: 15px;
+--distance-edge-tablet: 25px;
+--distance-edge-desktop: 50Px; 
+--icon-height-mobile:50px;
+--icon-height-tablet:75px;
+--icon-height-desktop:75px;
+--icon-width-mobile:50px;
+--icon-width-tablet:75px;
+--icon-width-desktop:75px;
 }
   *,
   *::before,
   *::after {
     box-sizing: border-box;
   }
+
+
 
   body {
     display: flex;
@@ -41,7 +56,33 @@ font-size: 20px;
 }
 h3 {
   margin: 0;
-}`;
+}
+
+
+
+
+
+  @media (min-width: 600px) {body {
+      
+      
+      };
+  }
+
+  @media (min-width: 900px) {body {
+      
+      };
+  }
+
+  @media (min-width: 1200px) {
+    body {
+      
+      };
+  }
+
+  @media (min-width: 1536px) {body {
+      
+      };
+  }`;
 
 // Styled component for Container
 export const Container = styled.div`
