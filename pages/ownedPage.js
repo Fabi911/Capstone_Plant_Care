@@ -4,8 +4,10 @@ import BackArrow from "@/components/MyPlant/BackArrow";
 import { PlantListContainer } from "@/components/PlantsList";
 import AddPlantLink from "@/components/MyPlant/AddPlantLink";
 import Image from "next/image";
+import useSWR from "swr";
 
 export default function OwnedPage({ plants, handleToggleOwnedPlants }) {
+  const { data, mutate } = useSWR("/api/plants", { fallbackData: [] });
   return (
     <>
       <BackArrow link="/" />
@@ -17,18 +19,18 @@ export default function OwnedPage({ plants, handleToggleOwnedPlants }) {
       />
       <AddPlantLink />
       <PlantListContainer>
-        {plants.map((plant) => {
+        {data.map((plant) => {
           return (
             plant.isOwned && (
-              <PlantListItem key={plant.id}>
+              <PlantListItem key={plant._id}>
                 <PlantPreview
                   name={plant.name}
                   botanicalName={plant.botanical_name}
                   image={plant.image}
-                  id={plant.id}
+                  id={plant._id}
                   isOwned={plant.isOwned}
                   handleToggleOwnedPlants={() =>
-                    handleToggleOwnedPlants(plant.id)
+                    handleToggleOwnedPlants(plant, mutate)
                   }
                 />
               </PlantListItem>

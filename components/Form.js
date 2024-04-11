@@ -23,8 +23,7 @@ export default function Form({ onSubmit, defaultData, formName }) {
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
 
-
-  const fertiliserSeason = Object.entries(checkedSeasons)
+    const fertiliserSeason = Object.entries(checkedSeasons)
       .filter(([_, value]) => value)
       .map(([key]) => key);
 
@@ -41,8 +40,9 @@ export default function Form({ onSubmit, defaultData, formName }) {
       water_need: data.water_need,
       fertiliser_season: fertiliserSeason,
       image: url,
+      isOwned: true,
     });
-    // alert("Plant added successfully");
+    alert("Plant added successfully");
   }
 
   return (
@@ -79,7 +79,6 @@ export default function Form({ onSubmit, defaultData, formName }) {
       <Label htmlFor="image">Image</Label>
 
       <input type="file" id="image" name="image" accept="image/*" />
-
 
       <fieldset>
         <legend>Fertiliser Season</legend>

@@ -2,26 +2,29 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import Form from "@/components/Form";
 import BackArrow from "@/components/MyPlant/BackArrow";
+import useSWR from "swr";
 
-export default function EditPage({ plants, handleEditPlant }) {
+export default function EditPage({ handleEditPlant }) {
   const router = useRouter();
+  const { isReady } = router;
   const { id } = router.query;
 
-  const editPlant = plants.find((plant) => plant.id === id);
+  const { data: plant, isLoading, error } = useSWR(`/api/plants/${id}`);
 
-  if (!editPlant) return null;
+  if (!isReady || isLoading || error) return <h2>Loading...</h2>;
+
+  if (!plant) return null;
 
   function handleSubmit(data) {
-    const editedPlant = { ...editPlant, ...data };
-    handleEditPlant(editedPlant);
+    console.log("data: ", data);
+    handleEditPlant(data, id);
   }
-
   return (
     <>
-      <BackArrow link={`/plants/${id}`} />
+      <BackArrow link={`/plants/${plant._id}`} />
       <Form
         onSubmit={handleSubmit}
-        defaultData={editPlant}
+        defaultData={plant}
         formName={"editPlant"}
       />
     </>

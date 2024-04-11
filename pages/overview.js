@@ -2,8 +2,11 @@ import PlantsList from "@/components/PlantsList";
 import BackArrow from "@/components/MyPlant/BackArrow";
 import AddPlantLink from "@/components/MyPlant/AddPlantLink";
 import Image from "next/image";
+import useSWR from "swr";
 
-export default function Overview({ plants, handleToggleOwnedPlants }) {
+export default function Overview({ handleToggleOwnedPlants }) {
+  const { data, mutate } = useSWR("/api/plants", { fallbackData: [] });
+
   return (
     <>
       <BackArrow link="/" />
@@ -15,9 +18,10 @@ export default function Overview({ plants, handleToggleOwnedPlants }) {
       />
       <AddPlantLink />
       <PlantsList
-        plants={plants}
+        plants={data}
         handleToggleOwnedPlants={handleToggleOwnedPlants}
-      ></PlantsList>
+        mutate={mutate}
+      />
     </>
   );
 }

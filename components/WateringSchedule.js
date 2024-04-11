@@ -11,7 +11,7 @@ export default function WateringSchedule({ plantsToWater }) {
             <StyledWater key={plant.id}>
               Plant: <StyledSpan>{plant.name}</StyledSpan>
               <br />
-              water need: <WaterSpan>{wateringTime}</WaterSpan>
+              Water need: <WaterSpan>{wateringTime}</WaterSpan>
             </StyledWater>
           );
         })}
