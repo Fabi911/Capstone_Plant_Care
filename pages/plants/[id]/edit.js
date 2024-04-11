@@ -23,6 +23,7 @@ export default function EditPage({ plants, handleEditPlant }) {
         onSubmit={handleSubmit}
         defaultData={editPlant}
         formName={"editPlant"}
+        isEditMode={true}
       />
     </>
   );
