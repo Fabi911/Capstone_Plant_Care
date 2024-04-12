@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import useSWR from "swr";
 import PlantDetail from "@/components/PlantDetail";
 import { uid } from "uid";
 import Image from "next/image";
@@ -6,15 +7,17 @@ import BackArrow from "@/components/MyPlant/BackArrow";
 import styled from "styled-components";
 
 export default function DetailPage({
-  plants,
   handleToggleOwnedPlants,
   handleDeletePlant,
   handleEditPlant,
 }) {
   const router = useRouter();
+  const { isReady } = router;
   const { id } = router.query;
-  const plantDetail = plants.find((plant) => plant.id === id);
-  if (!plantDetail) return null;
+
+  const { data: plant, isLoading, error, mutate } = useSWR(`/api/plants/${id}`);
+
+  if (!isReady || isLoading || error) return <h2>Loading...</h2>;
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -27,20 +30,25 @@ export default function DetailPage({
 
     const { url } = await response.json();
 
-    handleEditPlant({ ...plantDetail, gallery: [...plantDetail.gallery, url] });
+    const imageData = {
+      ...plant,
+      gallery: [...plant.gallery, url],
+    };
+
+    handleEditPlant(imageData, id, mutate);
   }
-  if (!plantDetail) return null;
+  if (!plant) return null;
 
   return (
     <>
       <BackArrow link="/overview" />
       <PlantDetail
-        plantDetail={plantDetail}
+        plantDetail={plant}
         handleToggleOwnedPlants={handleToggleOwnedPlants}
         handleDeletePlant={handleDeletePlant}
         handleEditPlant={handleEditPlant}
+        mutate={mutate}
       />
-
 
       <GalleryContainer>
         <h2>Gallery</h2>
@@ -57,9 +65,9 @@ export default function DetailPage({
         </form>
         <br></br>
         <GalleryImageContainer>
-          {Array.isArray(plantDetail.gallery) &&
-            plantDetail.gallery.length > 0 &&
-            plantDetail.gallery.map((url) => (
+          {Array.isArray(plant.gallery) &&
+            plant.gallery.length > 0 &&
+            plant.gallery.map((url) => (
               <GalleryImage
                 key={uid()}
                 src={url}
@@ -75,7 +83,6 @@ export default function DetailPage({
             ))}
         </GalleryImageContainer>
       </GalleryContainer>
-
     </>
   );
 }

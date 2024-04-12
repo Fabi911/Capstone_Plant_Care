@@ -1,18 +1,11 @@
 import GlobalStyle from "../styles";
-import { data } from "@/lib/db";
-import useLocalStorageState from "use-local-storage-state";
 import Layout from "@/components/Layout";
-import { uid } from "uid";
 import { useRouter } from "next/router";
+import { SWRConfig } from "swr";
 
 import { useState } from "react";
 
-
 export default function App({ Component, pageProps }) {
-  const [plants, setPlants] = useLocalStorageState("Plants", {
-    defaultValue: data,
-  });
-
   const [landingData, setLandingData] = useState([
     {
       id: 0,
@@ -42,61 +35,100 @@ export default function App({ Component, pageProps }) {
 
   const router = useRouter();
 
-  function handleAddPlant(data) {
-    setPlants([
-      {
-        ...data,
-        id: uid(),
-        isOwned: true,
-        gallery: [],
+  async function handleAddPlant(plant) {
+    const response = await fetch("/api/plants", {
+      method: "POST",
+      body: JSON.stringify(plant),
+      headers: {
+        "Content-Type": "application/json",
       },
-      ...plants,
-    ]);
-    router.push("/ownedPage");
+    });
+    if (response.ok) {
+      await response.json();
+      router.push("/ownedPage");
+    } else {
+      console.error(`Error: ${response.status}`);
+    }
   }
 
-  function handleDeletePlant(id) {
-    setPlants(plants.filter((plant) => plant.id !== id));
-    router.push("/overview");
+  async function handleDeletePlant(id) {
+    console.log("deleted?");
+    const response = await fetch(`/api/plants/${id}`, {
+      method: "DELETE",
+    });
+    if (response.ok) {
+      router.push("/overview");
+    } else {
+      console.error(response.status);
+    }
   }
 
-  function handleToggleOwnedPlants(id) {
-    setPlants(
-      plants.map((plant) =>
-        id === plant.id ? { ...plant, isOwned: !plant.isOwned } : plant
-      )
-    );
+  async function handleToggleOwnedPlants(plant, mutate) {
+    try {
+      const updatedPlant = { ...plant, isOwned: !plant.isOwned };
+
+      const response = await fetch(`/api/plants/${plant._id}`, {
+        method: "PUT",
+        body: JSON.stringify(updatedPlant),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        mutate();
+        console.log("isOwned switched");
+      } else {
+        console.error(`error: ${response.status}`);
+      }
+    } catch (error) {
+      console.error("error at switching", error);
+    }
   }
 
-  function handleGalleryPlant(detailPlant) {
-    setPlants(
-      plants.map((plant) => (plant.id === detailPlant.id ? detailPlant : plant))
-    );
-  }
+  async function handleEditPlant(plant, id, mutate) {
+    console.log("Plant edited");
+    const respone = await fetch(`/api/plants/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(plant),
+    });
 
-  function handleEditPlant(editPlant) {
-    setPlants(
-      plants.map((plant) => (plant.id === editPlant.id ? editPlant : plant))
-    );
-    router.push(`/plants/${editPlant.id}`);
+    if (respone.ok) {
+      mutate();
+      router.push(`/plants/${id}`);
+    } else {
+      console.error(respone.error);
+    }
   }
 
   return (
     <>
       <GlobalStyle />
-
-      <Layout>
-        <Component
-          {...pageProps}
-          plants={plants}
-          handleToggleOwnedPlants={handleToggleOwnedPlants}
-          handleAddPlant={handleAddPlant}
-          handleDeletePlant={handleDeletePlant}
-          handleGalleryPlant={handleGalleryPlant}
-          handleEditPlant={handleEditPlant}
-          landingData={landingData}
-        />
-      </Layout>
+      <SWRConfig
+        value={{
+          fetcher: async (...args) => {
+            const response = await fetch(...args);
+            if (!response.ok) {
+              throw new Error(`Request with ${JSON.stringify(args)} failed.`);
+            }
+            return await response.json();
+          },
+        }}
+      >
+        <Layout>
+          <Component
+            {...pageProps}
+            handleToggleOwnedPlants={handleToggleOwnedPlants}
+            handleAddPlant={handleAddPlant}
+            handleDeletePlant={handleDeletePlant}
+            handleEditPlant={handleEditPlant}
+            landingData={landingData}
+          />
+        </Layout>
+      </SWRConfig>
     </>
   );
 }

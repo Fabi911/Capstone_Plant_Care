@@ -2,6 +2,7 @@ import WateringSchedule from "@/components/WateringSchedule";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import BackArrow from "@/components/MyPlant/BackArrow";
+import useSWR from "swr";
 
 const daysOfWeek = [
   "Sunday",
@@ -21,12 +22,13 @@ function useDayCount(startDay) {
   return [day, handleNextDay];
 }
 
-export default function ReminderPage({ plants }) {
+export default function Watering() {
+  const { data } = useSWR("/api/plants", { fallbackData: [] });
   const [plantsToWater, setPlantsToWater] = useState([]);
 
   const [day, nextDay] = useDayCount(0); // only for simulation
 
-  const myPlants = plants.filter((plant) => plant.isOwned);
+  const myPlants = data.filter((plant) => plant.isOwned);
   const dayOfWeek = daysOfWeek[day % 7];
   useEffect(() => {
     // const today = new Date().getDay();   ---> deactivated for simulation

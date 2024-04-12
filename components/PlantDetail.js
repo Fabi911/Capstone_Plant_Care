@@ -11,6 +11,7 @@ export default function PlantDetail({
   plantDetail,
   handleToggleOwnedPlants,
   handleDeletePlant,
+  mutate,
 }) {
   const [confirmDelete, setConfirmDelete] = useState(false);
 
@@ -49,7 +50,9 @@ export default function PlantDetail({
         height={90}
         width={90}
         isOwned={plantDetail.isOwned}
-        handleToggleOwnedPlants={() => handleToggleOwnedPlants(plantDetail.id)}
+        handleToggleOwnedPlants={() =>
+          handleToggleOwnedPlants(plantDetail, mutate)
+        }
       />
 
       <IconBox>
@@ -60,7 +63,7 @@ export default function PlantDetail({
       </IconBox>
       {confirmDelete && (
         <ConfirmDelete
-          handleConfirm={() => handleDeletePlant(plantDetail.id)}
+          handleConfirm={() => handleDeletePlant(plantDetail._id)}
           handleCancel={handleCancel}
         />
       )}

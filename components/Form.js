@@ -42,8 +42,9 @@ export default function Form({ onSubmit, defaultData, formName, isEditMode }) {
       water_need: data.water_need,
       fertiliser_season: fertiliserSeason,
       image: url,
+      isOwned: true,
     });
-    // alert("Plant added successfully");
+    alert("Plant added successfully");
   }
 
   return (
