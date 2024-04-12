@@ -12,42 +12,52 @@ export default function PlantPreview({
   handleToggleOwnedPlants,
 }) {
   return (
-    <>
-      <StyledCard>
-        <StyledLink href={`/plants/${id}`}>
+    <PlantPreviewContainer>
+      <StyledLink href={`/plants/${id}`}>
+        <StyledCard>
           <StyledImage src={image} alt={name} width={100} height={100} />
           <StyledTextBox>
-            <p>{name}</p>
-            <p>botanical name: {botanicalName}</p>
+            <Text>
+              <Span> {name}</Span>
+              <br />
+              <br />
+              botanical name: {botanicalName}
+            </Text>
           </StyledTextBox>
-        </StyledLink>
+        </StyledCard>
+      </StyledLink>
+      <OwnedPlantButtonStyled>
         <OwnedPlantButton
           isOwned={isOwned}
           handleToggleOwnedPlants={handleToggleOwnedPlants}
           height={60}
           width={60}
         />
-      </StyledCard>
-    </>
+      </OwnedPlantButtonStyled>
+    </PlantPreviewContainer>
   );
 }
 
 // styled components
 
+const PlantPreviewContainer = styled.div`
+  position: relative;
+`;
+
 const StyledCard = styled.div`
   width: 80vw;
   height: auto;
-  /* border: 1px solid black; */
   box-shadow: var(--box-shadow-default);
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: center;
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
   background-color: var(--main-color3);
-  border-radius: 20px;
+  border-radius: 15px;
   min-width: 300px;
   max-width: 960px;
   &:active {
@@ -79,4 +89,23 @@ const StyledLink = styled(Link)`
 
 const StyledTextBox = styled.div`
   width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const OwnedPlantButtonStyled = styled.div`
+  position: absolute;
+  top: -26px;
+  right: -5px;
+`;
+
+const Text = styled.p`
+  text-align: left;
+  width: 60%;
+`;
+
+const Span = styled.span`
+  font-size: 1.5rem;
+  font-weight: bold;
 `;

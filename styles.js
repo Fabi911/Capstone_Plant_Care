@@ -24,6 +24,7 @@ export default createGlobalStyle`
 --icon-width-mobile:50px;
 --icon-width-tablet:75px;
 --icon-width-desktop:75px;
+font-size: 20px;
 }
   *,
   *::before,

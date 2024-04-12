@@ -12,6 +12,7 @@ export const Header = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 20;
 `;
 
 export const Footer = styled.footer`
