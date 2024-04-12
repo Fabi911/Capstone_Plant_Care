@@ -6,7 +6,7 @@ export default function AddPlant({ handleAddPlant }) {
   return (
     <>
       <BackArrow link="/overview" />
-      <Form onSubmit={handleAddPlant} />
+      <Form onSubmit={handleAddPlant} isEditMode={false} />
       <br />
     </>
   );
