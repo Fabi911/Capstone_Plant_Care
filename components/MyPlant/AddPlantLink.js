@@ -21,15 +21,15 @@ const StyledPlus = styled(Link)`
   bottom: 45px;
   z-index: 10;
 
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (max-width: 900px) {
     right: var(--distance-edge-mobile);
   }
 
-  @media (min-width: 900px) {
+  @media (min-width: 901px) and (max-width: 1200px) {
     right: var(--distance-edge-tablet);
   }
 
-  @media (min-width: 1200px) {
+  @media (min-width: 1201px) {
     right: var(--distance-edge-desktop);
   }
 `;

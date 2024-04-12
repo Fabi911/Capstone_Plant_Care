@@ -15,22 +15,18 @@ export default function PlantPreview({
     <>
       <StyledCard>
         <StyledLink href={`/plants/${id}`}>
-          <StyledDiv>
-            <StyledImage src={image} alt={name} width={100} height={100} />
-            <StyledTextBox>
-              <p>{name}</p>
-              <p>botanical name: {botanicalName}</p>
-            </StyledTextBox>
-          </StyledDiv>
+          <StyledImage src={image} alt={name} width={100} height={100} />
+          <StyledTextBox>
+            <p>{name}</p>
+            <p>botanical name: {botanicalName}</p>
+          </StyledTextBox>
         </StyledLink>
-        <StyledDiv2>
-          <OwnedPlantButton
-            isOwned={isOwned}
-            handleToggleOwnedPlants={handleToggleOwnedPlants}
-            height={60}
-            width={60}
-          />
-        </StyledDiv2>
+        <OwnedPlantButton
+          isOwned={isOwned}
+          handleToggleOwnedPlants={handleToggleOwnedPlants}
+          height={60}
+          width={60}
+        />
       </StyledCard>
     </>
   );
@@ -52,39 +48,35 @@ const StyledCard = styled.div`
   padding-bottom: 10px;
   background-color: var(--main-color3);
   border-radius: 20px;
+  min-width: 300px;
+  max-width: 960px;
   &:active {
     box-shadow: inset var(--box-shadow-default);
+  }
+  @media (min-width: 901px) and (max-width: 1200px) {
+    width: var(--card-tablet);
+  }
+
+  @media (min-width: 1201px) {
+    width: var(--card-browser);
   }
 `;
 
 const StyledImage = styled(Image)`
-  margin-right: 20px;
   border-radius: 5px;
-  width: 15vw;
+  width: 25%;
   height: auto;
 `;
 
-const StyledDiv = styled.div`
+const StyledLink = styled(Link)`
   display: flex;
-  flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  flex-grow: 1;
-`;
-
-const StyledDiv2 = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  cursor: not-allowed;
-`;
-
-const StyledLink = styled(Link)`
+  gap: 10px;
   text-decoration: none;
   color: #001e1d;
-  flex-grow: 2;
 `;
 
 const StyledTextBox = styled.div`
-  width: 38vw;
+  width: 70%;
 `;

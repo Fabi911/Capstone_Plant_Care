@@ -13,8 +13,8 @@ export default createGlobalStyle`
   --box-shadow-default: 2px 2px 2px #303030;
   // responsive design variables
 --card-mobile:  80vw;
---card-tablet:  90vw;
---card-browser: 95vw; 
+--card-tablet:  65vw;
+--card-browser: 50vw; 
 --distance-edge-mobile: 15px;
 --distance-edge-tablet: 25px;
 --distance-edge-desktop: 50Px; 
@@ -62,27 +62,27 @@ h3 {
 
 
 
-  @media (min-width: 600px) {body {
+  // @media (min-width: 600px) {body {
       
       
-      };
-  }
+  //     };
+  // }
 
-  @media (min-width: 900px) {body {
+  // @media (max-width: 900px) {body {
       
-      };
-  }
+  //     };
+  // }
 
-  @media (min-width: 1200px) {
-    body {
+  // @media (max-width: 1200px) {
+  //   body {
       
-      };
-  }
+  //     };
+  // }
 
-  @media (min-width: 1536px) {body {
+  // @media (min-width: 1201px) {body {
       
-      };
-  }`;
+  //     };
+  // }`;
 
 // Styled component for Container
 export const Container = styled.div`
