@@ -16,6 +16,7 @@ const StyledArrow = styled(Link)`
   left: 15px;
   top: 15px;
   background: transparent;
+  z-index: 30;
   @media (min-width: 600px) {
     left: var(--distance-edge-mobile);
   }
