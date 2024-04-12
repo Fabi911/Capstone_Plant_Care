@@ -6,7 +6,9 @@ import { uid } from "uid";
 import { useRouter } from "next/router";
 
 import { useState } from "react";
+import { Poiret_One } from "next/font/google";
 
+const poiret = Poiret_One({ weight: "400", subsets: ["latin"] });
 
 export default function App({ Component, pageProps }) {
   const [plants, setPlants] = useLocalStorageState("Plants", {
@@ -82,7 +84,7 @@ export default function App({ Component, pageProps }) {
   }
 
   return (
-    <>
+    <main className={poiret.className}>
       <GlobalStyle />
 
       <Layout>
@@ -97,6 +99,6 @@ export default function App({ Component, pageProps }) {
           landingData={landingData}
         />
       </Layout>
-    </>
+    </main>
   );
 }
