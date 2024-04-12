@@ -1,5 +1,4 @@
 import PlantPreview from "@/components/PlantPreview";
-import { PlantListItem } from "@/components/PlantsList";
 import BackArrow from "@/components/MyPlant/BackArrow";
 import { PlantListContainer } from "@/components/PlantsList";
 import AddPlantLink from "@/components/MyPlant/AddPlantLink";
@@ -20,18 +19,17 @@ export default function OwnedPage({ plants, handleToggleOwnedPlants }) {
         {plants.map((plant) => {
           return (
             plant.isOwned && (
-              <PlantListItem key={plant.id}>
-                <PlantPreview
-                  name={plant.name}
-                  botanicalName={plant.botanical_name}
-                  image={plant.image}
-                  id={plant.id}
-                  isOwned={plant.isOwned}
-                  handleToggleOwnedPlants={() =>
-                    handleToggleOwnedPlants(plant.id)
-                  }
-                />
-              </PlantListItem>
+              <PlantPreview
+                key={plant.id}
+                name={plant.name}
+                botanicalName={plant.botanical_name}
+                image={plant.image}
+                id={plant.id}
+                isOwned={plant.isOwned}
+                handleToggleOwnedPlants={() =>
+                  handleToggleOwnedPlants(plant.id)
+                }
+              />
             )
           );
         })}

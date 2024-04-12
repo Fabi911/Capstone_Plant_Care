@@ -40,6 +40,7 @@ font-size: 20px;
     align-items: center;
     background-color: var(--bg-color1);
     color: var(--text2-color);
+    
 
 
 

@@ -13,6 +13,7 @@ export const Header = styled.header`
   justify-content: center;
   align-items: center;
   z-index: 20;
+  min-width: 300px;
 `;
 
 export const Footer = styled.footer`
@@ -27,4 +28,5 @@ export const Footer = styled.footer`
   width: 100vw;
   font-size: 22px;
   box-shadow: 0 1px 2px 2px var(--box-shadow);
+  min-width: 300px;
 `;
