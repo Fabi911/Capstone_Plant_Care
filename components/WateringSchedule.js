@@ -4,18 +4,17 @@ export default function WateringSchedule({ plantsToWater }) {
   return (
     <Watercard>
       <h1>Plants to Water</h1>
-      <WaterListContainer>
-        {plantsToWater.map((plant) => {
-          const wateringTime = wateringSchedule[plant.water_need] || "Unknown";
-          return (
-            <StyledWater key={plant.id}>
-              Plant: <StyledSpan>{plant.name}</StyledSpan>
-              <br />
-              water need: <WaterSpan>{wateringTime}</WaterSpan>
-            </StyledWater>
-          );
-        })}
-      </WaterListContainer>
+
+      {plantsToWater.map((plant) => {
+        const wateringTime = wateringSchedule[plant.water_need] || "Unknown";
+        return (
+          <StyledWater key={plant.id}>
+            Plant: <StyledSpan>{plant.name}</StyledSpan>
+            <br />
+            water need: <WaterSpan>{wateringTime}</WaterSpan>
+          </StyledWater>
+        );
+      })}
     </Watercard>
   );
 }
@@ -32,22 +31,27 @@ const Watercard = styled.div`
   flex-direction: column;
   align-items: center;
   width: 80vw;
+  gap: 10px;
+
+  min-width: 300px;
+  max-width: 960px;
+
+  @media (min-width: 901px) and (max-width: 1200px) {
+    width: var(--card-tablet);
+  }
+
+  @media (min-width: 1201px) {
+    width: var(--card-browser);
+  }
 `;
 
 const StyledWater = styled.div`
   box-shadow: 1px 1px 1px var(--box-shadow);
-  width: 65vw;
+  width: 80%;
   list-style: none;
   background-color: var(--main-color1);
   padding: 5px;
   border-radius: 5px;
-`;
-
-const WaterListContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
 `;
 
 const StyledSpan = styled.span`
