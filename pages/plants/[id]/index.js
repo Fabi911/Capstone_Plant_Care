@@ -43,7 +43,9 @@ export default function DetailPage({
     <>
       <BackArrow link="/overview" />
       <PlantDetail
-        plantDetail={plant}
+        // plantDetail={plant}
+        plantDetail={plantDetail}
+        id={plantDetail._id}
         handleToggleOwnedPlants={handleToggleOwnedPlants}
         handleDeletePlant={handleDeletePlant}
         handleEditPlant={handleEditPlant}

@@ -6,6 +6,7 @@ import { useState } from "react";
 import ConfirmDelete from "./ConfirmDelete";
 import trash_icon from "@/public/img/trash.png";
 import EditLink from "./MyPlant/EditLink";
+import CreateNote from "./CreateNote";
 
 export default function PlantDetail({
   plantDetail,
@@ -22,7 +23,12 @@ export default function PlantDetail({
   function handleCancel() {
     setConfirmDelete(false);
   }
-  let fertilizedSeasons;
+  // let fertilizedSeasons;
+  const fertiliserSeasons =
+    plantDetail.fertiliser_season && plantDetail.fertiliser_season.length > 0
+      ? plantDetail.fertiliser_season.join(", ")
+      : "";
+
   return (
     <StyledBox>
       <h2>{plantDetail.name}</h2>
@@ -43,8 +49,9 @@ export default function PlantDetail({
         <br />
         water need : {plantDetail.water_need}
         <br />
-        fertiliser season:{" "}
-        {(fertilizedSeasons = plantDetail.fertiliser_season.join(", "))}
+        {/* fertiliser season:{" "}
+        {(fertilizedSeasons = plantDetail.fertiliser_season.join(", "))} */}
+        Fertiliser Season: {fertiliserSeasons}
       </DetailTextBox>
       <OwnedPlantButton
         height={90}
@@ -67,6 +74,7 @@ export default function PlantDetail({
           handleCancel={handleCancel}
         />
       )}
+      <CreateNote />
     </StyledBox>
   );
 }
