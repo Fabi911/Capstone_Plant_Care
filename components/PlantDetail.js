@@ -1,11 +1,11 @@
 import Image from "next/image";
-import Link from "next/link";
 import styled from "styled-components";
 import OwnedPlantButton from "./MyPlant/OwnedPlantButton";
 import { useState } from "react";
 import ConfirmDelete from "./ConfirmDelete";
 import trash_icon from "@/public/img/trash.png";
 import EditLink from "./MyPlant/EditLink";
+import CreateNote from "./CreateNote";
 
 export default function PlantDetail({
   plantDetail,
@@ -67,6 +67,7 @@ export default function PlantDetail({
           handleCancel={handleCancel}
         />
       )}
+      <CreateNote plantId={plantDetail._id} />
     </StyledBox>
   );
 }
