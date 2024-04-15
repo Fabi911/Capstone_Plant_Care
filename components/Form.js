@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import { useState } from "react";
 import Image from "next/image";
+import iconOwned from "../public/img/iconOwned.png";
+import iconOverview from "../public/img/iconOverview.png";
 
-export default function Form({ onSubmit, defaultData, formName }) {
+export default function Form({ onSubmit, defaultData, formName, isEditMode }) {
   const [checkedSeasons, setCheckedSeasons] = useState({
     spring: false,
     summer: false,
@@ -40,12 +42,18 @@ export default function Form({ onSubmit, defaultData, formName }) {
       water_need: data.water_need,
       fertiliser_season: fertiliserSeason,
       image: url,
+      isOwned: true,
     });
-    // alert("Plant added successfully");
+    alert("Plant added successfully");
   }
 
   return (
     <StyledForm onSubmit={handleSubmit} aria-labelledby={formName}>
+      {isEditMode ? (
+        <Image src={iconOverview} width={80} height={80} alt="IconOverview" />
+      ) : (
+        <Image src={iconOwned} width={80} height={80} alt="IconOwned" />
+      )}
       <Label htmlFor="name">Name</Label>
       <input
         type="text"

@@ -3,24 +3,26 @@ import styled from "styled-components";
 
 export const PlantListContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: center;
   gap: 1.5rem;
 `;
 
-export default function PlantsList({ plants, handleToggleOwnedPlants }) {
+
+export default function PlantsList({ plants, handleToggleOwnedPlants,  mutate }) {
   return (
     <PlantListContainer>
       {plants.map((plant) => (
         <PlantPreview
-          key={plant.id}
+          key={plant._id}
           name={plant.name}
           botanicalName={plant.botanical_name}
           image={plant.image}
-          id={plant.id}
+          id={plant._id}
           isOwned={plant.isOwned}
-          handleToggleOwnedPlants={() => handleToggleOwnedPlants(plant.id)}
+          handleToggleOwnedPlants={() => handleToggleOwnedPlants(plant, mutate)}
         />
+
       ))}
     </PlantListContainer>
   );

@@ -10,6 +10,7 @@ export default function PlantPreview({
   id,
   isOwned,
   handleToggleOwnedPlants,
+  mutate,
 }) {
   return (
     <PlantPreviewContainer>

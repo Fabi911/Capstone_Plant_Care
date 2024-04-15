@@ -2,6 +2,7 @@ import FertilizingSchedule from "@/components/FertilizingSchedule";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import BackArrow from "@/components/MyPlant/BackArrow";
+import useSWR from "swr";
 
 function useMonthCount(startMonth) {
   const [month, setMonth] = useState(startMonth);
@@ -15,12 +16,13 @@ function useMonthCount(startMonth) {
   return [month, handleNextMonth];
 }
 
-export default function ReminderPage({ plants }) {
+export default function Fertilizing() {
+  const { data } = useSWR("/api/plants", { fallbackData: [] });
   const [plantsToFertilize, setPlantsToFertilize] = useState([]);
 
   const [month, nextMonth] = useMonthCount(0); // only for simulation
 
-  const myPlants = plants.filter((plant) => plant.isOwned);
+  const myPlants = data.filter((plant) => plant.isOwned);
 
   const months = [
     "January",

@@ -5,16 +5,19 @@ export default function WateringSchedule({ plantsToWater }) {
     <Watercard>
       <h1>Plants to Water</h1>
 
+
       {plantsToWater.map((plant) => {
         const wateringTime = wateringSchedule[plant.water_need] || "Unknown";
         return (
-          <StyledWater key={plant.id}>
+          <StyledWater key={plant._id}>
             Plant: <StyledSpan>{plant.name}</StyledSpan>
             <br />
             water need: <WaterSpan>{wateringTime}</WaterSpan>
           </StyledWater>
         );
       })}
+
+
     </Watercard>
   );
 }
