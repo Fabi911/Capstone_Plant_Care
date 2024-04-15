@@ -98,10 +98,9 @@ const OwnedPlantButtonStyled = styled.div`
 const Text = styled.p`
   text-align: left;
   width: 60%;
+  max-width:60%;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  text-overflow: ellipsis;
 `;
 
 const Span = styled.span`
