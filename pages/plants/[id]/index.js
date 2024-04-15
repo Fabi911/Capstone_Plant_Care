@@ -5,11 +5,13 @@ import { uid } from "uid";
 import Image from "next/image";
 import BackArrow from "@/components/MyPlant/BackArrow";
 import styled from "styled-components";
+import { toast } from "react-toastify";
 
 export default function DetailPage({
   handleToggleOwnedPlants,
   handleDeletePlant,
   handleEditPlant,
+  handleAddGalleryImage,
 }) {
   const router = useRouter();
   const { isReady } = router;
@@ -23,10 +25,16 @@ export default function DetailPage({
     event.preventDefault();
     const formData = new FormData(event.target);
 
-    const response = await fetch("/api/upload", {
-      method: "POST",
-      body: formData,
-    });
+    const response = await toast.promise(
+      fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      }),
+      {
+        pending: "Upload is pending",
+        error: "Upload rejected 🤯",
+      }
+    );
 
     const { url } = await response.json();
 
@@ -35,7 +43,7 @@ export default function DetailPage({
       gallery: [...plant.gallery, url],
     };
 
-    handleEditPlant(imageData, id, mutate);
+    handleAddGalleryImage(imageData, id, mutate);
   }
   if (!plant) return null;
 
@@ -71,10 +79,10 @@ export default function DetailPage({
               <GalleryImage
                 key={uid()}
                 src={url}
-                sizes="20vh"
+                sizes="30vw"
                 style={{
-                  width: "40%",
-                  height: "auto",
+                  width: "auto",
+                  height: "50%",
                 }}
                 width={400}
                 height={400}

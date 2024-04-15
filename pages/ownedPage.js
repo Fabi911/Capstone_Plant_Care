@@ -11,6 +11,7 @@ export default function OwnedPage({ handleToggleOwnedPlants }) {
   return (
     <>
       <BackArrow link="/" />
+
       <Image
         src="/img/iconOwned.png"
         width={80}

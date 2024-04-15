@@ -1,5 +1,4 @@
 import { useRouter } from "next/router";
-import Link from "next/link";
 import Form from "@/components/Form";
 import BackArrow from "@/components/MyPlant/BackArrow";
 import useSWR from "swr";
