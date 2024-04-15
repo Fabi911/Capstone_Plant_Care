@@ -1,22 +1,18 @@
 import styled from "styled-components";
 
 export default function FertilizingSchedule({ plantsToFertilize }) {
-  let fertilizedSeasons;
   return (
     <Fertilisercard>
       <h1>Fertiliser season Plan</h1>
-      <FertiliserListContainer>
-        {plantsToFertilize.map((plant) => (
-          <StyledFertiliser key={plant.id}>
-            Plant: <StyledSpan>{plant.name}</StyledSpan>
-            <br />
-            Fertiliser season:{" "}
-            <FertilizeSpan>
-              {(fertilizedSeasons = plant.fertiliser_season.join(", "))}
-            </FertilizeSpan>
-          </StyledFertiliser>
-        ))}
-      </FertiliserListContainer>
+
+      {plantsToFertilize.map((plant) => (
+        <StyledFertiliser key={plant.id}>
+          Plant: <StyledSpan>{plant.name}</StyledSpan>
+          <br />
+          Fertiliser season:{" "}
+          <FertilizeSpan>{plant.fertiliser_season.join(", ")}</FertilizeSpan>
+        </StyledFertiliser>
+      ))}
     </Fertilisercard>
   );
 }
@@ -33,21 +29,26 @@ const Fertilisercard = styled.div`
   flex-direction: column;
   align-items: center;
   width: 80vw;
+  gap: 10px;
+
+  min-width: 300px;
+  max-width: 960px;
+
+  @media (min-width: 901px) and (max-width: 1200px) {
+    width: var(--card-tablet);
+  }
+
+  @media (min-width: 1201px) {
+    width: var(--card-browser);
+  }
 `;
 
 const StyledFertiliser = styled.div`
   box-shadow: 1px 1px 1px var(--box-shadow);
-  width: 65vw;
+  width: 80%;
   background-color: var(--main-color1);
   padding: 5px;
   border-radius: 5px;
-`;
-
-const FertiliserListContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
 `;
 
 const StyledSpan = styled.span`

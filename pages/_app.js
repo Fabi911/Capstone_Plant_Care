@@ -1,12 +1,18 @@
 import GlobalStyle from "../styles";
 import Layout from "@/components/Layout";
 import { useRouter } from "next/router";
+
 import { SWRConfig } from "swr";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+
 import { useState } from "react";
+import { Poiret_One } from "next/font/google";
+
+const poiret = Poiret_One({ weight: "400", subsets: ["latin"] });
+
 
 export default function App({ Component, pageProps }) {
   const [landingData, setLandingData] = useState([
@@ -156,9 +162,9 @@ export default function App({ Component, pageProps }) {
   }
 
   return (
-    <>
+    <main className={poiret.className}>
       <GlobalStyle />
-      <SWRConfig
+  <SWRConfig
         value={{
           fetcher: async (...args) => {
             const response = await fetch(...args);
@@ -193,6 +199,9 @@ export default function App({ Component, pageProps }) {
           />
         </Layout>
       </SWRConfig>
-    </>
+    </main>
+
+
+
   );
 }
