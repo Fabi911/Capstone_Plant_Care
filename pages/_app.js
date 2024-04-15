@@ -31,6 +31,12 @@ export default function App({ Component, pageProps }) {
       link: "/fertilizing",
       icon: "/img/iconFertilizing.png",
     },
+    {
+      id: 4,
+      name: "Calendar",
+      link: "/calendar",
+      icon: "/img/iconOverview.png",
+    },
   ]);
 
   const router = useRouter();
