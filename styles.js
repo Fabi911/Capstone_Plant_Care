@@ -43,7 +43,6 @@ font-size: 20px;
     
 
 
-
     text-align: center;
     gap: 1.5rem;
 
@@ -59,42 +58,4 @@ font-size: 20px;
 h3 {
   margin: 0;
 }
-
-
-
-
-
-  // @media (min-width: 600px) {body {
-      
-      
-  //     };
-  // }
-
-  // @media (max-width: 900px) {body {
-      
-  //     };
-  // }
-
-  // @media (max-width: 1200px) {
-  //   body {
-      
-  //     };
-  // }
-
-  // @media (min-width: 1201px) {body {
-      
-  //     };
-  // }`;
-
-// Styled component for Container
-export const Container = styled.div`
-  background: var(--bg2-color);
-  color: var(--text-color);
-  width: 80vw;
-  height: auto;
-  border: 1px solid black;
-  border-radius: 20px;
-  &:hover {
-    box-shadow: 5px 5px 5px #f9bc60;
-  }
 `;

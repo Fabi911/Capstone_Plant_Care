@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export default function FertilizingSchedule({ plantsToFertilize }) {
-  let fertilizedSeasons;
   return (
     <Fertilisercard>
       <h1>Fertiliser season Plan</h1>
@@ -11,9 +10,7 @@ export default function FertilizingSchedule({ plantsToFertilize }) {
           Plant: <StyledSpan>{plant.name}</StyledSpan>
           <br />
           Fertiliser season:{" "}
-          <FertilizeSpan>
-            {(fertilizedSeasons = plant.fertiliser_season.join(", "))}
-          </FertilizeSpan>
+          <FertilizeSpan>{plant.fertiliser_season.join(", ")}</FertilizeSpan>
         </StyledFertiliser>
       ))}
     </Fertilisercard>
@@ -52,9 +49,6 @@ const StyledFertiliser = styled.div`
   background-color: var(--main-color1);
   padding: 5px;
   border-radius: 5px;
-
-  /*  min-width: 300px;
-  max-width: 960px; */
 `;
 
 const StyledSpan = styled.span`

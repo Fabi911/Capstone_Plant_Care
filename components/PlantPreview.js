@@ -19,8 +19,6 @@ export default function PlantPreview({
           <StyledTextBox>
             <Text>
               <Span> {name}</Span>
-              <br />
-              <br />
               botanical name: {botanicalName}
             </Text>
           </StyledTextBox>
@@ -52,10 +50,7 @@ const StyledCard = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px 20px;
   background-color: var(--main-color3);
   border-radius: 15px;
   min-width: 300px;
@@ -103,6 +98,8 @@ const OwnedPlantButtonStyled = styled.div`
 const Text = styled.p`
   text-align: left;
   width: 60%;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Span = styled.span`
