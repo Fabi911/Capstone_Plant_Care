@@ -6,7 +6,6 @@ import useSWR from "swr";
 
 export default function Overview({ handleToggleOwnedPlants }) {
   const { data, mutate } = useSWR("/api/plants", { fallbackData: [] });
-  console.log("data:", data);
 
   return (
     <>
