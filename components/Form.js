@@ -37,14 +37,10 @@ export default function Form({ onSubmit, defaultData, formName, isEditMode }) {
       }),
       {
         pending: "Upload is pending",
-        // success: "Upload resolved 👌",
         error: "Upload rejected 🤯",
       }
     );
-    // const response = await fetch("/api/upload", {
-    //   method: "POST",
-    //   body: formData,
-    // });
+
 
     const { url } = await response.json();
 
