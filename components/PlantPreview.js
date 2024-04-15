@@ -98,7 +98,7 @@ const OwnedPlantButtonStyled = styled.div`
 const Text = styled.p`
   text-align: left;
   width: 60%;
-  max-width:60%;
+ word-wrap:normal;
   display: flex;
   flex-direction: column;
 `;
