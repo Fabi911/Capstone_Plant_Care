@@ -10,6 +10,7 @@ export default function DetailPage({
   handleToggleOwnedPlants,
   handleDeletePlant,
   handleEditPlant,
+  handleAddNotes,
 }) {
   const router = useRouter();
   const { isReady } = router;
@@ -47,6 +48,7 @@ export default function DetailPage({
         handleToggleOwnedPlants={handleToggleOwnedPlants}
         handleDeletePlant={handleDeletePlant}
         handleEditPlant={handleEditPlant}
+        handleAddNotes={handleAddNotes}
         mutate={mutate}
       />
 

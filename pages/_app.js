@@ -104,6 +104,25 @@ export default function App({ Component, pageProps }) {
     }
   }
 
+  async function handleAddNotes(plant, id, mutate) {
+    console.log("Added note");
+
+    const respone = await fetch(`/api/plants/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(plant),
+    });
+
+    if (respone.ok) {
+      mutate();
+      router.push(`/plants/${id}`);
+    } else {
+      console.error(respone.error);
+    }
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -126,6 +145,7 @@ export default function App({ Component, pageProps }) {
             handleDeletePlant={handleDeletePlant}
             handleEditPlant={handleEditPlant}
             landingData={landingData}
+            handleAddNotes={handleAddNotes}
           />
         </Layout>
       </SWRConfig>
