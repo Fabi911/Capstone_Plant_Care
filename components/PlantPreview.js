@@ -100,6 +100,8 @@ const Text = styled.p`
   width: 60%;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const Span = styled.span`
