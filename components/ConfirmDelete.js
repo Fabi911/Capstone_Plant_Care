@@ -17,7 +17,7 @@ export default function ConfirmDelete({ handleConfirm, handleCancel }) {
 }
 
 const DeleteConfirmBox = styled.div`
-  background: var(--main-color3);
+  background: var(--main-color1);
   padding: 10px;
   border-radius: 15px;
   margin-bottom: 15px;

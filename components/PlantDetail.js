@@ -95,6 +95,16 @@ const StyledBox = styled.div`
   box-shadow: var(--box-shadow-default);
   border-radius: 15px;
   width: 80vw;
+  min-width: 300px;
+  max-width: 960px;
+
+  @media (min-width: 901px) and (max-width: 1200px) {
+    width: var(--card-tablet);
+  }
+
+  @media (min-width: 1201px) {
+    width: var(--card-browser);
+  }
 `;
 
 const IconBox = styled.div`
@@ -103,6 +113,6 @@ const IconBox = styled.div`
   margin-top: 10px;
   margin-bottom: 10px;
   justify-content: space-between;
-  width: 70vw;
+  width: 90%;
   flex-direction: row-reverse;
 `;

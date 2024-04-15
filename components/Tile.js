@@ -5,12 +5,12 @@ import Link from "next/link";
 
 export default function Tile({ link, name, icon }) {
   return (
-    <Link href={link}>
+    <StyledLink href={link}>
       <StyledTile>
         <StyledIcon src={icon} width={80} height={80} alt={name} />
         <StyledText>{name}</StyledText>
       </StyledTile>
-    </Link>
+    </StyledLink>
   );
 }
 
@@ -26,6 +26,7 @@ const StyledTile = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  position: relative;
   &:active {
     box-shadow: inset var(--box-shadow-default);
   }
@@ -36,7 +37,13 @@ const StyledIcon = styled(Image)`
 `;
 
 const StyledText = styled.p`
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   color: var(--text-color);
+  position: absolute;
+  bottom: -5px;
+  font-weight: bold;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: black;
 `;

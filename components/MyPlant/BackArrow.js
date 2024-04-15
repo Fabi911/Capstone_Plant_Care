@@ -16,4 +16,16 @@ const StyledArrow = styled(Link)`
   left: 15px;
   top: 15px;
   background: transparent;
+  z-index: 30;
+  @media (min-width: 600px) {
+    left: var(--distance-edge-mobile);
+  }
+
+  @media (min-width: 900px) {
+    left: var(--distance-edge-tablet);
+  }
+
+  @media (min-width: 1200px) {
+    left: var(--distance-edge-desktop);
+  }
 `;
