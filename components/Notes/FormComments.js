@@ -6,7 +6,7 @@ export default function FormComments({ onSubmit, plant, mutate }) {
 
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-
+mutate()
     const notes = [...plant.notes, data.notes];
 
     onSubmit({ notes: notes }, plant._id, mutate);
