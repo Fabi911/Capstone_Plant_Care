@@ -1,17 +1,19 @@
 import Image from "next/image";
-import Link from "next/link";
 import styled from "styled-components";
 import OwnedPlantButton from "./MyPlant/OwnedPlantButton";
 import { useState } from "react";
 import ConfirmDelete from "./ConfirmDelete";
 import trash_icon from "@/public/img/trash.png";
 import EditLink from "./MyPlant/EditLink";
+import FormComments from "./FormComments";
+import ShowComments from "./ShowComments";
 
 export default function PlantDetail({
   plantDetail,
   handleToggleOwnedPlants,
   handleDeletePlant,
   mutate,
+  onAddNotes,
 }) {
   const [confirmDelete, setConfirmDelete] = useState(false);
 
@@ -67,6 +69,15 @@ export default function PlantDetail({
           handleCancel={handleCancel}
         />
       )}
+      <NotesContainer>
+        <FormComments
+          onSubmit={onAddNotes}
+          plant={plantDetail}
+          mutate={mutate}
+        />
+
+        <ShowComments plant={plantDetail} />
+      </NotesContainer>
     </StyledBox>
   );
 }
@@ -115,4 +126,16 @@ const IconBox = styled.div`
   justify-content: space-between;
   width: 90%;
   flex-direction: row-reverse;
+`;
+
+const NotesContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 15px;
+  width: 80%;
+  box-shadow: var(--box-shadow-default);
+  background-color: var(--main-color1);
+  margin-bottom: 15px;
+  padding: 10px 0;
 `;

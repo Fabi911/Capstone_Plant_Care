@@ -163,6 +163,31 @@ export default function App({ Component, pageProps }) {
     }
   }
 
+  async function handleAddNotes(plant, id, mutate) {
+    const response = await toast.promise(
+      fetch(`/api/plants/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(plant),
+      }),
+      {
+        pending: "adding is pending",
+        success: "Note added! 👌",
+        error: "adding rejected 🤯",
+      }
+    );
+
+    if (response.ok) {
+    
+      router.push(`/plants/${id}`);
+          mutate();
+       } else {
+      console.error(respone.error);
+    }
+  }
+
   async function handleDeleteImage(plant, id, mutate) {
     const response = await toast.promise(
       fetch(`/api/plants/${id}`, {
@@ -221,6 +246,7 @@ export default function App({ Component, pageProps }) {
             handleDeletePlant={handleDeletePlant}
             handleEditPlant={handleEditPlant}
             landingData={landingData}
+            handleAddNotes={handleAddNotes}
             handleDeleteImage={handleDeleteImage}
             handleAddGalleryImage={handleAddGalleryImage}
 

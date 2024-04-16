@@ -15,10 +15,11 @@ import { toast } from "react-toastify";
 export default function DetailPage({
   handleToggleOwnedPlants,
   handleDeletePlant,
-
+  handleEditPlant,
+  handleAddNotes,
   handleDeleteImage,
-
   handleAddGalleryImage,
+
 
 }) {
   const [confirmDelete, setConfirmDelete] = useState(null);
@@ -86,6 +87,7 @@ export default function DetailPage({
         handleToggleOwnedPlants={handleToggleOwnedPlants}
         handleDeletePlant={handleDeletePlant}
         handleEditPlant={handleEditPlant}
+        onAddNotes={handleAddNotes}
         mutate={mutate}
       />
 
