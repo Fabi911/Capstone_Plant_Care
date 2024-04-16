@@ -89,7 +89,7 @@ export default function DetailPage({
         mutate={mutate}
       />
 
-      <GalleryContainer>
+       <GalleryContainer>
         <h2>Gallery</h2>
         <form onSubmit={handleSubmit}>
           <label htmlFor="image">choose image</label>
@@ -106,7 +106,6 @@ export default function DetailPage({
         <GalleryShowcase>
           {Array.isArray(plant.gallery) &&
             plant.gallery.length > 0 &&
-
             plant.gallery.map((url, index) => (
               <GalleryImageContainer key={uid()}>
                 <GalleryDeleteButton onClick={() => handleDelete(index)}>
