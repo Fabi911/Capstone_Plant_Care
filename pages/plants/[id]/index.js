@@ -7,7 +7,7 @@ import BackArrow from "@/components/MyPlant/BackArrow";
 import styled from "styled-components";
 
 import { useState } from "react";
-import ConfirmDelete from "@/components/ConfirmDelete";
+
 
 import { toast } from "react-toastify";
 import Modal from "@/components/Modal";
