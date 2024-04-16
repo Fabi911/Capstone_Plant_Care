@@ -180,8 +180,9 @@ export default function App({ Component, pageProps }) {
     );
 
     if (respone.ok) {
-      mutate();
+    
       router.push(`/plants/${id}`);
+          mutate();
        } else {
       console.error(respone.error);
     }
