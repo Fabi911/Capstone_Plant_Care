@@ -2,17 +2,19 @@ import GlobalStyle from "../styles";
 import Layout from "@/components/Layout";
 import { useRouter } from "next/router";
 
-import { SWRConfig } from "swr";
+import { mutate, SWRConfig } from "swr";
+
+
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 
 
 import { useState } from "react";
 import { Poiret_One } from "next/font/google";
 
 const poiret = Poiret_One({ weight: "400", subsets: ["latin"] });
-
 
 export default function App({ Component, pageProps }) {
   const [landingData, setLandingData] = useState([
@@ -69,7 +71,7 @@ export default function App({ Component, pageProps }) {
   }
 
   async function handleDeletePlant(id) {
-    console.log("deleted?");
+
     const response = await toast.promise(
       fetch(`/api/plants/${id}`, {
         method: "DELETE",
@@ -80,6 +82,7 @@ export default function App({ Component, pageProps }) {
         error: "deleting rejected 🤯",
       }
     );
+
 
     if (response.ok) {
       router.push("/overview");
@@ -102,7 +105,6 @@ export default function App({ Component, pageProps }) {
 
       if (response.ok) {
         mutate();
-        console.log("isOwned switched");
       } else {
         console.error(`error: ${response.status}`);
       }
@@ -112,7 +114,7 @@ export default function App({ Component, pageProps }) {
   }
 
   async function handleEditPlant(plant, id, mutate) {
-    console.log("Plant edited");
+
 
     const response = await toast.promise(
       fetch(`/api/plants/${id}`, {
@@ -161,10 +163,34 @@ export default function App({ Component, pageProps }) {
     }
   }
 
+  async function handleDeleteImage(plant, id, mutate) {
+    const response = await toast.promise(
+      fetch(`/api/plants/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(plant),
+      }),
+      {
+        pending: "deleting is pending",
+        success: "Image deleted! 👌",
+        error: "deleting rejected 🤯",
+      }
+    );
+
+    if (respone.ok) {
+      router.push(`/plants/${id}`);
+      mutate();
+    } else {
+      console.error(respone.error);
+    }
+  }
+
   return (
     <main className={poiret.className}>
       <GlobalStyle />
-  <SWRConfig
+      <SWRConfig
         value={{
           fetcher: async (...args) => {
             const response = await fetch(...args);
@@ -195,13 +221,12 @@ export default function App({ Component, pageProps }) {
             handleDeletePlant={handleDeletePlant}
             handleEditPlant={handleEditPlant}
             landingData={landingData}
+            handleDeleteImage={handleDeleteImage}
             handleAddGalleryImage={handleAddGalleryImage}
+
           />
         </Layout>
       </SWRConfig>
     </main>
-
-
-
   );
 }
