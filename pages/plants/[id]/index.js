@@ -6,12 +6,23 @@ import Image from "next/image";
 import BackArrow from "@/components/MyPlant/BackArrow";
 import styled from "styled-components";
 
+import { useState } from "react";
+import ConfirmDelete from "@/components/ConfirmDelete";
+
+import { toast } from "react-toastify";
+
+
 export default function DetailPage({
   handleToggleOwnedPlants,
   handleDeletePlant,
   handleEditPlant,
   handleAddNotes,
+  handleDeleteImage,
+  handleAddGalleryImage,
+
+
 }) {
+  const [confirmDelete, setConfirmDelete] = useState(null);
   const router = useRouter();
   const { isReady } = router;
   const { id } = router.query;
@@ -24,10 +35,16 @@ export default function DetailPage({
     event.preventDefault();
     const formData = new FormData(event.target);
 
-    const response = await fetch("/api/upload", {
-      method: "POST",
-      body: formData,
-    });
+    const response = await toast.promise(
+      fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      }),
+      {
+        pending: "Upload is pending",
+        error: "Upload rejected 🤯",
+      }
+    );
 
     const { url } = await response.json();
 
@@ -36,9 +53,31 @@ export default function DetailPage({
       gallery: [...plant.gallery, url],
     };
 
+
     handleEditPlant(imageData, id, mutate);
+    event.target.reset();
+
+    handleAddGalleryImage(imageData, id, mutate);
+
   }
   if (!plant) return null;
+
+  // Delete Image from Gallery
+  function handleDelete(index) {
+    setConfirmDelete(index);
+  }
+
+  function handleCancel() {
+    setConfirmDelete(null);
+  }
+
+  const handleOnClick = (index) => {
+    const updatedGallery = [...plant.gallery];
+    updatedGallery.splice(index, 1);
+    plant.gallery = updatedGallery;
+    handleDeleteImage(plant, id, mutate);
+    setConfirmDelete(null);
+  };
 
   return (
     <>
@@ -52,7 +91,7 @@ export default function DetailPage({
         mutate={mutate}
       />
 
-      <GalleryContainer>
+       <GalleryContainer>
         <h2>Gallery</h2>
         <form onSubmit={handleSubmit}>
           <label htmlFor="image">choose image</label>
@@ -66,24 +105,34 @@ export default function DetailPage({
           <button type="submit">Upload</button>
         </form>
         <br></br>
-        <GalleryImageContainer>
+        <GalleryShowcase>
           {Array.isArray(plant.gallery) &&
             plant.gallery.length > 0 &&
-            plant.gallery.map((url) => (
-              <GalleryImage
-                key={uid()}
-                src={url}
-                sizes="20vh"
-                style={{
-                  width: "40%",
-                  height: "auto",
-                }}
-                width={400}
-                height={400}
-                alt="Description"
-              />
+            plant.gallery.map((url, index) => (
+              <GalleryImageContainer key={uid()}>
+                <GalleryDeleteButton onClick={() => handleDelete(index)}>
+                  🗑️
+                </GalleryDeleteButton>
+                <GalleryImage
+                  src={url}
+                  sizes="20vh"
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                  }}
+                  width={400}
+                  height={400}
+                  alt="Description"
+                />
+                {confirmDelete === index && (
+                  <ConfirmDelete
+                    handleConfirm={() => handleOnClick(index)}
+                    handleCancel={handleCancel}
+                  />
+                )}
+              </GalleryImageContainer>
             ))}
-        </GalleryImageContainer>
+        </GalleryShowcase>
       </GalleryContainer>
     </>
   );
@@ -101,18 +150,49 @@ const GalleryContainer = styled.div`
   padding-bottom: 15px;
   gap: 10px;
   width: 80vw;
+  min-width: 300px;
+  max-width: 960px;
   align-items: center;
+  @media (min-width: 901px) and (max-width: 1200px) {
+    width: var(--card-tablet);
+  }
+
+  @media (min-width: 1201px) {
+    width: var(--card-browser);
+  }
 `;
 
 const GalleryImageContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  width: 70vw;
-  justify-content: space-around;
+  position: relative;
+
+  width: 45%;
 `;
 
 const GalleryImage = styled(Image)`
   border-radius: 10px;
   box-shadow: var(--box-shadow-default);
+`;
+
+const GalleryDeleteButton = styled.button`
+  background: rgba(255, 255, 255, 0.6);
+  border: none;
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  top: 5px;
+  right: 10px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  padding: 5px;
+  &:active {
+    box-shadow: inset var(--box-shadow-default);
+  }
+`;
+
+const GalleryShowcase = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 70%;
+  justify-content: space-around;
 `;
