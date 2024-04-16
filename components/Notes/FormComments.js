@@ -3,11 +3,11 @@ import styled from "styled-components";
 export default function FormComments({ onSubmit, plant, mutate }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    mutate()
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
 mutate()
-    const notes = [...plant.notes, data.notes];
+    const await notes = [...plant.notes, data.notes];
 
     onSubmit({ notes: notes }, plant._id, mutate);
 
