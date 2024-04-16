@@ -106,13 +106,20 @@ export default function App({ Component, pageProps }) {
   }
 
   async function handleDeleteImage(plant, id, mutate) {
-    const respone = await fetch(`/api/plants/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(plant),
-    });
+    const response = await toast.promise(
+      fetch(`/api/plants/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(plant),
+      }),
+      {
+        pending: "deleting is pending",
+        success: "Image deleted! 👌",
+        error: "deleting rejected 🤯",
+      }
+    );
 
     if (respone.ok) {
       router.push(`/plants/${id}`);
