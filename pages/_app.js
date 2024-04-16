@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 
 import { mutate, SWRConfig } from "swr";
 
-import { SWRConfig } from "swr";
+
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
