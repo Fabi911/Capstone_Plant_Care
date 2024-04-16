@@ -70,12 +70,6 @@ export default function PlantDetail({
           handleCancel={handleCancel}
         />
       )}
-      <Notes
-        handleDeleteNote={handleDeleteNote}
-        plant={plantDetail}
-        onAddNotes={onAddNotes}
-        mutate={mutate}
-      />
     </StyledBox>
   );
 }

@@ -28,8 +28,8 @@ export default function Notes({ plant, handleDeleteNote, onAddNotes, mutate }) {
   return (
     <>
       <NotesContainer>
-        <FormComments onSubmit={onAddNotes} plant={plant} mutate={mutate} />
         <h3>Notes:</h3>
+        <FormComments onSubmit={onAddNotes} plant={plant} mutate={mutate} />
         <ShowNotesContainer>
           {plant.notes.map((note, index) => (
             <TextContainer key={index}>
@@ -59,10 +59,6 @@ const NotesContainer = styled.div`
   align-items: center;
   border-radius: 15px;
   width: 80%;
-  box-shadow: var(--box-shadow-default);
-  background-color: var(--main-color1);
-  margin-bottom: 15px;
-  padding: 10px 0;
 `;
 
 const ShowNotesContainer = styled.div`
@@ -74,7 +70,6 @@ const ShowNotesContainer = styled.div`
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
-  gap: 10px;
   width: 90%;
   padding: 10px 0;
 `;
