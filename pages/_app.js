@@ -179,7 +179,7 @@ export default function App({ Component, pageProps }) {
       }
     );
 
-    if (respone.ok) {
+    if (response.ok) {
     
       router.push(`/plants/${id}`);
           mutate();
