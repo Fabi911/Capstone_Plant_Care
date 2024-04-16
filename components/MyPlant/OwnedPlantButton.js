@@ -33,4 +33,5 @@ export default function OwnedPlantButton({
 const StyledHeart = styled.button`
   background-color: transparent;
   border: none;
+  cursor: pointer;
 `;
