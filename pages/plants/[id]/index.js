@@ -48,7 +48,7 @@ export default function DetailPage({
         handleToggleOwnedPlants={handleToggleOwnedPlants}
         handleDeletePlant={handleDeletePlant}
         handleEditPlant={handleEditPlant}
-        handleAddNotes={handleAddNotes}
+        onAddNotes={handleAddNotes}
         mutate={mutate}
       />
 

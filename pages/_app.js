@@ -105,8 +105,6 @@ export default function App({ Component, pageProps }) {
   }
 
   async function handleAddNotes(plant, id, mutate) {
-    console.log("Added note");
-
     const respone = await fetch(`/api/plants/${id}`, {
       method: "PUT",
       headers: {

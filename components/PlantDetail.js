@@ -13,7 +13,7 @@ export default function PlantDetail({
   handleToggleOwnedPlants,
   handleDeletePlant,
   mutate,
-  handleAddNotes,
+  onAddNotes,
 }) {
   const [confirmDelete, setConfirmDelete] = useState(false);
 
@@ -71,7 +71,7 @@ export default function PlantDetail({
       )}
       <NotesContainer>
         <FormComments
-          onSubmit={handleAddNotes}
+          onSubmit={onAddNotes}
           plant={plantDetail}
           mutate={mutate}
         />
