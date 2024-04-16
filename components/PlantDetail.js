@@ -2,7 +2,6 @@ import Image from "next/image";
 import styled from "styled-components";
 import OwnedPlantButton from "./MyPlant/OwnedPlantButton";
 import { useState } from "react";
-import ConfirmDelete from "./ConfirmDelete";
 import trash_icon from "@/public/img/trash.png";
 import EditLink from "./MyPlant/EditLink";
 import FormComments from "./FormComments";
