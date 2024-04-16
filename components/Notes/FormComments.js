@@ -7,7 +7,7 @@ export default function FormComments({ onSubmit, plant, mutate }) {
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
 
-    const await notes = [...plant.notes, data.notes];
+    const notes = [...plant.notes, data.notes];
 
     onSubmit({ notes: notes }, plant._id, mutate);
 
