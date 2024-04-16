@@ -4,7 +4,7 @@ export default function ConfirmDelete({ handleConfirm, handleCancel }) {
   return (
     <>
       <DeleteConfirmBox>
-        <p>Sure you want to delete this plant?</p>
+        <p>Sure you want to delete?</p>
         <button type="button" onClick={handleConfirm}>
           Yes
         </button>
