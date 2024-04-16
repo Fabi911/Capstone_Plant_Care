@@ -92,7 +92,7 @@ export default function Form({ onSubmit, defaultData, formName, isEditMode }) {
       </select>
       <Label htmlFor="image">Image</Label>
 
-      <input type="file" id="image" name="image" accept="image/*" />
+      <input type="file" id="image" name="image" accept="image/*" required />
 
       <fieldset>
         <legend>Fertiliser Season</legend>
