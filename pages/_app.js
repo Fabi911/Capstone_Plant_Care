@@ -4,6 +4,13 @@ import { useRouter } from "next/router";
 
 import { mutate, SWRConfig } from "swr";
 
+import { SWRConfig } from "swr";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+
+
 import { useState } from "react";
 import { Poiret_One } from "next/font/google";
 
@@ -40,13 +47,21 @@ export default function App({ Component, pageProps }) {
   const router = useRouter();
 
   async function handleAddPlant(plant) {
-    const response = await fetch("/api/plants", {
-      method: "POST",
-      body: JSON.stringify(plant),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await toast.promise(
+      fetch("/api/plants", {
+        method: "POST",
+        body: JSON.stringify(plant),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }),
+      {
+        pending: "adding is pending",
+        success: "Plant added! 👌",
+        error: "adding rejected 🤯",
+      }
+    );
+
     if (response.ok) {
       await response.json();
       router.push("/ownedPage");
@@ -56,9 +71,19 @@ export default function App({ Component, pageProps }) {
   }
 
   async function handleDeletePlant(id) {
-    const response = await fetch(`/api/plants/${id}`, {
-      method: "DELETE",
-    });
+
+    const response = await toast.promise(
+      fetch(`/api/plants/${id}`, {
+        method: "DELETE",
+      }),
+      {
+        pending: "deleting is pending",
+        success: "Plant deleted! 👌",
+        error: "deleting rejected 🤯",
+      }
+    );
+
+
     if (response.ok) {
       router.push("/overview");
     } else {
@@ -89,15 +114,48 @@ export default function App({ Component, pageProps }) {
   }
 
   async function handleEditPlant(plant, id, mutate) {
-    const respone = await fetch(`/api/plants/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(plant),
-    });
 
-    if (respone.ok) {
+
+    const response = await toast.promise(
+      fetch(`/api/plants/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(plant),
+      }),
+      {
+        pending: "Editing is pending",
+        success: "Plant edited! 👌",
+        error: "Editing rejected 🤯",
+      }
+    );
+    if (response.ok) {
+      mutate();
+      router.push(`/plants/${id}`);
+    } else {
+      console.error(respone.error);
+    }
+  }
+
+  async function handleAddGalleryImage(plant, id, mutate) {
+    console.log("Plant edited");
+
+    const response = await toast.promise(
+      fetch(`/api/plants/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(plant),
+      }),
+      {
+        pending: "Upload is pending",
+        success: "Image added to Gallery! 👌",
+        error: "Upload rejected 🤯",
+      }
+    );
+    if (response.ok) {
       mutate();
       router.push(`/plants/${id}`);
     } else {
@@ -144,6 +202,18 @@ export default function App({ Component, pageProps }) {
         }}
       >
         <Layout>
+          <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
           <Component
             {...pageProps}
             handleToggleOwnedPlants={handleToggleOwnedPlants}
@@ -152,6 +222,8 @@ export default function App({ Component, pageProps }) {
             handleEditPlant={handleEditPlant}
             landingData={landingData}
             handleDeleteImage={handleDeleteImage}
+            handleAddGalleryImage={handleAddGalleryImage}
+
           />
         </Layout>
       </SWRConfig>

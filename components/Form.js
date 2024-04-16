@@ -3,6 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 import iconOwned from "../public/img/iconOwned.png";
 import iconOverview from "../public/img/iconOverview.png";
+import { toast } from "react-toastify";
 
 export default function Form({ onSubmit, defaultData, formName, isEditMode }) {
   const [checkedSeasons, setCheckedSeasons] = useState({
@@ -29,10 +30,17 @@ export default function Form({ onSubmit, defaultData, formName, isEditMode }) {
       .filter(([_, value]) => value)
       .map(([key]) => key);
 
-    const response = await fetch("/api/upload", {
-      method: "POST",
-      body: formData,
-    });
+    const response = await toast.promise(
+      fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      }),
+      {
+        pending: "Upload is pending",
+        error: "Upload rejected 🤯",
+      }
+    );
+
 
     const { url } = await response.json();
 
@@ -44,7 +52,6 @@ export default function Form({ onSubmit, defaultData, formName, isEditMode }) {
       image: url,
       isOwned: true,
     });
-    alert("Plant added successfully");
   }
 
   return (
@@ -85,7 +92,7 @@ export default function Form({ onSubmit, defaultData, formName, isEditMode }) {
       </select>
       <Label htmlFor="image">Image</Label>
 
-      <input type="file" id="image" name="image" accept="image/*" />
+      <input type="file" id="image" name="image" accept="image/*" required />
 
       <fieldset>
         <legend>Fertiliser Season</legend>

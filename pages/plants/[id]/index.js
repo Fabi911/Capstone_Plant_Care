@@ -5,14 +5,21 @@ import { uid } from "uid";
 import Image from "next/image";
 import BackArrow from "@/components/MyPlant/BackArrow";
 import styled from "styled-components";
+
 import { useState } from "react";
 import ConfirmDelete from "@/components/ConfirmDelete";
+
+import { toast } from "react-toastify";
+
 
 export default function DetailPage({
   handleToggleOwnedPlants,
   handleDeletePlant,
-  handleEditPlant,
+
   handleDeleteImage,
+
+  handleAddGalleryImage,
+
 }) {
   const [confirmDelete, setConfirmDelete] = useState(null);
   const router = useRouter();
@@ -27,10 +34,16 @@ export default function DetailPage({
     event.preventDefault();
     const formData = new FormData(event.target);
 
-    const response = await fetch("/api/upload", {
-      method: "POST",
-      body: formData,
-    });
+    const response = await toast.promise(
+      fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      }),
+      {
+        pending: "Upload is pending",
+        error: "Upload rejected 🤯",
+      }
+    );
 
     const { url } = await response.json();
 
@@ -39,8 +52,12 @@ export default function DetailPage({
       gallery: [...plant.gallery, url],
     };
 
+
     handleEditPlant(imageData, id, mutate);
     event.target.reset();
+
+    handleAddGalleryImage(imageData, id, mutate);
+
   }
   if (!plant) return null;
 
@@ -89,6 +106,7 @@ export default function DetailPage({
         <GalleryShowcase>
           {Array.isArray(plant.gallery) &&
             plant.gallery.length > 0 &&
+
             plant.gallery.map((url, index) => (
               <GalleryImageContainer key={uid()}>
                 <GalleryDeleteButton onClick={() => handleDelete(index)}>
