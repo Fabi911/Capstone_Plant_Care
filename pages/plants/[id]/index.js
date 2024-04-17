@@ -5,14 +5,12 @@ import { uid } from "uid";
 import Image from "next/image";
 import BackArrow from "@/components/MyPlant/BackArrow";
 import styled from "styled-components";
+import Notes from "@/components/Notes/Notes";
 
 import { useState } from "react";
 
-
-
 import { toast } from "react-toastify";
 import Modal from "@/components/Modal";
-
 
 export default function DetailPage({
   handleToggleOwnedPlants,
@@ -21,6 +19,7 @@ export default function DetailPage({
   handleAddNotes,
   handleDeleteImage,
   handleAddGalleryImage,
+  handleDeleteNote,
 }) {
   const [IndexImage, setIndexImage] = useState(null);
   const [confirmDelete, setConfirmDelete] = useState(null);
@@ -91,6 +90,7 @@ export default function DetailPage({
         handleEditPlant={handleEditPlant}
         onAddNotes={handleAddNotes}
         mutate={mutate}
+        handleDeleteNote={handleDeleteNote}
       />
 
       <GalleryContainer>
@@ -137,6 +137,14 @@ export default function DetailPage({
           />
         )}
       </GalleryContainer>
+      <NotesContainer>
+        <Notes
+          handleDeleteNote={handleDeleteNote}
+          plant={plant}
+          onAddNotes={handleAddNotes}
+          mutate={mutate}
+        />
+      </NotesContainer>
     </>
   );
 }
@@ -198,4 +206,26 @@ const GalleryShowcase = styled.div`
   gap: 20px;
   width: 70%;
   justify-content: space-around;
+`;
+
+const NotesContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 25px;
+  background: var(--main-color3);
+  box-shadow: var(--box-shadow-default);
+  border-radius: 15px;
+  padding-bottom: 15px;
+  gap: 10px;
+  width: 80vw;
+  min-width: 300px;
+  max-width: 960px;
+  align-items: center;
+  @media (min-width: 901px) and (max-width: 1200px) {
+    width: var(--card-tablet);
+  }
+
+  @media (min-width: 1201px) {
+    width: var(--card-browser);
+  }
 `;

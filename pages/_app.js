@@ -126,7 +126,7 @@ export default function App({ Component, pageProps }) {
       mutate();
       router.push(`/plants/${id}`);
     } else {
-      console.error(respone.error);
+      console.error(response.error);
     }
   }
 
@@ -149,7 +149,7 @@ export default function App({ Component, pageProps }) {
       mutate();
       router.push(`/plants/${id}`);
     } else {
-      console.error(respone.error);
+      console.error(response.error);
     }
   }
 
@@ -173,7 +173,31 @@ export default function App({ Component, pageProps }) {
       router.push(`/plants/${id}`);
       mutate();
     } else {
-      console.error(respone.error);
+      console.error(response.error);
+    }
+  }
+
+  async function handleDeleteNote(plant, id, mutate) {
+    const response = await toast.promise(
+      fetch(`/api/plants/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(plant),
+      }),
+      {
+        pending: "deleting is pending",
+        success: "Note deleted! 👌",
+        error: "deleting rejected 🤯",
+      }
+    );
+
+    if (response.ok) {
+      router.push(`/plants/${id}`);
+      mutate();
+    } else {
+      console.error(response.error);
     }
   }
 
@@ -197,7 +221,7 @@ export default function App({ Component, pageProps }) {
       router.push(`/plants/${id}`);
       mutate();
     } else {
-      console.error(respone.error);
+      console.error(response.error);
     }
   }
 
@@ -238,6 +262,7 @@ export default function App({ Component, pageProps }) {
             handleAddNotes={handleAddNotes}
             handleDeleteImage={handleDeleteImage}
             handleAddGalleryImage={handleAddGalleryImage}
+            handleDeleteNote={handleDeleteNote}
           />
         </Layout>
       </SWRConfig>
