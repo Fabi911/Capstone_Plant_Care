@@ -6,7 +6,7 @@ import { useState } from "react";
 import trash_icon from "@/public/img/trash.png";
 
 export default function Notes({ plant, handleDeleteNote, onAddNotes, mutate }) {
-  const handleOnClickNote = (index) => {
+  const handleCreateNote = (index) => {
     const updatedNote = [...plant.notes];
     updatedNote.splice(index, 1);
     plant.notes = updatedNote;
@@ -44,7 +44,7 @@ export default function Notes({ plant, handleDeleteNote, onAddNotes, mutate }) {
 
       {confirmDelete !== null && (
         <ConfirmDelete
-          handleConfirm={() => handleOnClickNote(confirmDelete)}
+          handleConfirm={() => handleCreateNote(confirmDelete)}
           handleCancel={handleCancel}
           mutate={mutate}
         />
