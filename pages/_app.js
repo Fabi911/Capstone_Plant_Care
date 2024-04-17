@@ -4,12 +4,8 @@ import { useRouter } from "next/router";
 
 import { mutate, SWRConfig } from "swr";
 
-
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-
 
 import { useState } from "react";
 import { Poiret_One } from "next/font/google";
@@ -71,7 +67,6 @@ export default function App({ Component, pageProps }) {
   }
 
   async function handleDeletePlant(id) {
-
     const response = await toast.promise(
       fetch(`/api/plants/${id}`, {
         method: "DELETE",
@@ -82,7 +77,6 @@ export default function App({ Component, pageProps }) {
         error: "deleting rejected 🤯",
       }
     );
-
 
     if (response.ok) {
       router.push("/overview");
@@ -114,8 +108,6 @@ export default function App({ Component, pageProps }) {
   }
 
   async function handleEditPlant(plant, id, mutate) {
-
-
     const response = await toast.promise(
       fetch(`/api/plants/${id}`, {
         method: "PUT",
@@ -139,8 +131,6 @@ export default function App({ Component, pageProps }) {
   }
 
   async function handleAddGalleryImage(plant, id, mutate) {
-    console.log("Plant edited");
-
     const response = await toast.promise(
       fetch(`/api/plants/${id}`, {
         method: "PUT",
@@ -180,10 +170,9 @@ export default function App({ Component, pageProps }) {
     );
 
     if (response.ok) {
-    
       router.push(`/plants/${id}`);
-          mutate();
-       } else {
+      mutate();
+    } else {
       console.error(respone.error);
     }
   }
@@ -204,7 +193,7 @@ export default function App({ Component, pageProps }) {
       }
     );
 
-    if (respone.ok) {
+    if (response.ok) {
       router.push(`/plants/${id}`);
       mutate();
     } else {
@@ -249,7 +238,6 @@ export default function App({ Component, pageProps }) {
             handleAddNotes={handleAddNotes}
             handleDeleteImage={handleDeleteImage}
             handleAddGalleryImage={handleAddGalleryImage}
-
           />
         </Layout>
       </SWRConfig>

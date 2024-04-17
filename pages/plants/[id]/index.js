@@ -7,9 +7,12 @@ import BackArrow from "@/components/MyPlant/BackArrow";
 import styled from "styled-components";
 
 import { useState } from "react";
-import ConfirmDelete from "@/components/ConfirmDelete";
+
+
 
 import { toast } from "react-toastify";
+import Modal from "@/components/Modal";
+
 
 export default function DetailPage({
   handleToggleOwnedPlants,
@@ -19,6 +22,7 @@ export default function DetailPage({
   handleDeleteImage,
   handleAddGalleryImage,
 }) {
+  const [IndexImage, setIndexImage] = useState(null);
   const [confirmDelete, setConfirmDelete] = useState(null);
   const router = useRouter();
   const { isReady } = router;
@@ -54,8 +58,6 @@ export default function DetailPage({
       ...plant,
       gallery: [...plant.gallery, url],
     };
-
-    handleEditPlant(imageData, id, mutate);
     event.target.reset();
 
     handleAddGalleryImage(imageData, id, mutate);
@@ -71,7 +73,7 @@ export default function DetailPage({
     setConfirmDelete(null);
   }
 
-  const handleOnClick = (index) => {
+  const onClickDeleteImage = (index) => {
     const updatedGallery = [...plant.gallery];
     updatedGallery.splice(index, 1);
     plant.gallery = updatedGallery;
@@ -124,15 +126,16 @@ export default function DetailPage({
                   height={400}
                   alt="Description"
                 />
-                {confirmDelete === index && (
-                  <ConfirmDelete
-                    handleConfirm={() => handleOnClick(index)}
-                    handleCancel={handleCancel}
-                  />
-                )}
               </GalleryImageContainer>
             ))}
         </GalleryShowcase>
+        {confirmDelete !== null && (
+          <Modal
+            handleConfirm={() => onClickDeleteImage(confirmDelete)}
+            handleCancel={handleCancel}
+            name="Image"
+          />
+        )}
       </GalleryContainer>
     </>
   );
@@ -164,7 +167,6 @@ const GalleryContainer = styled.div`
 
 const GalleryImageContainer = styled.div`
   position: relative;
-
   width: 45%;
 `;
 
@@ -184,6 +186,7 @@ const GalleryDeleteButton = styled.button`
   border-radius: 50%;
   font-size: 1.2rem;
   padding: 5px;
+  cursor: pointer;
   &:active {
     box-shadow: inset var(--box-shadow-default);
   }

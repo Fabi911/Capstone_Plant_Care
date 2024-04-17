@@ -2,11 +2,11 @@ import Image from "next/image";
 import styled from "styled-components";
 import OwnedPlantButton from "./MyPlant/OwnedPlantButton";
 import { useState } from "react";
-import ConfirmDelete from "./ConfirmDelete";
 import trash_icon from "@/public/img/trash.png";
 import EditLink from "./MyPlant/EditLink";
 import FormComments from "./FormComments";
 import ShowComments from "./ShowComments";
+import Modal from "./Modal";
 
 export default function PlantDetail({
   plantDetail,
@@ -64,9 +64,10 @@ export default function PlantDetail({
         </TrashButton>
       </IconBox>
       {confirmDelete && (
-        <ConfirmDelete
+        <Modal
           handleConfirm={() => handleDeletePlant(plantDetail._id)}
           handleCancel={handleCancel}
+          name={plantDetail.name}
         />
       )}
       <NotesContainer>
