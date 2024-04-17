@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { useEffect } from "react";
+import useSWR from "swr";
 
 export default function CalendarReminder() {
   const date = new Date();
@@ -42,7 +43,69 @@ export default function CalendarReminder() {
     handleMumberOfDays(month);
   }, [day]);
 
+  const { data, mutate } = useSWR("/api/plants");
+  console.log(data);
+  const wateringSchedule = {
+    Low: "Weekly",
+    Moderate: "Every 2nd day",
+    High: "Daily",
+  };
+
+  const ownedPlants = data
+    ? data.filter((plant) => plant.isOwned === true)
+    : [];
+  console.log(ownedPlants);
+
+  const intervalDaysArray = ownedPlants.map((plant) => {
+    switch (plant.water_need) {
+      case "Low":
+        return 7; // Every week
+      case "Moderate":
+        return 2; // Every 2nd day
+      case "High":
+        return 1; // Every day
+      default:
+        return 7; // Default to every week if water_need is not specified
+    }
+  });
+
+  console.log(intervalDaysArray);
+
   return (
+    <StyledWeek>
+      {[...Array(7)].map((_, index) => {
+        const dayIndex = (day + index) % numberOfDays;
+        return (
+          <StyledDay key={index}>
+            {`${dayIndex}.${month + 1}.${year}-${
+              nameOfTheDay[(dayName + index) % 7]
+            }`}
+            {/* Render plant information for the current day */}
+            {ownedPlants.map((plant, plantIndex) => {
+              const intervalDays = intervalDaysArray[plantIndex];
+              if (
+                plantIndex % intervalDays === 0 &&
+                intervalDays !== 0 &&
+                index % intervalDays === 0
+              ) {
+                return (
+                  <div key={plantIndex}>
+                    {plant.name} - Watering:{" "}
+                    {wateringSchedule[plant.water_need]}
+                  </div>
+                );
+              } else {
+                return null;
+              }
+            })}
+          </StyledDay>
+        );
+      })}
+    </StyledWeek>
+  );
+}
+
+/* return (
     <StyledWeek>
       <StyledDay>{`${day}.${month + 1}.${year}-${
         nameOfTheDay[dayName]
@@ -67,7 +130,7 @@ export default function CalendarReminder() {
       }.${month + 1}.${year}-${nameOfTheDay[(dayName + 6) % 7]}`}</StyledDay>
     </StyledWeek>
   );
-}
+} */
 
 const StyledDay = styled.div`
   border: 1px solid black;
