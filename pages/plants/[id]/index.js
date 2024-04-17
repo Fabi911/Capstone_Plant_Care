@@ -11,7 +11,6 @@ import ConfirmDelete from "@/components/ConfirmDelete";
 
 import { toast } from "react-toastify";
 
-
 export default function DetailPage({
   handleToggleOwnedPlants,
   handleDeletePlant,
@@ -19,15 +18,18 @@ export default function DetailPage({
   handleAddNotes,
   handleDeleteImage,
   handleAddGalleryImage,
-
-
 }) {
   const [confirmDelete, setConfirmDelete] = useState(null);
   const router = useRouter();
   const { isReady } = router;
   const { id } = router.query;
 
-  const { data: plant, isLoading, error, mutate } = useSWR(`/api/plants/${id}`);
+  const {
+    data: plant,
+    isLoading,
+    error,
+    mutate,
+  } = useSWR(`/api/plants/${id}`, { refreshInterval: 400 });
 
   if (!isReady || isLoading || error) return <h2>Loading...</h2>;
 
@@ -53,12 +55,10 @@ export default function DetailPage({
       gallery: [...plant.gallery, url],
     };
 
-
     handleEditPlant(imageData, id, mutate);
     event.target.reset();
 
     handleAddGalleryImage(imageData, id, mutate);
-
   }
   if (!plant) return null;
 
@@ -91,7 +91,7 @@ export default function DetailPage({
         mutate={mutate}
       />
 
-       <GalleryContainer>
+      <GalleryContainer>
         <h2>Gallery</h2>
         <form onSubmit={handleSubmit}>
           <label htmlFor="image">choose image</label>
