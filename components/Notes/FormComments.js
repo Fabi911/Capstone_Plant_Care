@@ -3,7 +3,7 @@ import styled from "styled-components";
 export default function FormComments({ onSubmit, plant, mutate }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
-    mutate()
+    mutate();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
 
