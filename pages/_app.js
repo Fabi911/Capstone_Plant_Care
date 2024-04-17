@@ -131,8 +131,6 @@ export default function App({ Component, pageProps }) {
   }
 
   async function handleAddGalleryImage(plant, id, mutate) {
-    console.log("Plant edited");
-
     const response = await toast.promise(
       fetch(`/api/plants/${id}`, {
         method: "PUT",

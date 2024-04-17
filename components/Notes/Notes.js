@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import FormComments from "./FormComments";
-import ConfirmDelete from "../ConfirmDelete";
 import Image from "next/image";
 import { useState } from "react";
 import trash_icon from "@/public/img/trash.png";
+import Modal from "../Modal";
 
 export default function Notes({ plant, handleDeleteNote, onAddNotes, mutate }) {
   const handleCreateNote = (index) => {
@@ -43,10 +43,10 @@ export default function Notes({ plant, handleDeleteNote, onAddNotes, mutate }) {
       </NotesContainer>
 
       {confirmDelete !== null && (
-        <ConfirmDelete
+        <Modal
           handleConfirm={() => handleCreateNote(confirmDelete)}
           handleCancel={handleCancel}
-          mutate={mutate}
+          name="Image"
         />
       )}
     </>

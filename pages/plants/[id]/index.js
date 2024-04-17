@@ -8,9 +8,9 @@ import styled from "styled-components";
 import Notes from "@/components/Notes/Notes";
 
 import { useState } from "react";
-import ConfirmDelete from "@/components/ConfirmDelete";
 
 import { toast } from "react-toastify";
+import Modal from "@/components/Modal";
 
 export default function DetailPage({
   handleToggleOwnedPlants,
@@ -21,12 +21,18 @@ export default function DetailPage({
   handleAddGalleryImage,
   handleDeleteNote,
 }) {
+  const [IndexImage, setIndexImage] = useState(null);
   const [confirmDelete, setConfirmDelete] = useState(null);
   const router = useRouter();
   const { isReady } = router;
   const { id } = router.query;
 
-  const { data: plant, isLoading, error, mutate } = useSWR(`/api/plants/${id}`);
+  const {
+    data: plant,
+    isLoading,
+    error,
+    mutate,
+  } = useSWR(`/api/plants/${id}`, { refreshInterval: 400 });
 
   if (!isReady || isLoading || error) return <h2>Loading...</h2>;
 
@@ -51,8 +57,6 @@ export default function DetailPage({
       ...plant,
       gallery: [...plant.gallery, url],
     };
-
-    handleEditPlant(imageData, id, mutate);
     event.target.reset();
 
     handleAddGalleryImage(imageData, id, mutate);
@@ -68,7 +72,7 @@ export default function DetailPage({
     setConfirmDelete(null);
   }
 
-  const handleOnClick = (index) => {
+  const onClickDeleteImage = (index) => {
     const updatedGallery = [...plant.gallery];
     updatedGallery.splice(index, 1);
     plant.gallery = updatedGallery;
@@ -122,15 +126,16 @@ export default function DetailPage({
                   height={400}
                   alt="Description"
                 />
-                {confirmDelete === index && (
-                  <ConfirmDelete
-                    handleConfirm={() => handleOnClick(index)}
-                    handleCancel={handleCancel}
-                  />
-                )}
               </GalleryImageContainer>
             ))}
         </GalleryShowcase>
+        {confirmDelete !== null && (
+          <Modal
+            handleConfirm={() => onClickDeleteImage(confirmDelete)}
+            handleCancel={handleCancel}
+            name="Image"
+          />
+        )}
       </GalleryContainer>
       <NotesContainer>
         <Notes
@@ -170,7 +175,6 @@ const GalleryContainer = styled.div`
 
 const GalleryImageContainer = styled.div`
   position: relative;
-
   width: 45%;
 `;
 
@@ -190,6 +194,7 @@ const GalleryDeleteButton = styled.button`
   border-radius: 50%;
   font-size: 1.2rem;
   padding: 5px;
+  cursor: pointer;
   &:active {
     box-shadow: inset var(--box-shadow-default);
   }
