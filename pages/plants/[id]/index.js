@@ -9,8 +9,10 @@ import styled from "styled-components";
 import { useState } from "react";
 
 
+
 import { toast } from "react-toastify";
 import Modal from "@/components/Modal";
+
 
 export default function DetailPage({
   handleToggleOwnedPlants,
@@ -26,7 +28,12 @@ export default function DetailPage({
   const { isReady } = router;
   const { id } = router.query;
 
-  const { data: plant, isLoading, error, mutate } = useSWR(`/api/plants/${id}`);
+  const {
+    data: plant,
+    isLoading,
+    error,
+    mutate,
+  } = useSWR(`/api/plants/${id}`, { refreshInterval: 400 });
 
   if (!isReady || isLoading || error) return <h2>Loading...</h2>;
 
