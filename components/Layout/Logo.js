@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function Logo() {
   return (
     <StyledLogo
-      src="/img/StrangerPlants_black.png"
+      src="/img/StrangerPlants_red.png"
       width={160}
       height={140}
       alt="GreenThumpCare"
@@ -14,4 +14,5 @@ export default function Logo() {
 
 const StyledLogo = styled(Image)`
   position: relative;
+  z-index: 100;
 `;

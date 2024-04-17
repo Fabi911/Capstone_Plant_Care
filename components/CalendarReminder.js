@@ -8,7 +8,6 @@ export default function CalendarReminder() {
   const month = date.getMonth();
   const year = date.getFullYear();
   const day = date.getDate();
-  console.log(" today is: ", day);
   const nameOfTheDay = [
     "Sunday",
     "Monday",
@@ -42,27 +41,44 @@ export default function CalendarReminder() {
     handleMumberOfDays(month);
   }, [day]);
 
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const monthName = months[month % 12];
+
   return (
     <StyledWeek>
+      <h2>{monthName}</h2>
       <StyledDay>{`${day}.${month + 1}.${year}-${
         nameOfTheDay[dayName]
       }`}</StyledDay>
-      <StyledDay>{`${
+      <StyledDay hidden={day + 1 > numberOfDays ? true : false}>{`${
         (day + 1) % numberOfDays === 0 ? numberOfDays : (day + 1) % numberOfDays
       }.${month + 1}.${year}-${nameOfTheDay[(dayName + 1) % 7]}`}</StyledDay>
-      <StyledDay>{`${
+      <StyledDay hidden={day + 2 > numberOfDays ? true : false}>{`${
         (day + 2) % numberOfDays === 0 ? numberOfDays : (day + 2) % numberOfDays
       }.${month + 1}.${year}-${nameOfTheDay[(dayName + 2) % 7]}`}</StyledDay>
-      <StyledDay>{`${
+      <StyledDay hidden={day + 3 > numberOfDays ? true : false}>{`${
         (day + 3) % numberOfDays === 0 ? numberOfDays : (day + 3) % numberOfDays
       }.${month + 1}.${year}-${nameOfTheDay[(dayName + 3) % 7]}`}</StyledDay>
-      <StyledDay>{`${
+      <StyledDay hidden={day + 4 > numberOfDays ? true : false}>{`${
         (day + 4) % numberOfDays === 0 ? numberOfDays : (day + 4) % numberOfDays
       }.${month + 1}.${year}-${nameOfTheDay[(dayName + 4) % 7]}`}</StyledDay>
-      <StyledDay>{`${
+      <StyledDay hidden={day + 5 > numberOfDays ? true : false}>{`${
         (day + 5) % numberOfDays === 0 ? numberOfDays : (day + 5) % numberOfDays
       }.${month + 1}.${year}-${nameOfTheDay[(dayName + 5) % 7]}`}</StyledDay>
-      <StyledDay>{`${
+      <StyledDay hidden={day + 6 > numberOfDays ? true : false}>{`${
         (day + 6) % numberOfDays === 0 ? numberOfDays : (day + 6) % numberOfDays
       }.${month + 1}.${year}-${nameOfTheDay[(dayName + 6) % 7]}`}</StyledDay>
     </StyledWeek>
