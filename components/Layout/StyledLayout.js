@@ -5,7 +5,7 @@ export const Header = styled.header`
   top: 0;
   left: 0;
   height: 3.5rem;
-  background: var(--main-color1);
+  background: skyblue;
   width: 100vw;
   color: white;
   box-shadow: 0 1px 2px 2px var(--box-shadow);
