@@ -55,19 +55,6 @@ export default function CalendarReminder() {
     ? data.filter((plant) => plant.isOwned === true)
     : [];
 
-  const intervalDaysArray = ownedPlants.map((plant) => {
-    switch (plant.water_need) {
-      case "Low":
-        return 7; // Every week
-      case "Moderate":
-        return 2; // Every 2nd day
-      case "High":
-        return 1; // Every day
-      default:
-        return 7; // Default to every week if water_need is not specified
-    }
-  });
-
   const ownedPlantsLow = ownedPlants.filter(
     (plant) => plant.water_need === "Low"
   );
@@ -80,119 +67,75 @@ export default function CalendarReminder() {
     (plant) => plant.water_need === "High"
   );
 
+  function watering(array, addDay, modulo) {
+    return array.map((plant) =>
+      (day + addDay) % modulo === 0 ? plant.name : ""
+    );
+  }
+
+  function dateText(addDay) {
+    return `${
+      (day + addDay) % numberOfDays === 0
+        ? numberOfDays
+        : (day + addDay) % numberOfDays
+    }.${month + 1}.${year}-${nameOfTheDay[(dayName + addDay) % 7]}`;
+  }
+
   return (
     <StyledWeek>
       <StyledDay>
-        <StyledDate>{`${day}.${month + 1}.${year}-${
-          nameOfTheDay[dayName]
-        }`}</StyledDate>
+        <StyledDate>{dateText(0)}</StyledDate>
         <StyledPlantsOfDay>
-          {ownedPlantsModerate.map((plant) =>
-            day % 2 === 0 ? plant.name : ""
-          )}{" "}
-          , {ownedPlantsLow.map((plant) => (day % 7 === 0 ? plant.name : ""))},{" "}
+          {watering(ownedPlantsModerate, 0, 2)} ,{" "}
+          {watering(ownedPlantsLow, 0, 7)},{" "}
           {ownedPlantsHigh.map((plant) => plant.name)}
         </StyledPlantsOfDay>
       </StyledDay>
       <StyledDay>
-        <StyledDate>{`${
-          (day + 1) % numberOfDays === 0
-            ? numberOfDays
-            : (day + 1) % numberOfDays
-        }.${month + 1}.${year}-${nameOfTheDay[(dayName + 1) % 7]}`}</StyledDate>
+        <StyledDate>{dateText(1)}</StyledDate>
         <StyledPlantsOfDay>
-          {ownedPlantsModerate.map((plant) =>
-            (day + 1) % 2 === 0 ? plant.name : ""
-          )}
-          ,{" "}
-          {ownedPlantsLow.map((plant) =>
-            (day + 1) % 7 === 0 ? plant.name : ""
-          )}
+          {watering(ownedPlantsModerate, 1, 2)} ,{" "}
+          {watering(ownedPlantsLow, 1, 7)},{" "}
           {ownedPlantsHigh.map((plant) => plant.name)}
         </StyledPlantsOfDay>
       </StyledDay>
       <StyledDay>
-        <StyledDate>{`${
-          (day + 2) % numberOfDays === 0
-            ? numberOfDays
-            : (day + 2) % numberOfDays
-        }.${month + 1}.${year}-${nameOfTheDay[(dayName + 2) % 7]}`}</StyledDate>
+        <StyledDate>{dateText(2)}</StyledDate>
         <StyledPlantsOfDay>
-          {ownedPlantsModerate.map((plant) =>
-            (day + 2) % 2 === 0 ? plant.name : ""
-          )}
-          ,{" "}
-          {ownedPlantsLow.map((plant) =>
-            (day + 2) % 7 === 0 ? plant.name : ""
-          )}
+          {watering(ownedPlantsModerate, 2, 2)} ,{" "}
+          {watering(ownedPlantsLow, 2, 7)},{" "}
           {ownedPlantsHigh.map((plant) => plant.name)}
         </StyledPlantsOfDay>
       </StyledDay>
       <StyledDay>
-        <StyledDate>{`${
-          (day + 3) % numberOfDays === 0
-            ? numberOfDays
-            : (day + 3) % numberOfDays
-        }.${month + 1}.${year}-${nameOfTheDay[(dayName + 3) % 7]}`}</StyledDate>
+        <StyledDate>{dateText(3)}</StyledDate>
         <StyledPlantsOfDay>
-          {ownedPlantsModerate.map((plant) =>
-            (day + 3) % 2 === 0 ? plant.name : ""
-          )}
-          ,{" "}
-          {ownedPlantsLow.map((plant) =>
-            (day + 3) % 7 === 0 ? plant.name : ""
-          )}
+          {watering(ownedPlantsModerate, 3, 2)} ,{" "}
+          {watering(ownedPlantsLow, 3, 7)},{" "}
           {ownedPlantsHigh.map((plant) => plant.name)}
         </StyledPlantsOfDay>
       </StyledDay>
       <StyledDay>
-        <StyledDate>{`${
-          (day + 4) % numberOfDays === 0
-            ? numberOfDays
-            : (day + 4) % numberOfDays
-        }.${month + 1}.${year}-${nameOfTheDay[(dayName + 4) % 7]}`}</StyledDate>
+        <StyledDate>{dateText(4)}</StyledDate>
         <StyledPlantsOfDay>
-          {ownedPlantsModerate.map((plant) =>
-            (day + 4) % 2 === 0 ? plant.name : ""
-          )}
-          ,{" "}
-          {ownedPlantsLow.map((plant) =>
-            (day + 4) % 7 === 0 ? plant.name : ""
-          )}
+          {watering(ownedPlantsModerate, 4, 2)} ,{" "}
+          {watering(ownedPlantsLow, 4, 7)},{" "}
           {ownedPlantsHigh.map((plant) => plant.name)}
         </StyledPlantsOfDay>
       </StyledDay>
       <StyledDay>
-        <StyledDate>{`${
-          (day + 5) % numberOfDays === 0
-            ? numberOfDays
-            : (day + 5) % numberOfDays
-        }.${month + 1}.${year}-${nameOfTheDay[(dayName + 5) % 7]}`}</StyledDate>
+        <StyledDate>{dateText(5)}</StyledDate>
         <StyledPlantsOfDay>
-          {ownedPlantsModerate.map((plant) =>
-            (day + 5) % 2 === 0 ? plant.name : ""
-          )}
-          ,{" "}
-          {ownedPlantsLow.map((plant) =>
-            (day + 5) % 7 === 0 ? plant.name : ""
-          )}
+          {watering(ownedPlantsModerate, 5, 2)} ,{" "}
+          {watering(ownedPlantsLow, 5, 7)},{" "}
           {ownedPlantsHigh.map((plant) => plant.name)}
         </StyledPlantsOfDay>
       </StyledDay>
       <StyledDay>
-        <StyledDate>{`${
-          (day + 6) % numberOfDays === 0
-            ? numberOfDays
-            : (day + 6) % numberOfDays
-        }.${month + 1}.${year}-${nameOfTheDay[(dayName + 6) % 7]}`}</StyledDate>
+        <StyledDate>{dateText(6)}</StyledDate>
         <StyledPlantsOfDay>
-          {ownedPlantsModerate.map((plant) =>
-            (day + 6) % 2 === 0 ? plant.name : ""
-          )}
-          ,{" "}
-          {ownedPlantsLow.map((plant) =>
-            (day + 6) % 7 === 0 ? plant.name : ""
-          )}
+          {watering(ownedPlantsModerate, 6, 2)} ,{" "}
+          {watering(ownedPlantsLow, 6, 7)},{" "}
           {ownedPlantsHigh.map((plant) => plant.name)}
         </StyledPlantsOfDay>
       </StyledDay>
