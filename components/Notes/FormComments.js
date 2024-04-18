@@ -28,7 +28,7 @@ export default function FormComments({ onSubmit, plant, mutate }) {
         maxLength={200}
         minLength={1}
       ></textarea>
-      <ButtonSend type="submit">💐</ButtonSend>
+      <ButtonSend type="submit">Send</ButtonSend>
     </FormContainer>
   );
 }
