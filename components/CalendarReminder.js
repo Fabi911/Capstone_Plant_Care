@@ -113,9 +113,11 @@ export default function CalendarReminder() {
     <StyledWeek>
       <h2>{monthName}</h2>
       <p>
-        <h4> Fertilizing this month:</h4>
+        Fertilizing this month:
         <br></br>
-        {plantsToFertilize.map((plant) => plant.name).join(", ")}
+        {Array.isArray(plantsToFertilize) &&
+          plantsToFertilize.length > 0 &&
+          plantsToFertilize.map((plant) => plant.name).join(", ")}
       </p>
       <StyledDay>
         <StyledDate>{dateText(0)}</StyledDate>
@@ -178,13 +180,22 @@ export default function CalendarReminder() {
 }
 
 const StyledDay = styled.div`
-  border: 1px solid black;
-  margin: 10px;
-  width: 100%;
+  border-radius: 10px;
+  background-color: var(--main-color1);
+  box-shadow: var(--box-shadow-default);
+  width: 70%;
 `;
 
 const StyledWeek = styled.section`
-  border: 1px solid black;
+  border-radius: 15px;
+  padding: 20px;
+  width: 80vw;
+  box-shadow: var(--box-shadow-default);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--main-color3);
 `;
 
 const StyledDate = styled.p``;
