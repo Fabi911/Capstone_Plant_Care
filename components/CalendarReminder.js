@@ -54,7 +54,6 @@ export default function CalendarReminder() {
   const ownedPlants = data
     ? data.filter((plant) => plant.isOwned === true)
     : [];
-  console.log(ownedPlants);
 
   const intervalDaysArray = ownedPlants.map((plant) => {
     switch (plant.water_need) {
@@ -69,74 +68,148 @@ export default function CalendarReminder() {
     }
   });
 
-  console.log(intervalDaysArray);
+  const ownedPlantsLow = ownedPlants.filter(
+    (plant) => plant.water_need === "Low"
+  );
+
+  const ownedPlantsModerate = ownedPlants.filter(
+    (plant) => plant.water_need === "Moderate"
+  );
+
+  const ownedPlantsHigh = ownedPlants.filter(
+    (plant) => plant.water_need === "High"
+  );
 
   return (
     <StyledWeek>
-      {[...Array(7)].map((_, index) => {
-        const dayIndex = (day + index) % numberOfDays;
-        return (
-          <StyledDay key={index}>
-            {`${dayIndex}.${month + 1}.${year}-${
-              nameOfTheDay[(dayName + index) % 7]
-            }`}
-            {/* Render plant information for the current day */}
-            {ownedPlants.map((plant, plantIndex) => {
-              const intervalDays = intervalDaysArray[plantIndex];
-              if (
-                plantIndex % intervalDays === 0 &&
-                intervalDays !== 0 &&
-                index % intervalDays === 0
-              ) {
-                return (
-                  <div key={plantIndex}>
-                    {plant.name} - Watering:{" "}
-                    {wateringSchedule[plant.water_need]}
-                  </div>
-                );
-              } else {
-                return null;
-              }
-            })}
-          </StyledDay>
-        );
-      })}
+      <StyledDay>
+        <StyledDate>{`${day}.${month + 1}.${year}-${
+          nameOfTheDay[dayName]
+        }`}</StyledDate>
+        <StyledPlantsOfDay>
+          {ownedPlantsModerate.map((plant) =>
+            day % 2 === 0 ? plant.name : ""
+          )}{" "}
+          , {ownedPlantsLow.map((plant) => (day % 7 === 0 ? plant.name : ""))},{" "}
+          {ownedPlantsHigh.map((plant) => plant.name)}
+        </StyledPlantsOfDay>
+      </StyledDay>
+      <StyledDay>
+        <StyledDate>{`${
+          (day + 1) % numberOfDays === 0
+            ? numberOfDays
+            : (day + 1) % numberOfDays
+        }.${month + 1}.${year}-${nameOfTheDay[(dayName + 1) % 7]}`}</StyledDate>
+        <StyledPlantsOfDay>
+          {ownedPlantsModerate.map((plant) =>
+            (day + 1) % 2 === 0 ? plant.name : ""
+          )}
+          ,{" "}
+          {ownedPlantsLow.map((plant) =>
+            (day + 1) % 7 === 0 ? plant.name : ""
+          )}
+          {ownedPlantsHigh.map((plant) => plant.name)}
+        </StyledPlantsOfDay>
+      </StyledDay>
+      <StyledDay>
+        <StyledDate>{`${
+          (day + 2) % numberOfDays === 0
+            ? numberOfDays
+            : (day + 2) % numberOfDays
+        }.${month + 1}.${year}-${nameOfTheDay[(dayName + 2) % 7]}`}</StyledDate>
+        <StyledPlantsOfDay>
+          {ownedPlantsModerate.map((plant) =>
+            (day + 2) % 2 === 0 ? plant.name : ""
+          )}
+          ,{" "}
+          {ownedPlantsLow.map((plant) =>
+            (day + 2) % 7 === 0 ? plant.name : ""
+          )}
+          {ownedPlantsHigh.map((plant) => plant.name)}
+        </StyledPlantsOfDay>
+      </StyledDay>
+      <StyledDay>
+        <StyledDate>{`${
+          (day + 3) % numberOfDays === 0
+            ? numberOfDays
+            : (day + 3) % numberOfDays
+        }.${month + 1}.${year}-${nameOfTheDay[(dayName + 3) % 7]}`}</StyledDate>
+        <StyledPlantsOfDay>
+          {ownedPlantsModerate.map((plant) =>
+            (day + 3) % 2 === 0 ? plant.name : ""
+          )}
+          ,{" "}
+          {ownedPlantsLow.map((plant) =>
+            (day + 3) % 7 === 0 ? plant.name : ""
+          )}
+          {ownedPlantsHigh.map((plant) => plant.name)}
+        </StyledPlantsOfDay>
+      </StyledDay>
+      <StyledDay>
+        <StyledDate>{`${
+          (day + 4) % numberOfDays === 0
+            ? numberOfDays
+            : (day + 4) % numberOfDays
+        }.${month + 1}.${year}-${nameOfTheDay[(dayName + 4) % 7]}`}</StyledDate>
+        <StyledPlantsOfDay>
+          {ownedPlantsModerate.map((plant) =>
+            (day + 4) % 2 === 0 ? plant.name : ""
+          )}
+          ,{" "}
+          {ownedPlantsLow.map((plant) =>
+            (day + 4) % 7 === 0 ? plant.name : ""
+          )}
+          {ownedPlantsHigh.map((plant) => plant.name)}
+        </StyledPlantsOfDay>
+      </StyledDay>
+      <StyledDay>
+        <StyledDate>{`${
+          (day + 5) % numberOfDays === 0
+            ? numberOfDays
+            : (day + 5) % numberOfDays
+        }.${month + 1}.${year}-${nameOfTheDay[(dayName + 5) % 7]}`}</StyledDate>
+        <StyledPlantsOfDay>
+          {ownedPlantsModerate.map((plant) =>
+            (day + 5) % 2 === 0 ? plant.name : ""
+          )}
+          ,{" "}
+          {ownedPlantsLow.map((plant) =>
+            (day + 5) % 7 === 0 ? plant.name : ""
+          )}
+          {ownedPlantsHigh.map((plant) => plant.name)}
+        </StyledPlantsOfDay>
+      </StyledDay>
+      <StyledDay>
+        <StyledDate>{`${
+          (day + 6) % numberOfDays === 0
+            ? numberOfDays
+            : (day + 6) % numberOfDays
+        }.${month + 1}.${year}-${nameOfTheDay[(dayName + 6) % 7]}`}</StyledDate>
+        <StyledPlantsOfDay>
+          {ownedPlantsModerate.map((plant) =>
+            (day + 6) % 2 === 0 ? plant.name : ""
+          )}
+          ,{" "}
+          {ownedPlantsLow.map((plant) =>
+            (day + 6) % 7 === 0 ? plant.name : ""
+          )}
+          {ownedPlantsHigh.map((plant) => plant.name)}
+        </StyledPlantsOfDay>
+      </StyledDay>
     </StyledWeek>
   );
 }
 
-/* return (
-    <StyledWeek>
-      <StyledDay>{`${day}.${month + 1}.${year}-${
-        nameOfTheDay[dayName]
-      }`}</StyledDay>
-      <StyledDay>{`${
-        (day + 1) % numberOfDays === 0 ? numberOfDays : (day + 1) % numberOfDays
-      }.${month + 1}.${year}-${nameOfTheDay[(dayName + 1) % 7]}`}</StyledDay>
-      <StyledDay>{`${
-        (day + 2) % numberOfDays === 0 ? numberOfDays : (day + 2) % numberOfDays
-      }.${month + 1}.${year}-${nameOfTheDay[(dayName + 2) % 7]}`}</StyledDay>
-      <StyledDay>{`${
-        (day + 3) % numberOfDays === 0 ? numberOfDays : (day + 3) % numberOfDays
-      }.${month + 1}.${year}-${nameOfTheDay[(dayName + 3) % 7]}`}</StyledDay>
-      <StyledDay>{`${
-        (day + 4) % numberOfDays === 0 ? numberOfDays : (day + 4) % numberOfDays
-      }.${month + 1}.${year}-${nameOfTheDay[(dayName + 4) % 7]}`}</StyledDay>
-      <StyledDay>{`${
-        (day + 5) % numberOfDays === 0 ? numberOfDays : (day + 5) % numberOfDays
-      }.${month + 1}.${year}-${nameOfTheDay[(dayName + 5) % 7]}`}</StyledDay>
-      <StyledDay>{`${
-        (day + 6) % numberOfDays === 0 ? numberOfDays : (day + 6) % numberOfDays
-      }.${month + 1}.${year}-${nameOfTheDay[(dayName + 6) % 7]}`}</StyledDay>
-    </StyledWeek>
-  );
-} */
-
 const StyledDay = styled.div`
   border: 1px solid black;
   margin: 10px;
+  width: 100%;
 `;
 
 const StyledWeek = styled.section`
   border: 1px solid black;
 `;
+
+const StyledDate = styled.p``;
+
+const StyledPlantsOfDay = styled.p``;
