@@ -54,6 +54,7 @@ const ButtonSend = styled.button`
   border-radius: 50%;
   width: 2rem;
   height: 2rem;
+  text-align: center;
   &:active {
     box-shadow: inset var(--box-shadow-default);
   }
