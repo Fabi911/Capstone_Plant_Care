@@ -1,11 +1,20 @@
 import styled from "styled-components";
-import FormComments from "./FormComments";
-import Image from "next/image";
 import { useState } from "react";
+import Image from "next/image";
 import trash_icon from "@/public/img/trash.png";
 import Modal from "../Modal";
+import EditNoteForm from "./EditNoteForm";
+import FormComments from "./FormComments";
+import edit_icon from "@/public/img/edit.png";
 
 export default function Notes({ plant, handleDeleteNote, onAddNotes, mutate }) {
+  const [confirmDelete, setConfirmDelete] = useState(null);
+  const [editingIndex, setEditingIndex] = useState(null);
+
+  const handleDelete = (index) => {
+    setConfirmDelete(index);
+  };
+
   const handleCreateNote = (index) => {
     const updatedNote = [...plant.notes];
     updatedNote.splice(index, 1);
@@ -14,17 +23,21 @@ export default function Notes({ plant, handleDeleteNote, onAddNotes, mutate }) {
     setConfirmDelete(null);
   };
 
-  const [confirmDelete, setConfirmDelete] = useState(null);
+  const handleEdit = (index) => {
+    setEditingIndex(index);
+  };
 
-  function handleDelete(index) {
-    setConfirmDelete(index);
-  }
+  const handleCancelEdit = () => {
+    setEditingIndex(null);
+  };
 
-  function handleCancel() {
-    setConfirmDelete(null);
-  }
+  const handleSaveEdit = (editedNote, index) => {
+    const updatedNotes = [...plant.notes];
+    updatedNotes[index] = editedNote;
+    onAddNotes({ notes: updatedNotes }, plant._id, mutate);
+    setEditingIndex(null);
+  };
 
-  console.log("Data", plant.notes);
   return (
     <>
       <NotesContainer>
@@ -33,10 +46,28 @@ export default function Notes({ plant, handleDeleteNote, onAddNotes, mutate }) {
         <ShowNotesContainer>
           {plant.notes.map((note, index) => (
             <TextContainer key={index}>
-              <NoteText>{note}</NoteText>
-              <ButtonDeleteNote onClick={() => handleDelete(index)}>
-                <Image src={trash_icon} alt="arrow" height={25} width={25} />
-              </ButtonDeleteNote>
+              {editingIndex === index ? (
+                <EditNoteForm
+                  editedNote={note}
+                  onSave={(editedNote) => handleSaveEdit(editedNote, index)}
+                  onCancel={handleCancelEdit}
+                />
+              ) : (
+                <>
+                  <NoteText>{note}</NoteText>
+                  <ButtonDeleteNote onClick={() => handleDelete(index)}>
+                    <Image
+                      src={trash_icon}
+                      alt="arrow"
+                      height={25}
+                      width={25}
+                    />
+                  </ButtonDeleteNote>
+                  <ButtonEditNote onClick={() => handleEdit(index)}>
+                    <Image src={edit_icon} alt="trash" height={25} width={25} />
+                  </ButtonEditNote>
+                </>
+              )}
             </TextContainer>
           ))}
         </ShowNotesContainer>
@@ -45,7 +76,7 @@ export default function Notes({ plant, handleDeleteNote, onAddNotes, mutate }) {
       {confirmDelete !== null && (
         <Modal
           handleConfirm={() => handleCreateNote(confirmDelete)}
-          handleCancel={handleCancel}
+          handleCancel={() => setConfirmDelete(null)}
           name="Image"
         />
       )}
@@ -92,6 +123,14 @@ const ButtonDeleteNote = styled.button`
   position: absolute;
   top: 20px;
   right: -5px;
+  background: transparent;
+  border: none;
+`;
+
+const ButtonEditNote = styled.button`
+  position: absolute;
+  top: 20px;
+  right: -35px;
   background: transparent;
   border: none;
 `;

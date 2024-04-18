@@ -3,7 +3,7 @@ import styled from "styled-components";
 export default function FormComments({ onSubmit, plant, mutate }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
-    mutate()
+    mutate();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
 
@@ -28,7 +28,7 @@ export default function FormComments({ onSubmit, plant, mutate }) {
         maxLength={200}
         minLength={1}
       ></textarea>
-      <ButtonSend type="submit">💐</ButtonSend>
+      <ButtonSend type="submit">Send</ButtonSend>
     </FormContainer>
   );
 }
@@ -49,11 +49,8 @@ const ButtonSend = styled.button`
   background: rgba(255, 255, 255, 0.6);
   cursor: pointer;
   border: none;
+  border-radius: 5px;
   box-shadow: var(--box-shadow-default);
-  font-size: 1rem;
-  border-radius: 50%;
-  width: 2rem;
-  height: 2rem;
   &:active {
     box-shadow: inset var(--box-shadow-default);
   }
