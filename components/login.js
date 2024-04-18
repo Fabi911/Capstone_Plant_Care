@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Login() {
   const { data: session } = useSession();
-  // const { accessToken } = data;
+
   if (session) {
     return (
       <>
@@ -23,7 +23,6 @@ export default function Login() {
     <>
       Not signed in <br />
       <button onClick={() => signIn()}>Login</button>
-      {/* <div>Access Token: {accessToken}</div> */}
     </>
   );
 }

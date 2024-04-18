@@ -8,10 +8,12 @@ export default async function handler(request, response) {
   const session = await getServerSession(request, response, authOptions);
   if (request.method === "GET") {
     if (session) {
-      const plants = await Plants.find({ author: session.user.email });
+      const plants = await Plants.find({
+        author: session.user.email,
+      });
       return response.status(200).json(plants);
     } else {
-      const plants = await Plants.find();
+      const plants = await Plants.find({ author: "default" });
       return response.status(200).json(plants);
     }
   } else if (request.method === "POST") {
