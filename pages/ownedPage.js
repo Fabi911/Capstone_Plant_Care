@@ -4,8 +4,10 @@ import { PlantListContainer } from "@/components/PlantsList";
 import AddPlantLink from "@/components/MyPlant/AddPlantLink";
 import Image from "next/image";
 import useSWR from "swr";
+import { useSession } from "next-auth/react";
 
 export default function OwnedPage({ handleToggleOwnedPlants }) {
+  const { data: session } = useSession();
   const { data, mutate } = useSWR("/api/plants", { fallbackData: [] });
   return (
     <>
@@ -16,12 +18,11 @@ export default function OwnedPage({ handleToggleOwnedPlants }) {
         height={80}
         alt="IconFertilizing"
       />
-      <AddPlantLink />
+      {session && <AddPlantLink />}
       <PlantListContainer>
         {data.map((plant) => {
           return (
             plant.isOwned && (
-
               <PlantPreview
                 key={plant._id}
                 name={plant.name}
@@ -33,7 +34,6 @@ export default function OwnedPage({ handleToggleOwnedPlants }) {
                   handleToggleOwnedPlants(plant, mutate)
                 }
               />
-
             )
           );
         })}

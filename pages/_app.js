@@ -1,7 +1,7 @@
 import GlobalStyle from "../styles";
 import Layout from "@/components/Layout";
 import { useRouter } from "next/router";
-
+import { SessionProvider } from "next-auth/react";
 import { mutate, SWRConfig } from "swr";
 
 import { ToastContainer, toast } from "react-toastify";
@@ -12,7 +12,10 @@ import { Poiret_One } from "next/font/google";
 
 const poiret = Poiret_One({ weight: "400", subsets: ["latin"] });
 
-export default function App({ Component, pageProps }) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}) {
   const [landingData, setLandingData] = useState([
     {
       id: 0,
@@ -227,45 +230,47 @@ export default function App({ Component, pageProps }) {
 
   return (
     <main className={poiret.className}>
-      <GlobalStyle />
-      <SWRConfig
-        value={{
-          fetcher: async (...args) => {
-            const response = await fetch(...args);
-            if (!response.ok) {
-              throw new Error(`Request with ${JSON.stringify(args)} failed.`);
-            }
-            return await response.json();
-          },
-        }}
-      >
-        <Layout>
-          <ToastContainer
-            position="top-center"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-          />
-          <Component
-            {...pageProps}
-            handleToggleOwnedPlants={handleToggleOwnedPlants}
-            handleAddPlant={handleAddPlant}
-            handleDeletePlant={handleDeletePlant}
-            handleEditPlant={handleEditPlant}
-            landingData={landingData}
-            handleAddNotes={handleAddNotes}
-            handleDeleteImage={handleDeleteImage}
-            handleAddGalleryImage={handleAddGalleryImage}
-            handleDeleteNote={handleDeleteNote}
-          />
-        </Layout>
-      </SWRConfig>
+      <SessionProvider session={session}>
+        <GlobalStyle />
+        <SWRConfig
+          value={{
+            fetcher: async (...args) => {
+              const response = await fetch(...args);
+              if (!response.ok) {
+                throw new Error(`Request with ${JSON.stringify(args)} failed.`);
+              }
+              return await response.json();
+            },
+          }}
+        >
+          <Layout>
+            <ToastContainer
+              position="top-center"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+            />
+            <Component
+              {...pageProps}
+              handleToggleOwnedPlants={handleToggleOwnedPlants}
+              handleAddPlant={handleAddPlant}
+              handleDeletePlant={handleDeletePlant}
+              handleEditPlant={handleEditPlant}
+              landingData={landingData}
+              handleAddNotes={handleAddNotes}
+              handleDeleteImage={handleDeleteImage}
+              handleAddGalleryImage={handleAddGalleryImage}
+              handleDeleteNote={handleDeleteNote}
+            />
+          </Layout>
+        </SWRConfig>
+      </SessionProvider>
     </main>
   );
 }

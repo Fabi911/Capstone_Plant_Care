@@ -3,8 +3,10 @@ import BackArrow from "@/components/MyPlant/BackArrow";
 import AddPlantLink from "@/components/MyPlant/AddPlantLink";
 import Image from "next/image";
 import useSWR from "swr";
+import { useSession } from "next-auth/react";
 
 export default function Overview({ handleToggleOwnedPlants }) {
+  const { data: session } = useSession();
   const { data, mutate } = useSWR("/api/plants", { fallbackData: [] });
 
   return (
@@ -16,7 +18,7 @@ export default function Overview({ handleToggleOwnedPlants }) {
         height={80}
         alt="IconFertilizing"
       />
-      <AddPlantLink />
+      {session && <AddPlantLink />}
       <PlantsList
         plants={data}
         handleToggleOwnedPlants={handleToggleOwnedPlants}
