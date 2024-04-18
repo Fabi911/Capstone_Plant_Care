@@ -49,12 +49,8 @@ const ButtonSend = styled.button`
   background: rgba(255, 255, 255, 0.6);
   cursor: pointer;
   border: none;
+  border-radius: 5px;
   box-shadow: var(--box-shadow-default);
-  font-size: 1rem;
-  border-radius: 50%;
-  width: 2rem;
-  height: 2rem;
-  text-align: center;
   &:active {
     box-shadow: inset var(--box-shadow-default);
   }
