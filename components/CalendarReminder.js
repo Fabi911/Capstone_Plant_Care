@@ -9,7 +9,6 @@ export default function CalendarReminder() {
   const month = date.getMonth();
   const year = date.getFullYear();
   const day = date.getDate();
-  console.log(" today is: ", day);
   const nameOfTheDay = [
     "Sunday",
     "Monday",
@@ -19,6 +18,22 @@ export default function CalendarReminder() {
     "Friday",
     "Saturday",
   ];
+  
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const monthName = months[month % 12];
 
   const [numberOfDays, setNumberOfDays] = useState(0);
   useEffect(() => {
@@ -83,6 +98,7 @@ export default function CalendarReminder() {
 
   return (
     <StyledWeek>
+    <h2>{monthName}</h2>
       <StyledDay>
         <StyledDate>{dateText(0)}</StyledDate>
         <StyledPlantsOfDay>
@@ -91,7 +107,7 @@ export default function CalendarReminder() {
           {ownedPlantsHigh.map((plant) => plant.name)}
         </StyledPlantsOfDay>
       </StyledDay>
-      <StyledDay>
+      <StyledDay hidden={day + 1 > numberOfDays ? true : false}>
         <StyledDate>{dateText(1)}</StyledDate>
         <StyledPlantsOfDay>
           {watering(ownedPlantsModerate, 1, 2)} ,{" "}
@@ -99,7 +115,7 @@ export default function CalendarReminder() {
           {ownedPlantsHigh.map((plant) => plant.name)}
         </StyledPlantsOfDay>
       </StyledDay>
-      <StyledDay>
+      <StyledDay hidden={day + 2 > numberOfDays ? true : false}>
         <StyledDate>{dateText(2)}</StyledDate>
         <StyledPlantsOfDay>
           {watering(ownedPlantsModerate, 2, 2)} ,{" "}
@@ -107,7 +123,7 @@ export default function CalendarReminder() {
           {ownedPlantsHigh.map((plant) => plant.name)}
         </StyledPlantsOfDay>
       </StyledDay>
-      <StyledDay>
+      <StyledDay hidden={day + 3 > numberOfDays ? true : false}>
         <StyledDate>{dateText(3)}</StyledDate>
         <StyledPlantsOfDay>
           {watering(ownedPlantsModerate, 3, 2)} ,{" "}
@@ -115,7 +131,7 @@ export default function CalendarReminder() {
           {ownedPlantsHigh.map((plant) => plant.name)}
         </StyledPlantsOfDay>
       </StyledDay>
-      <StyledDay>
+      <StyledDay hidden={day + 4 > numberOfDays ? true : false}>
         <StyledDate>{dateText(4)}</StyledDate>
         <StyledPlantsOfDay>
           {watering(ownedPlantsModerate, 4, 2)} ,{" "}
@@ -123,7 +139,7 @@ export default function CalendarReminder() {
           {ownedPlantsHigh.map((plant) => plant.name)}
         </StyledPlantsOfDay>
       </StyledDay>
-      <StyledDay>
+      <StyledDay hidden={day + 5 > numberOfDays ? true : false}>
         <StyledDate>{dateText(5)}</StyledDate>
         <StyledPlantsOfDay>
           {watering(ownedPlantsModerate, 5, 2)} ,{" "}
@@ -131,7 +147,8 @@ export default function CalendarReminder() {
           {ownedPlantsHigh.map((plant) => plant.name)}
         </StyledPlantsOfDay>
       </StyledDay>
-      <StyledDay>
+      <StyledDay hidden={day + 6 > numberOfDays ? true : false}>
+      
         <StyledDate>{dateText(6)}</StyledDate>
         <StyledPlantsOfDay>
           {watering(ownedPlantsModerate, 6, 2)} ,{" "}
