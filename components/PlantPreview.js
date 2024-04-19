@@ -11,6 +11,7 @@ export default function PlantPreview({
   isOwned,
   handleToggleOwnedPlants,
   mutate,
+  session,
 }) {
   return (
     <PlantPreviewContainer>
@@ -26,12 +27,14 @@ export default function PlantPreview({
         </StyledCard>
       </StyledLink>
       <OwnedPlantButtonStyled>
-        <OwnedPlantButton
-          isOwned={isOwned}
-          handleToggleOwnedPlants={handleToggleOwnedPlants}
-          height={60}
-          width={60}
-        />
+        {session && (
+          <OwnedPlantButton
+            isOwned={isOwned}
+            handleToggleOwnedPlants={handleToggleOwnedPlants}
+            height={60}
+            width={60}
+          />
+        )}
       </OwnedPlantButtonStyled>
     </PlantPreviewContainer>
   );

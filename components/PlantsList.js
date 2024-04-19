@@ -8,8 +8,12 @@ export const PlantListContainer = styled.div`
   gap: 1.5rem;
 `;
 
-
-export default function PlantsList({ plants, handleToggleOwnedPlants,  mutate }) {
+export default function PlantsList({
+  session,
+  plants,
+  handleToggleOwnedPlants,
+  mutate,
+}) {
   return (
     <PlantListContainer>
       {plants.map((plant) => (
@@ -21,8 +25,8 @@ export default function PlantsList({ plants, handleToggleOwnedPlants,  mutate })
           id={plant._id}
           isOwned={plant.isOwned}
           handleToggleOwnedPlants={() => handleToggleOwnedPlants(plant, mutate)}
+          session={session}
         />
-
       ))}
     </PlantListContainer>
   );

@@ -22,6 +22,7 @@
     "formidable": "^3.5.1",
     "mongoose": "^8.3.1",
     "next": "13.4.8",
+    "next-auth": "^4.24.7",
     "next-cloudinary": "^6.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",

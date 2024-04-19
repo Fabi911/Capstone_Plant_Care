@@ -4,6 +4,7 @@ import OwnedPlantButton from "./MyPlant/OwnedPlantButton";
 import { useState } from "react";
 import trash_icon from "@/public/img/trash.png";
 import EditLink from "./MyPlant/EditLink";
+import { useSession } from "next-auth/react";
 
 import Modal from "./Modal";
 
@@ -13,6 +14,7 @@ export default function PlantDetail({
   handleDeletePlant,
   mutate,
 }) {
+  const { data: session } = useSession();
   const [confirmDelete, setConfirmDelete] = useState(false);
 
   function handleDelete() {
@@ -55,12 +57,14 @@ export default function PlantDetail({
         }
       />
 
-      <IconBox>
-        <EditLink plantDetail={plantDetail} />
-        <TrashButton onClick={handleDelete}>
-          <Image src={trash_icon} alt="arrow" height={25} width={25} />
-        </TrashButton>
-      </IconBox>
+      {session && (
+        <IconBox>
+          <EditLink plantDetail={plantDetail} />
+          <TrashButton onClick={handleDelete}>
+            <Image src={trash_icon} alt="arrow" height={25} width={25} />
+          </TrashButton>
+        </IconBox>
+      )}
       {confirmDelete && (
         <Modal
           handleConfirm={() => handleDeletePlant(plantDetail._id)}

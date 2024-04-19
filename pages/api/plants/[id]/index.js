@@ -1,9 +1,17 @@
 import dbConnect from "../../../../db/connect";
 import Plants from "../../../../db/models/index";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "../../auth/[...nextauth]";
 
 export default async function handler(request, response) {
   await dbConnect();
   const { id } = request.query;
+  const session = await getServerSession(request, response, authOptions);
+  if (!session) {
+    return response
+      .status(401)
+      .json({ status: "Unauthorized: Session is required" });
+  }
 
   if (request.method === "GET") {
     const plant = await Plants.findById(id);

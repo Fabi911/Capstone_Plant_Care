@@ -10,6 +10,7 @@ const plantsSchema = new Schema({
   isOwned: Boolean,
   gallery: [String],
   notes: [String],
+  author: String,
 });
 
 const Plants = mongoose.models.Plants || mongoose.model("Plants", plantsSchema);
