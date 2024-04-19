@@ -57,7 +57,7 @@ export default function Fertilizing() {
     });
     setPlantsToFertilize(plantsSeason);
   }, [month]);
-  console.log(plantsToFertilize);
+
   return (
     <div>
       <BackArrow link="/" />
