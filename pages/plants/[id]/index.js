@@ -28,14 +28,15 @@ export default function DetailPage({
   const { isReady } = router;
   const { id } = router.query;
   const { data: session, status } = useSession();
-
   const {
     data: plant,
     isLoading,
     error,
     mutate,
   } = useSWR(`/api/plants/${id}`, { refreshInterval: 400 });
-
+  if (!session) {
+    return <p>You are not authorized to visit this page.</p>;
+  }
   if (!isReady || isLoading || error) return <h2>Loading...</h2>;
 
   async function handleSubmit(event) {

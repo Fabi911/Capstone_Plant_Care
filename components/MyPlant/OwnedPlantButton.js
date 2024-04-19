@@ -1,4 +1,3 @@
-import Heart from "./heart.svg";
 import styled from "styled-components";
 import Favorite2 from "@/public/img/Favorite2.svg";
 

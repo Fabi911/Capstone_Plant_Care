@@ -23,6 +23,7 @@ export default function Overview({ handleToggleOwnedPlants }) {
         plants={data}
         handleToggleOwnedPlants={handleToggleOwnedPlants}
         mutate={mutate}
+        session={session}
       />
     </>
   );
