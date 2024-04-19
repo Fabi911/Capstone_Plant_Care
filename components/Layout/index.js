@@ -1,6 +1,10 @@
 import { Header, Footer } from "./StyledLayout";
 import Logo from "./Logo";
+
+import Weather from "../Weather/Weather";
+
 import Login from "../login";
+
 import styled from "styled-components";
 
 export default function Layout({ children }) {
@@ -8,6 +12,11 @@ export default function Layout({ children }) {
     <>
       <Header>
         <Logo />
+
+        <WeatherBox>
+          <Weather />
+        </WeatherBox>
+
         <LoginBox>
           <Login />
         </LoginBox>
@@ -18,6 +27,10 @@ export default function Layout({ children }) {
   );
 }
 
+const WeatherBox = styled.div`
+  position: absolute;
+  left: 45px;
+`;
 const LoginBox = styled.div`
   position: absolute;
   right: 10px;

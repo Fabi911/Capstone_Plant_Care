@@ -26,10 +26,14 @@ const nextConfig = {
         hostname: "res.cloudinary.com",
         port: "",
       },
+      {
+        protocol: "http",
+        hostname: "**",
+        port: "",
+      },
     ],
 
     domains: ["res.cloudinary.com", "images.unsplash.com"],
-
   },
 };
 
