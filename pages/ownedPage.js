@@ -7,6 +7,7 @@ import useSWR from "swr";
 
 export default function OwnedPage({ handleToggleOwnedPlants }) {
   const { data, mutate } = useSWR("/api/plants", { fallbackData: [] });
+
   return (
     <>
       <BackArrow link="/" />
