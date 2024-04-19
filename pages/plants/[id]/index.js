@@ -6,6 +6,7 @@ import Image from "next/image";
 import BackArrow from "@/components/MyPlant/BackArrow";
 import styled from "styled-components";
 import Notes from "@/components/Notes/Notes";
+import { useSession } from "next-auth/react";
 
 import { useState } from "react";
 
@@ -26,14 +27,16 @@ export default function DetailPage({
   const router = useRouter();
   const { isReady } = router;
   const { id } = router.query;
-
+  const { data: session, status } = useSession();
   const {
     data: plant,
     isLoading,
     error,
     mutate,
   } = useSWR(`/api/plants/${id}`, { refreshInterval: 400 });
-
+  if (!session) {
+    return <p>You are not authorized to visit this page.</p>;
+  }
   if (!isReady || isLoading || error) return <h2>Loading...</h2>;
 
   async function handleSubmit(event) {
@@ -61,8 +64,11 @@ export default function DetailPage({
 
     handleAddGalleryImage(imageData, id, mutate);
   }
-  if (!plant) return null;
 
+  if (!plant) return null;
+  if (status !== "authenticated") {
+    return <h1>Please Login</h1>;
+  }
   // Delete Image from Gallery
   function handleDelete(index) {
     setConfirmDelete(index);
