@@ -20,7 +20,6 @@ export default function Layout({ children }) {
         <LoginBox>
           <Login />
         </LoginBox>
-
       </Header>
       {children}
       <Footer>&copy; Copyright</Footer>
@@ -28,13 +27,11 @@ export default function Layout({ children }) {
   );
 }
 
-
 const WeatherBox = styled.div`
   position: absolute;
   left: 45px;
-
+`;
 const LoginBox = styled.div`
   position: absolute;
   right: 10px;
-
 `;
