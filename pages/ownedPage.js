@@ -9,6 +9,7 @@ import { useSession } from "next-auth/react";
 export default function OwnedPage({ handleToggleOwnedPlants }) {
   const { data: session } = useSession();
   const { data, mutate } = useSWR("/api/plants", { fallbackData: [] });
+
   return (
     <>
       <BackArrow link="/" />

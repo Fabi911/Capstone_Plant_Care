@@ -14,4 +14,5 @@ export default function Logo() {
 
 const StyledLogo = styled(Image)`
   position: relative;
+  z-index: 100;
 `;
