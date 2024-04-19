@@ -4,10 +4,10 @@ import { useSession } from "next-auth/react";
 import BackArrow from "@/components/MyPlant/BackArrow";
 
 export default function AddPlant({ handleAddPlant }) {
-  const { session } = useSession();
-  //if (!session) {
-  //return <h2>Pech gehabt</h2>;
-  //}
+  const { data: session, status } = useSession();
+  if (status !== "authenticated") {
+    return <h1>Pech gehabt</h1>;
+  }
   return (
     <>
       <BackArrow link="/overview" />
