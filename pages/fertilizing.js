@@ -20,7 +20,7 @@ export default function Fertilizing() {
   const { data } = useSWR("/api/plants", { fallbackData: [] });
   const [plantsToFertilize, setPlantsToFertilize] = useState([]);
 
-  const [month, nextMonth] = useMonthCount(0); // only for simulation
+  const [month, nextMonth] = useMonthCount(0);
 
   const myPlants = data.filter((plant) => plant.isOwned);
 
@@ -41,7 +41,6 @@ export default function Fertilizing() {
   const monthName = months[month % 12];
 
   useEffect(() => {
-    //const month = new Date().getMonth();   ---> deactivated for simulation
     const plantsSeason = myPlants.filter((plant) => {
       const seasons = plant.fertiliser_season;
       return seasons.some((season) => {

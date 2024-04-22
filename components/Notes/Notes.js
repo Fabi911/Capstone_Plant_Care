@@ -75,9 +75,9 @@ export default function Notes({ plant, handleDeleteNote, onAddNotes, mutate }) {
 
       {confirmDelete !== null && (
         <Modal
-          handleConfirm={() => handleCreateNote(confirmDelete)}
-          handleCancel={() => setConfirmDelete(null)}
-          name="Image"
+          onConfirm={() => handleCreateNote(confirmDelete)}
+          onCancel={() => setConfirmDelete(null)}
+          name="Note"
         />
       )}
     </>

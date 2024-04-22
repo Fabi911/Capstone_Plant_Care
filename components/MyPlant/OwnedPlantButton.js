@@ -3,7 +3,7 @@ import Favorite2 from "@/public/img/Favorite2.svg";
 
 export default function OwnedPlantButton({
   isOwned,
-  handleToggleOwnedPlants,
+  onToggleOwnedPlants,
   height,
   width,
 }) {
@@ -20,7 +20,7 @@ export default function OwnedPlantButton({
   );
   return (
     <>
-      <StyledHeart onClick={handleToggleOwnedPlants}>
+      <StyledHeart onClick={onToggleOwnedPlants}>
         {isOwned ? ownedHeart : notOwnedHeart}
       </StyledHeart>
     </>

@@ -52,9 +52,7 @@ export default function PlantDetail({
         height={90}
         width={90}
         isOwned={plantDetail.isOwned}
-        handleToggleOwnedPlants={() =>
-          handleToggleOwnedPlants(plantDetail, mutate)
-        }
+        onToggleOwnedPlants={() => handleToggleOwnedPlants(plantDetail, mutate)}
       />
 
       {session && (
@@ -67,8 +65,8 @@ export default function PlantDetail({
       )}
       {confirmDelete && (
         <Modal
-          handleConfirm={() => handleDeletePlant(plantDetail._id)}
-          handleCancel={handleCancel}
+          onConfirm={() => handleDeletePlant(plantDetail._id)}
+          onCancel={handleCancel}
           name={plantDetail.name}
         />
       )}

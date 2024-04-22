@@ -34,15 +34,13 @@ export default function Watering() {
   const myPlants = data.filter((plant) => plant.isOwned);
   const dayOfWeek = daysOfWeek[day % 7];
   useEffect(() => {
-    // const today = new Date().getDay();   ---> deactivated for simulation
-
     const plantsToday = myPlants.filter((plant) => {
       if (plant.water_need === "High") {
         return true;
       } else if (plant.water_need === "Moderate") {
         return day % 2 === 0;
       } else if (plant.water_need === "Low") {
-        return day % 7 === 0; // % 7 only for simulation
+        return day % 7 === 0;
       }
       return false;
     });
@@ -55,8 +53,8 @@ export default function Watering() {
       <BackArrow link="/" />
       <Image src="/img/iconWater.png" width={80} height={80} alt="iconWater" />
       <p>Day of the week : {dayOfWeek}</p>
-      {/* only for simulation */}
-      <button onClick={nextDay}>Next day</button> {/* only for simulation */}
+
+      <button onClick={nextDay}>Next day</button>
       <WateringSchedule plantsToWater={plantsToWater} />
       <FullCalendar
         plugins={[dayGridPlugin, interactionPlugin]}
