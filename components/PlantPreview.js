@@ -10,7 +10,6 @@ export default function PlantPreview({
   id,
   isOwned,
   handleToggleOwnedPlants,
-  mutate,
   session,
 }) {
   return (
@@ -30,7 +29,7 @@ export default function PlantPreview({
         {session && (
           <OwnedPlantButton
             isOwned={isOwned}
-            handleToggleOwnedPlants={handleToggleOwnedPlants}
+            onToggleOwnedPlants={handleToggleOwnedPlants}
             height={60}
             width={60}
           />

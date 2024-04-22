@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export default function Modal({ handleConfirm, handleCancel, name }) {
+export default function Modal({ onConfirm, onCancel, name }) {
   return (
     <>
       <Overlay />
@@ -9,10 +9,10 @@ export default function Modal({ handleConfirm, handleCancel, name }) {
           Sure you want to delete this <strong>{name}</strong>?
         </p>
         <ButtonContainer>
-          <DeleteButton type="button" onClick={handleConfirm}>
+          <DeleteButton type="button" onClick={onConfirm}>
             <strong>Delete</strong> 🗑️
           </DeleteButton>
-          <CancelButton type="button" onClick={handleCancel}>
+          <CancelButton type="button" onClick={onCancel}>
             <strong>Cancel</strong> ❌
           </CancelButton>
         </ButtonContainer>
