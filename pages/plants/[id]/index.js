@@ -37,7 +37,7 @@ export default function DetailPage({
   if (!session) {
     return (
       <>
-        <BackArrow link="/overview"></BackArrow>
+        <BackArrow link="/overview" />
         <p>You are not authorized to visit this page.</p>
       </>
     );
