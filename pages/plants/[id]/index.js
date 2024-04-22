@@ -102,35 +102,25 @@ export default function DetailPage({
         <h2>Gallery</h2>
         <form onSubmit={handleSubmit}>
           <UploadBox>
-            <label htmlFor="image">choose image</label>
-            <label htmlFor="image">
-              <Image
+            <LabelImg htmlFor="image">
+              choose image
+              <ImageUpload
                 src={uploadImg}
                 alt="upload"
                 width={30}
                 height={30}
-                style={{ cursor: "pointer" }}
               />
-            </label>
-            <input
+            </LabelImg>
+            <ImageInput
               type="file"
               id="image"
               name="image"
               accept="image/*"
               required
-              style={{ display: "none" }}
             />
 
             <ButtonUpload type="submit">Upload</ButtonUpload>
           </UploadBox>
-          {/* <input
-            type="file"
-            id="image"
-            name="image"
-            accept="image/*"
-            required
-          />
-          <button type="submit">Upload</button> */}
         </form>
         <br></br>
         <GalleryShowcase>
@@ -272,4 +262,18 @@ const UploadBox = styled.div`
   flex-direction: column;
   gap: 5px;
   padding: 10px 30px;
+`;
+
+const LabelImg = styled.label`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const ImageUpload = styled(Image)`
+  cursor: pointer;
+`;
+
+const ImageInput = styled.input`
+  display: none;
 `;
