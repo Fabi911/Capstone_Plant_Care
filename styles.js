@@ -10,7 +10,7 @@ export default createGlobalStyle`
   --main-color3: #abd1c6;
   // box shadows
   --box-shadow: #303030;
-  --box-shadow-default: 2px 2px 2px #303030;
+  --box-shadow-default: 4px 4px 5px #B7B7B7;
   // responsive design variables
 --card-mobile:  80vw;
 --card-tablet:  65vw;

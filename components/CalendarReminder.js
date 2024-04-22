@@ -97,16 +97,23 @@ export default function CalendarReminder() {
 
   function watering(array, addDay, modulo) {
     return array.map((plant) =>
-      (day + addDay) % modulo === 0 ? plant.name + ", " : ""
+      (day + addDay) % modulo === 0 ? (
+        <li key={plant._id}>{plant.name}</li>
+      ) : null
     );
   }
 
   function dateText(addDay) {
-    return `${
-      (day + addDay) % numberOfDays === 0
-        ? numberOfDays
-        : (day + addDay) % numberOfDays
-    }.${month + 1}.${year}-${nameOfTheDay[(dayName + addDay) % 7]}`;
+    const calculatedDay = ((day + addDay - 1) % numberOfDays) + 1;
+    const calculatedDayName = (dayName + addDay) % 7;
+
+    return (
+      <>
+        {calculatedDay}.{month + 1}.{year}
+        <br />
+        {nameOfTheDay[calculatedDayName]}
+      </>
+    );
   }
 
   return (
@@ -181,9 +188,11 @@ export default function CalendarReminder() {
 
 const StyledDay = styled.div`
   border-radius: 10px;
-  background-color: var(--main-color1);
+  background-color: var(--bg-color1);
   box-shadow: var(--box-shadow-default);
   width: 70%;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const StyledWeek = styled.section`
@@ -198,6 +207,14 @@ const StyledWeek = styled.section`
   background-color: var(--main-color3);
 `;
 
-const StyledDate = styled.p``;
+const StyledDate = styled.p`
+  border-right: 1px solid black;
+  margin: 0 10px;
+  padding: 10px;
+  width: 40%;
+  font-weight: bold;
+`;
 
-const StyledPlantsOfDay = styled.p``;
+const StyledPlantsOfDay = styled.ul`
+  width: 60%;
+`;
