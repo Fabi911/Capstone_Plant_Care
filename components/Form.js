@@ -129,25 +129,18 @@ export default function Form({ onSubmit, defaultData, formName, isEditMode }) {
           onChange={handleCheckboxChange}
         />
       </FertiliserFieldset>
-      <Label htmlFor="image">Image*</Label>
       <div>
-        <label htmlFor="image">
-          <Image
-            src={uploadImg}
-            alt="upload"
-            width={30}
-            height={30}
-            style={{ cursor: "pointer" }}
-          />
-        </label>
+        <LabelImg htmlFor="image">
+          Image*
+          <StyledIcon src={uploadImg} alt="upload" width={30} height={30} />
+        </LabelImg>
         <h3>{selectedName || "Click to upload"}</h3>
-        <input
+        <ImageInput
           type="file"
           id="image"
           name="image"
           accept="image/*"
           required
-          style={{ display: "none" }}
           onChange={handleFileChange}
         />
       </div>
@@ -223,4 +216,18 @@ const FertiliserLegend = styled.legend`
   border: none;
   border-radius: 5px;
   box-shadow: var(--box-shadow-default);
+`;
+
+const StyledIcon = styled(Image)`
+  cursor: pointer;
+`;
+
+const ImageInput = styled.input`
+  display: none;
+`;
+
+const LabelImg = styled.label`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
