@@ -6,7 +6,12 @@ import BackArrow from "@/components/MyPlant/BackArrow";
 export default function AddPlant({ handleAddPlant }) {
   const { data: session, status } = useSession();
   if (status !== "authenticated") {
-    return <h1>Pech gehabt</h1>;
+    return (
+      <>
+        <BackArrow link="/overview" />
+        <h1>Pech gehabt</h1>
+      </>
+    );
   }
   return (
     <>

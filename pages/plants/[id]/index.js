@@ -35,7 +35,12 @@ export default function DetailPage({
     mutate,
   } = useSWR(`/api/plants/${id}`, { refreshInterval: 400 });
   if (!session) {
-    return <p>You are not authorized to visit this page.</p>;
+    return (
+      <>
+        <BackArrow link="/overview"></BackArrow>
+        <p>You are not authorized to visit this page.</p>
+      </>
+    );
   }
   if (!isReady || isLoading || error) return <h2>Loading...</h2>;
 

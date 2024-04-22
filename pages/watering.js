@@ -58,28 +58,6 @@ export default function Watering() {
       {/* only for simulation */}
       <button onClick={nextDay}>Next day</button> {/* only for simulation */}
       <WateringSchedule plantsToWater={plantsToWater} />
-      <FullCalendar
-        plugins={[dayGridPlugin, interactionPlugin]}
-        initialView="dayGridWeek"
-        headbarToolbar={{ left: "today", center: "title", right: "newMeal" }}
-        footerToolbar={{
-          left: "dayGridWeek,dayGridDay",
-          right: "prev,next",
-        }}
-        customButtons={{
-          newMeal: {
-            text: "New",
-            click: function () {
-              setModalContent("form");
-              setShowModal();
-            },
-          },
-        }}
-        editable={true}
-        /* events={allMeals} */
-        eventOrder={"category"}
-        /* eventClick={handleEventClick} */
-      />
     </div>
   );
 }
