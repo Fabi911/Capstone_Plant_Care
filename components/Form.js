@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { useState } from "react";
 import Image from "next/image";
-import iconOwned from "../public/img/iconOwned.png";
-import iconOverview from "../public/img/iconOverview.png";
+import iconAdd from "../public/img/page_icon_add.png";
+import iconEdit from "../public/img/page_icon_edit.png";
 import { toast } from "react-toastify";
 
 export default function Form({ onSubmit, defaultData, formName, isEditMode }) {
@@ -41,7 +41,6 @@ export default function Form({ onSubmit, defaultData, formName, isEditMode }) {
       }
     );
 
-
     const { url } = await response.json();
 
     onSubmit({
@@ -57,9 +56,9 @@ export default function Form({ onSubmit, defaultData, formName, isEditMode }) {
   return (
     <StyledForm onSubmit={handleSubmit} aria-labelledby={formName}>
       {isEditMode ? (
-        <Image src={iconOverview} width={80} height={80} alt="IconOverview" />
+        <Image src={iconEdit} width={80} height={80} alt="IconOverview" />
       ) : (
-        <Image src={iconOwned} width={80} height={80} alt="IconOwned" />
+        <Image src={iconAdd} width={80} height={80} alt="IconOwned" />
       )}
       <Label htmlFor="name">Name</Label>
       <input

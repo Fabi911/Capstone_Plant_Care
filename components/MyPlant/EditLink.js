@@ -6,12 +6,7 @@ import Link from "next/link";
 export default function EditLink({ plantDetail }) {
   return (
     <StyledEdit href={`/plants/${plantDetail._id}/edit`}>
-      <Image
-        src="/img/edit.png"
-        alt="edit-plant-button"
-        height={25}
-        width={25}
-      />
+      <Image src={EditPencil} alt="edit-plant-button" height={45} width={45} />
     </StyledEdit>
   );
 }
