@@ -35,8 +35,11 @@ export default function CalendarReminder() {
   ];
   const monthName = months[month % 12];
 
+  const { data } = useSWR("/api/plants");
+
   const [numberOfDays, setNumberOfDays] = useState(0);
   const [plantsToFertilize, setPlantsToFertilize] = useState();
+
   useEffect(() => {
     function handleMumberOfDays(month) {
       if (month === 1) {
@@ -59,9 +62,14 @@ export default function CalendarReminder() {
     handleMumberOfDays(month);
   }, [day]);
 
+  const ownedPlants = data
+    ? data.filter((plant) => plant.isOwned === true)
+    : [];
+
   useEffect(() => {
     const plantsSeason = ownedPlants.filter((plant) => {
       const seasons = plant.fertiliser_season;
+      console.log(plant.fertiliser_season);
       return seasons.some((season) => {
         if (season === "Spring") {
           return month >= 2 && month <= 4;
@@ -70,18 +78,13 @@ export default function CalendarReminder() {
         } else if (season === "Fall") {
           return month >= 8 && month <= 10;
         }
-        return false;
+        return [];
       });
     });
     setPlantsToFertilize(plantsSeason);
   }, [month]);
+
   console.log(plantsToFertilize);
-
-  const { data, mutate } = useSWR("/api/plants");
-
-  const ownedPlants = data
-    ? data.filter((plant) => plant.isOwned === true)
-    : [];
 
   const ownedPlantsLow = ownedPlants.filter(
     (plant) => plant.water_need === "Low"

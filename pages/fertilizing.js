@@ -51,7 +51,7 @@ export default function Fertilizing() {
         } else if (season === "Fall") {
           return month >= 8 && month <= 10;
         }
-        return false;
+        return [];
       });
     });
     setPlantsToFertilize(plantsSeason);

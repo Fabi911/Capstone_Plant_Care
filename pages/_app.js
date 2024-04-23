@@ -3,7 +3,6 @@ import Layout from "@/components/Layout";
 import { useRouter } from "next/router";
 import { SessionProvider } from "next-auth/react";
 import { mutate, SWRConfig } from "swr";
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

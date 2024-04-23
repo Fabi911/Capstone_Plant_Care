@@ -89,18 +89,20 @@ const NotesContainer = styled.div`
   flex-direction: column;
   align-items: center;
   border-radius: 15px;
-  width: 80%;
+  width: 80vw;
+  box-shadow: var(--card-shadow-default);
+  background-color: var(--main-color3);
 `;
 
 const ShowNotesContainer = styled.div`
-  box-shadow: var(--box-shadow-default);
-  background-color: var(--bg-color1);
+  background-color: white;
   border-radius: 15px;
   margin-bottom: 15px;
   margin-top: 15px;
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
+  justify-content: flex-start;
   width: 90%;
   padding: 10px 0;
 `;
@@ -108,7 +110,7 @@ const ShowNotesContainer = styled.div`
 const NoteText = styled.p`
   background-color: #fff;
   width: 90%;
-  box-shadow: var(--box-shadow-default);
+  box-shadow: var(--card-shadow-default);
   border-radius: 5px;
   text-align: left;
   padding-left: 20px;

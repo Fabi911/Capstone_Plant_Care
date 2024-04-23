@@ -4,13 +4,14 @@ import styled, { createGlobalStyle } from "styled-components";
 export default createGlobalStyle`
 :root {
   // Main color scheme
-  --bg-color1:#e3f6f5;
+  --bg-color1: white;
   --main-color1:#70a19f;
   --main-color2:#a67c53;
-  --main-color3: #abd1c6;
+  --main-color3: rgba(230, 241, 236,0.92);
   // box shadows
   --box-shadow: #303030;
-  --box-shadow-default: 4px 4px 5px #B7B7B7;
+  --box-shadow-default:  2px 2px 4px #808080;
+  --card-shadow-default:  2px 28px 50px lightgrey;
   // responsive design variables
 --card-mobile:  80vw;
 --card-tablet:  65vw;
@@ -38,7 +39,17 @@ font-size: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: var(--bg-color1);
+    /* background-color: white; */
+    background-image: url("/img/bg/closeup1.png");
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position-x: left;
+  background-position-y: bottom;
+  background-attachment:fixed;
+    
+   
+
+
     color: var(--text2-color);
     
 
@@ -47,8 +58,7 @@ font-size: 20px;
     gap: 1.5rem;
 
 
-    margin-top: 80px;
-  font-family: system-ui;
+    margin-top: 120px;
     margin-bottom: 25px;
     text-align: center;
   }

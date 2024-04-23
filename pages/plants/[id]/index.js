@@ -177,7 +177,7 @@ const GalleryContainer = styled.div`
   flex-direction: column;
   margin-top: 25px;
   background: var(--main-color3);
-  box-shadow: var(--box-shadow-default);
+  box-shadow: var(--card-shadow-default);
   border-radius: 15px;
   padding-bottom: 15px;
   gap: 10px;
@@ -233,12 +233,11 @@ const NotesContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 25px;
-  background: var(--main-color3);
-  box-shadow: var(--box-shadow-default);
+
   border-radius: 15px;
   padding-bottom: 15px;
   gap: 10px;
-  width: 80vw;
+
   min-width: 300px;
   max-width: 960px;
   align-items: center;

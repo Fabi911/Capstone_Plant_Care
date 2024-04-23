@@ -1,6 +1,6 @@
 import { Header, Footer } from "./StyledLayout";
 import Logo from "./Logo";
-
+import { BgContainer } from "./StyledLayout";
 import Weather from "../Weather/Weather";
 
 import Login from "../login";
@@ -12,26 +12,23 @@ export default function Layout({ children }) {
     <>
       <Header>
         <Logo />
-
         <WeatherBox>
           <Weather />
         </WeatherBox>
-
+      </Header>
+      {children}
+      <Footer>
         <LoginBox>
           <Login />
         </LoginBox>
-      </Header>
-      {children}
-      <Footer>&copy; Copyright</Footer>
+      </Footer>
     </>
   );
 }
 
 const WeatherBox = styled.div`
   position: absolute;
-  left: 45px;
+  right: 18px;
+  top: 5px;
 `;
-const LoginBox = styled.div`
-  position: absolute;
-  right: 10px;
-`;
+const LoginBox = styled.div``;

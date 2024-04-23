@@ -38,15 +38,16 @@ const FormContainer = styled.form`
   flex-direction: column;
   align-items: center;
   gap: 5px;
-  border: 1px solid #404040;
+
   padding: 10px 20px;
   border-radius: 5px;
-  box-shadow: var(--box-shadow-default);
+  /* box-shadow: var(--box-shadow-default); */
   margin: 10px 0px;
 `;
 
 const ButtonSend = styled.button`
   background: rgba(255, 255, 255, 0.6);
+  margin-top: 10px;
   cursor: pointer;
   border: none;
   border-radius: 5px;
