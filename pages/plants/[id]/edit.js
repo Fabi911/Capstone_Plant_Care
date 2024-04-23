@@ -21,7 +21,12 @@ export default function EditPage({ handleEditPlant }) {
     handleEditPlant(data, id, mutate);
   }
   if (status !== "authenticated") {
-    return <h1>Pech gehabt</h1>;
+    return (
+      <>
+        <BackArrow link={`/plants/${plant._id}`} />
+        <h1>Pech gehabt</h1>
+      </>
+    );
   }
   return (
     <>

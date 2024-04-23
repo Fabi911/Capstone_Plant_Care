@@ -5,7 +5,7 @@ export default function Calendar() {
   return (
     <>
       <BackArrow link="/" />
-      <CalendarReminder></CalendarReminder>;
+      <CalendarReminder />
     </>
   );
 }
