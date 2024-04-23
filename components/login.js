@@ -10,25 +10,25 @@ export default function Login() {
       <LoginContainer>
         {session.user.name}
         <br />
-        <Image
+        <ProfileImage
           alt={session.user.name}
           width={40}
           height={40}
           src={session.user.image}
         />
         <br />
-        <Button onClick={() => signOut()}>
-          <div>🔒</div>
-        </Button>
+        <LoginButton onClick={() => signOut()}>
+          <div>🔑</div>
+        </LoginButton>
       </LoginContainer>
     );
   }
   return (
     <>
       Not signed in <br />
-      <Button onClick={() => signIn()}>
-        <div>🔓</div>
-      </Button>
+      <LoginButton onClick={() => signIn()}>
+        <div>🔑</div>
+      </LoginButton>
     </>
   );
 }
@@ -40,17 +40,23 @@ const LoginContainer = styled.div`
 `;
 
 const Button = styled.button`
-  border: none;
-  background-color: rgba(255, 255, 255, 0.7);
-  box-shadow: 1px 1px 1px rgb(200, 200, 200);
   cursor: pointer;
   &:active {
     box-shadow: inset 1px 1px 1px rgb(200, 200, 200);
   }
-  font-size: 1.2rem;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
+  font-size: 0%, 5;
+  width: 3rem;
+  height: 1rem;
   display: flex;
   justify-content: center;
+  border-radius: 5px;
+`;
+
+const ProfileImage = styled(Image)`
+  border-radius: 30px;
+`;
+
+const LoginButton = styled.button`
+  margin: 5px;
+  border-radius: 30px;
 `;

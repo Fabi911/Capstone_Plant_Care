@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function Logo() {
   return (
     <StyledLogo
-      src="/img/StrangerPlants_red.png"
+      src="/img/StrangerPlants_black.png"
       width={160}
       height={140}
       alt="GreenThumpCare"

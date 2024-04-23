@@ -95,6 +95,7 @@ const StyledBox = styled.div`
   flex-direction: column;
   align-items: center;
   background: var(--main-color3);
+  opacity: 0.9;
   box-shadow: var(--box-shadow-default);
   border-radius: 15px;
   width: 80vw;

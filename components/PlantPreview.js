@@ -55,6 +55,7 @@ const StyledCard = styled.div`
   align-items: center;
   padding: 10px 20px;
   background-color: var(--main-color3);
+  opacity: 0.9;
   border-radius: 15px;
   min-width: 300px;
   max-width: 960px;

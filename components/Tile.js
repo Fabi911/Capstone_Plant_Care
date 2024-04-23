@@ -22,6 +22,7 @@ const StyledTile = styled.div`
   background: var(--main-color3);
   border-radius: 10px;
   box-shadow: var(--box-shadow-default);
+  opacity: 0.8;
   display: flex;
   flex-direction: column;
   align-items: center;

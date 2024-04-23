@@ -167,6 +167,7 @@ const StyledForm = styled.form`
   min-width: 300px;
   max-width: 960px;
   width: 80vw;
+  opacity: 85;
 
   @media (min-width: 901px) and (max-width: 1200px) {
     width: var(--card-tablet);
