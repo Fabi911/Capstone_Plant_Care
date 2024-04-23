@@ -264,7 +264,7 @@ const ButtonUpload = styled.button`
 const UploadBox = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 15px;
   padding: 10px 30px;
 `;
 
@@ -272,10 +272,12 @@ const LabelImg = styled.label`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 10px;
 `;
 
 const ImageUpload = styled(Image)`
   cursor: pointer;
+  margin-top: 10px;
 `;
 
 const ImageInput = styled.input`

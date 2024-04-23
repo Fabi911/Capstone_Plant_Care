@@ -21,7 +21,7 @@ const StyledTile = styled.div`
   height: 130px;
   background: var(--main-color3);
   border-radius: 10px;
-  box-shadow: var(--box-shadow-default);
+  box-shadow: var(--card-shadow-default);
   display: flex;
   flex-direction: column;
   align-items: center;

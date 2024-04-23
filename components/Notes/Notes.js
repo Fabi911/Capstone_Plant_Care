@@ -109,7 +109,7 @@ const ShowNotesContainer = styled.div`
 
 const NoteText = styled.p`
   background-color: #fff;
-  width: 90%;
+  width: 80%;
   box-shadow: var(--card-shadow-default);
   border-radius: 5px;
   text-align: left;
@@ -124,7 +124,7 @@ const TextContainer = styled.div`
 const ButtonDeleteNote = styled.button`
   position: absolute;
   top: 20px;
-  right: -5px;
+  right: 5px;
   background: transparent;
   border: none;
 `;
@@ -132,7 +132,7 @@ const ButtonDeleteNote = styled.button`
 const ButtonEditNote = styled.button`
   position: absolute;
   top: 20px;
-  right: -35px;
+  right: -28px;
   background: transparent;
   border: none;
 `;
