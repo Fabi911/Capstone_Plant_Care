@@ -23,6 +23,7 @@ export default function DetailPage({
 }) {
   const [IndexImage, setIndexImage] = useState(null);
   const [confirmDelete, setConfirmDelete] = useState(null);
+  const [selectedName, setSelectedName] = useState("");
   const router = useRouter();
   const { isReady } = router;
   const { id } = router.query;
@@ -67,6 +68,7 @@ export default function DetailPage({
     event.target.reset();
 
     handleAddGalleryImage(imageData, id, mutate);
+    setSelectedName(null);
   }
 
   if (!plant) return null;
@@ -88,6 +90,11 @@ export default function DetailPage({
     plant.gallery = updatedGallery;
     handleDeleteImage(plant, id, mutate);
     setConfirmDelete(null);
+  };
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setSelectedName(file ? file.name : "");
   };
 
   return (
@@ -116,12 +123,14 @@ export default function DetailPage({
                 height={30}
               />
             </LabelImg>
+            <h3>{selectedName || "Click to upload"}</h3>
             <ImageInput
               type="file"
               id="image"
               name="image"
               accept="image/*"
               required
+              onChange={handleFileChange}
             />
 
             <ButtonUpload type="submit">Upload</ButtonUpload>
