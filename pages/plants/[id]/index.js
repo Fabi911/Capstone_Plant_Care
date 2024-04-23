@@ -7,11 +7,10 @@ import BackArrow from "@/components/MyPlant/BackArrow";
 import styled from "styled-components";
 import Notes from "@/components/Notes/Notes";
 import { useSession } from "next-auth/react";
-
 import { useState } from "react";
-
 import { toast } from "react-toastify";
 import Modal from "@/components/Modal";
+import uploadImg from "/public/img/uploadImg.png";
 
 export default function DetailPage({
   handleToggleOwnedPlants,
@@ -107,15 +106,26 @@ export default function DetailPage({
       <GalleryContainer>
         <h2>Gallery</h2>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="image">choose image</label>
-          <input
-            type="file"
-            id="image"
-            name="image"
-            accept="image/*"
-            required
-          />
-          <button type="submit">Upload</button>
+          <UploadBox>
+            <LabelImg htmlFor="image">
+              choose image
+              <ImageUpload
+                src={uploadImg}
+                alt="upload"
+                width={30}
+                height={30}
+              />
+            </LabelImg>
+            <ImageInput
+              type="file"
+              id="image"
+              name="image"
+              accept="image/*"
+              required
+            />
+
+            <ButtonUpload type="submit">Upload</ButtonUpload>
+          </UploadBox>
         </form>
         <br></br>
         <GalleryShowcase>
@@ -239,4 +249,36 @@ const NotesContainer = styled.div`
   @media (min-width: 1201px) {
     width: var(--card-browser);
   }
+`;
+
+const ButtonUpload = styled.button`
+  background: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  box-shadow: var(--box-shadow-default);
+  &:active {
+    box-shadow: inset var(--box-shadow-default);
+  }
+`;
+
+const UploadBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px 30px;
+`;
+
+const LabelImg = styled.label`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const ImageUpload = styled(Image)`
+  cursor: pointer;
+`;
+
+const ImageInput = styled.input`
+  display: none;
 `;
