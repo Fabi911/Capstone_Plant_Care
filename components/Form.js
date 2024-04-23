@@ -4,6 +4,7 @@ import Image from "next/image";
 import iconOwned from "../public/img/iconOwned.png";
 import iconOverview from "../public/img/iconOverview.png";
 import { toast } from "react-toastify";
+import uploadImg from "../public/img/uploadImg.png";
 
 export default function Form({ onSubmit, defaultData, formName, isEditMode }) {
   const [checkedSeasons, setCheckedSeasons] = useState({
@@ -41,7 +42,6 @@ export default function Form({ onSubmit, defaultData, formName, isEditMode }) {
       }
     );
 
-
     const { url } = await response.json();
 
     onSubmit({
@@ -54,6 +54,13 @@ export default function Form({ onSubmit, defaultData, formName, isEditMode }) {
     });
   }
 
+  const [selectedName, setSelectedName] = useState("");
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setSelectedName(file ? file.name : "");
+  };
+
   return (
     <StyledForm onSubmit={handleSubmit} aria-labelledby={formName}>
       {isEditMode ? (
@@ -62,7 +69,7 @@ export default function Form({ onSubmit, defaultData, formName, isEditMode }) {
         <Image src={iconOwned} width={80} height={80} alt="IconOwned" />
       )}
       <Label htmlFor="name">Name</Label>
-      <input
+      <InputField
         type="text"
         id="name"
         name="name"
@@ -71,7 +78,7 @@ export default function Form({ onSubmit, defaultData, formName, isEditMode }) {
         defaultValue={defaultData?.name}
       />
       <Label htmlFor="botanical_name">Botanical Name</Label>
-      <input
+      <InputField
         type="text"
         id="botanical_name"
         name="botanical_name"
@@ -80,7 +87,7 @@ export default function Form({ onSubmit, defaultData, formName, isEditMode }) {
         defaultValue={defaultData?.botanical_name}
       />
       <Label htmlFor="water_need">Watering</Label>
-      <select
+      <Select
         id="water_need"
         name="water_need"
         required
@@ -89,13 +96,10 @@ export default function Form({ onSubmit, defaultData, formName, isEditMode }) {
         <option value="Low">weekly</option>
         <option value="Moderate">2 times a week</option>
         <option value="High">daily</option>
-      </select>
-      <Label htmlFor="image">Image</Label>
+      </Select>
 
-      <input type="file" id="image" name="image" accept="image/*" required />
-
-      <fieldset>
-        <legend>Fertiliser Season</legend>
+      <FertiliserFieldset>
+        <FertiliserLegend>Fertiliser Season</FertiliserLegend>
         <Label htmlFor="Spring">Spring</Label>
         <input
           type="checkbox"
@@ -124,8 +128,23 @@ export default function Form({ onSubmit, defaultData, formName, isEditMode }) {
           defaultChecked={defaultData?.fertiliser_season.includes("fall")}
           onChange={handleCheckboxChange}
         />
-      </fieldset>
-      <button type="submit">Submit</button>
+      </FertiliserFieldset>
+      <div>
+        <LabelImg htmlFor="image">
+          Image*
+          <StyledIcon src={uploadImg} alt="upload" width={30} height={30} />
+        </LabelImg>
+        <h3>{selectedName || "Click to upload"}</h3>
+        <ImageInput
+          type="file"
+          id="image"
+          name="image"
+          accept="image/*"
+          required
+          onChange={handleFileChange}
+        />
+      </div>
+      <ButtonSubmit type="submit">Submit</ButtonSubmit>
     </StyledForm>
   );
 }
@@ -156,4 +175,59 @@ const StyledForm = styled.form`
   @media (min-width: 1201px) {
     width: var(--card-browser);
   }
+`;
+
+const ButtonSubmit = styled.button`
+  background: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  box-shadow: var(--box-shadow-default);
+  &:active {
+    box-shadow: inset var(--box-shadow-default);
+  }
+`;
+
+const InputField = styled.input`
+  background: white;
+  border: none;
+  border-radius: 5px;
+  box-shadow: var(--box-shadow-default);
+  &:active {
+    box-shadow: inset var(--box-shadow-default);
+  }
+`;
+
+const Select = styled.select`
+  background: rgba(255, 255, 255, 0.6);
+  border: none;
+  border-radius: 5px;
+`;
+
+const FertiliserFieldset = styled.fieldset`
+  background: rgba(255, 255, 255, 0.6);
+  border: none;
+  border-radius: 5px;
+  box-shadow: var(--box-shadow-default);
+`;
+
+const FertiliserLegend = styled.legend`
+  background: var(--main-color3);
+  border: none;
+  border-radius: 5px;
+  box-shadow: var(--box-shadow-default);
+`;
+
+const StyledIcon = styled(Image)`
+  cursor: pointer;
+`;
+
+const ImageInput = styled.input`
+  display: none;
+`;
+
+const LabelImg = styled.label`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
