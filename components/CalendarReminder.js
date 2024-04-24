@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
-import { useEffect } from "react";
 import useSWR from "swr";
 
 export default function CalendarReminder() {
@@ -41,7 +40,7 @@ export default function CalendarReminder() {
   const [plantsToFertilize, setPlantsToFertilize] = useState();
 
   useEffect(() => {
-    function handleMumberOfDays(month) {
+    function handleNumberOfDays(month) {
       if (month === 1) {
         return setNumberOfDays(28);
       }
@@ -59,7 +58,7 @@ export default function CalendarReminder() {
         return setNumberOfDays(30);
       }
     }
-    handleMumberOfDays(month);
+    handleNumberOfDays(month);
   }, [day]);
 
   const ownedPlants = data
@@ -69,7 +68,6 @@ export default function CalendarReminder() {
   useEffect(() => {
     const plantsSeason = ownedPlants.filter((plant) => {
       const seasons = plant.fertiliser_season;
-      console.log(plant.fertiliser_season);
       return seasons.some((season) => {
         if (season === "Spring") {
           return month >= 2 && month <= 4;
@@ -83,8 +81,6 @@ export default function CalendarReminder() {
     });
     setPlantsToFertilize(plantsSeason);
   }, [month]);
-
-  console.log(plantsToFertilize);
 
   const ownedPlantsLow = ownedPlants.filter(
     (plant) => plant.water_need === "Low"

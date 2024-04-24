@@ -41,8 +41,6 @@ const StyledDivPlus = styled.div`
   align-items: center;
   border-radius: 35%;
   opacity: 0.8;
-  /* background-color: var(--main-color2);
-  box-shadow: 1px 1px 1px var(--box-shadow); */
 
   &:active {
     box-shadow: inset 1px 1px 1px var(--box-shadow);

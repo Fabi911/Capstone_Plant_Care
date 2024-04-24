@@ -97,8 +97,7 @@ const NotesContainer = styled.div`
 const ShowNotesContainer = styled.div`
   background-color: white;
   border-radius: 15px;
-  margin-bottom: 15px;
-  margin-top: 15px;
+  margin: 15px 0;
   display: flex;
   flex-direction: column-reverse;
   align-items: center;

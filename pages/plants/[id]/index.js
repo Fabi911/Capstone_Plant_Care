@@ -21,7 +21,6 @@ export default function DetailPage({
   handleAddGalleryImage,
   handleDeleteNote,
 }) {
-  const [IndexImage, setIndexImage] = useState(null);
   const [confirmDelete, setConfirmDelete] = useState(null);
   const router = useRouter();
   const { isReady } = router;
@@ -233,11 +232,9 @@ const NotesContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 25px;
-
   border-radius: 15px;
   padding-bottom: 15px;
   gap: 10px;
-
   min-width: 300px;
   max-width: 960px;
   align-items: center;

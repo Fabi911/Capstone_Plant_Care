@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
 // Define global styles
 export default createGlobalStyle`
@@ -39,13 +39,12 @@ font-size: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* background-color: white; */
     background-image: url("/img/bg/closeup1.png");
-  background-repeat: no-repeat;
-  background-size: 50%;
-  background-position-x: left;
-  background-position-y: bottom;
-  background-attachment:fixed;
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position-x: left;
+    background-position-y: bottom;
+    background-attachment:fixed;
     
    
 

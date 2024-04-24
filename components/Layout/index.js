@@ -1,6 +1,5 @@
 import { Header, Footer } from "./StyledLayout";
 import Logo from "./Logo";
-import { BgContainer } from "./StyledLayout";
 import Weather from "../Weather/Weather";
 
 import Login from "../login";
@@ -18,9 +17,9 @@ export default function Layout({ children }) {
       </Header>
       {children}
       <Footer>
-        <LoginBox>
+        <div>
           <Login />
-        </LoginBox>
+        </div>
       </Footer>
     </>
   );
@@ -31,4 +30,3 @@ const WeatherBox = styled.div`
   right: 18px;
   top: 5px;
 `;
-const LoginBox = styled.div``;

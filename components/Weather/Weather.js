@@ -1,7 +1,6 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useSWR from "swr";
-import { useEffect } from "react";
 import styled from "styled-components";
 
 export default function Weather() {
@@ -42,13 +41,9 @@ const ContainerWeather = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0;
   position: relative;
-
-  border-radius: 20%;
   padding: 4px;
 `;
-
 const TextTemperatur = styled.div`
   position: absolute;
   top: 41px;

@@ -38,10 +38,8 @@ const FormContainer = styled.form`
   flex-direction: column;
   align-items: center;
   gap: 5px;
-
   padding: 10px 20px;
   border-radius: 5px;
-  /* box-shadow: var(--box-shadow-default); */
   margin: 10px 0px;
 `;
 
