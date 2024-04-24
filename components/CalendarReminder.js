@@ -1,3 +1,4 @@
+import Fertilizing from "@/pages/fertilizing";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import useSWR from "swr";
@@ -117,15 +118,16 @@ export default function CalendarReminder() {
   return (
     <StyledWeek>
       <h2>{monthName}</h2>
-      <ul>
-        Fertilizing this month:
-        <br></br>
+      <Headline>Fertilizing this month:</Headline>
+      <FertilizingBox>
         {Array.isArray(plantsToFertilize) &&
           plantsToFertilize.length > 0 &&
           plantsToFertilize.map((plant) =>
-            plant.name ? <li key={plant._id}>{plant.name}</li> : null
+            plant.name ? (
+              <FertilizingText key={plant._id}>🪴{plant.name}</FertilizingText>
+            ) : null
           )}
-      </ul>
+      </FertilizingBox>
       <StyledDay>
         <StyledDate>{dateText(0)}</StyledDate>
         <StyledPlantsOfDay>
@@ -245,4 +247,22 @@ const StyledPlantsOfDay = styled.ul`
   @media (min-width: 1201px) {
     width: var(--card-browser);
   }
+`;
+
+const Headline = styled.span`
+  font-weight: bolder;
+  margin-top: -20px;
+`;
+
+const FertilizingText = styled.p`
+  margin: 0;
+`;
+
+const FertilizingBox = styled.article`
+  position: relative;
+  height: auto;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
 `;
