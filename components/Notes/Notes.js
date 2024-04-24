@@ -92,6 +92,13 @@ const NotesContainer = styled.div`
   width: 80vw;
   box-shadow: var(--card-shadow-default);
   background-color: var(--main-color3);
+  @media (min-width: 901px) and (max-width: 1200px) {
+    width: var(--card-tablet);
+  }
+
+  @media (min-width: 1201px) {
+    width: var(--card-browser);
+  }
 `;
 
 const ShowNotesContainer = styled.div`
