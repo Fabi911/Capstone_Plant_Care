@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Logo() {
   return (
-    <>
+    <div>
       <StyledLogo
         src="/img/StrangerPlants_green.png"
         sizes="22vh"
@@ -15,7 +15,7 @@ export default function Logo() {
         height={400}
         alt="GreenThumpCare"
       />
-    </>
+    </div>
   );
 }
 
