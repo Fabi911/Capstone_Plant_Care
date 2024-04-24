@@ -20,7 +20,7 @@ You can :
 
 ### Demo
 
-![Demo](/public/img/demo.gif)
+![GithubGif](https://github.com/Fabi911/Capstone_Plant_Care/assets/147390260/8998d2ae-924c-4b1f-bcda-df5171ed677e)
 
 ### Local Development
 
