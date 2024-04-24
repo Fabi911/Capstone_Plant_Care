@@ -69,14 +69,13 @@ export default function CalendarReminder() {
     const plantsSeason = ownedPlants.filter((plant) => {
       const seasons = plant.fertiliser_season;
       return seasons.some((season) => {
-        if (season == "spring") {
+        if (season === "spring" || season === "Spring") {
           return month >= 2 && month <= 4;
-        } else if (season == "summer") {
+        } else if (season === "summer" || season === "Summer") {
           return month >= 5 && month <= 7;
-        } else if (season == "fall") {
+        } else if (season === "fall" || season === "Fall") {
           return month >= 8 && month <= 10;
-        }
-        return [];
+        } else if (month >= 11 && month <= 1) return [];
       });
     });
     setPlantsToFertilize(plantsSeason);
