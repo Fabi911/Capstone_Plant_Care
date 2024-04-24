@@ -1,10 +1,10 @@
 # Capstone Stranger Plants
 
-Check out our nice plant App. 👨🏿‍🌾 🚀
-
-Here you can find some awesome plants.
-
-Enjoy our plant App, feel free to like and leave a comment 🙌
+An app for plant enthusiasts that supports you in your regular caretaking tasks. 
+<br>You can add, delete, and edit plants, manage images (including CRUD operations) 
+<br>and organize them into a gallery. 
+<br>The app also includes custom reminder functions for watering and fertilizing, 
+<br>along with a custom coded calendar to display all tasks on the correct dates.
 
 ## Features
 
