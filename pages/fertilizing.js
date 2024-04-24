@@ -44,14 +44,13 @@ export default function Fertilizing() {
     const plantsSeason = myPlants.filter((plant) => {
       const seasons = plant.fertiliser_season;
       return seasons.some((season) => {
-        if (season === "Spring") {
+        if (season === "spring" || season === "Spring") {
           return month >= 2 && month <= 4;
-        } else if (season === "Summer") {
+        } else if (season === "summer" || season === "Summer") {
           return month >= 5 && month <= 7;
-        } else if (season === "Fall") {
+        } else if (season === "fall" || season === "Fall") {
           return month >= 8 && month <= 10;
-        }
-        return false;
+        } else if (month >= 11 && month <= 1) return [];
       });
     });
     setPlantsToFertilize(plantsSeason);

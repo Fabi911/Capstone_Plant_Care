@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
-import { useEffect } from "react";
 import useSWR from "swr";
 
 export default function CalendarReminder() {
@@ -35,10 +34,13 @@ export default function CalendarReminder() {
   ];
   const monthName = months[month % 12];
 
+  const { data } = useSWR("/api/plants");
+
   const [numberOfDays, setNumberOfDays] = useState(0);
   const [plantsToFertilize, setPlantsToFertilize] = useState();
+
   useEffect(() => {
-    function handleMumberOfDays(month) {
+    function handleNumberOfDays(month) {
       if (month === 1) {
         return setNumberOfDays(28);
       }
@@ -56,32 +58,28 @@ export default function CalendarReminder() {
         return setNumberOfDays(30);
       }
     }
-    handleMumberOfDays(month);
+    handleNumberOfDays(month);
   }, [day]);
+
+  const ownedPlants = data
+    ? data.filter((plant) => plant.isOwned === true)
+    : [];
 
   useEffect(() => {
     const plantsSeason = ownedPlants.filter((plant) => {
       const seasons = plant.fertiliser_season;
       return seasons.some((season) => {
-        if (season === "Spring") {
+        if (season === "spring" || season === "Spring") {
           return month >= 2 && month <= 4;
-        } else if (season === "Summer") {
+        } else if (season === "summer" || season === "Summer") {
           return month >= 5 && month <= 7;
-        } else if (season === "Fall") {
+        } else if (season === "fall" || season === "Fall") {
           return month >= 8 && month <= 10;
-        }
-        return false;
+        } else if (month >= 11 && month <= 1) return [];
       });
     });
     setPlantsToFertilize(plantsSeason);
   }, [month]);
-  console.log(plantsToFertilize);
-
-  const { data, mutate } = useSWR("/api/plants");
-
-  const ownedPlants = data
-    ? data.filter((plant) => plant.isOwned === true)
-    : [];
 
   const ownedPlantsLow = ownedPlants.filter(
     (plant) => plant.water_need === "Low"

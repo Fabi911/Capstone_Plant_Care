@@ -96,7 +96,7 @@ const StyledBox = styled.div`
   flex-direction: column;
   align-items: center;
   background: var(--main-color3);
-  box-shadow: var(--box-shadow-default);
+  box-shadow: var(--card-shadow-default);
   border-radius: 15px;
   width: 80vw;
   min-width: 300px;

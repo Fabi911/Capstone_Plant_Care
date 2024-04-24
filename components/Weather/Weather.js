@@ -1,7 +1,7 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useSWR from "swr";
-import { useEffect } from "react";
+import styled from "styled-components";
 
 export default function Weather() {
   const [iconUrl, setIconUrl] = useState(null);
@@ -21,18 +21,31 @@ export default function Weather() {
   if (!data) return <h2>Loading...</h2>;
 
   return (
-    <div>
+    <ContainerWeather>
       {iconUrl && (
         <span>
           <Image
             src={iconUrl}
-            width={64}
-            height={64}
+            width={50}
+            height={50}
             alt={data.current.condition.text}
           />
         </span>
       )}
-      <span>{`${data.current.temp_c} °C`}</span>
-    </div>
+      <TextTemperatur>{`${data.current.temp_c} °C`}</TextTemperatur>
+    </ContainerWeather>
   );
 }
+
+const ContainerWeather = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 4px;
+`;
+const TextTemperatur = styled.div`
+  position: absolute;
+  top: 41px;
+  color: black;
+`;

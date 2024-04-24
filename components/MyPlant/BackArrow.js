@@ -14,7 +14,7 @@ export default function BackArrow({ link }) {
 const StyledArrow = styled(Link)`
   position: fixed;
   left: 15px;
-  top: 15px;
+  top: 22px;
   background: transparent;
   z-index: 30;
   @media (min-width: 600px) {

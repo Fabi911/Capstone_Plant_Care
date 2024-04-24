@@ -1,5 +1,4 @@
 import { useSession, signIn, signOut } from "next-auth/react";
-import Image from "next/image";
 import styled from "styled-components";
 
 export default function Login() {
@@ -9,14 +8,6 @@ export default function Login() {
     return (
       <LoginContainer>
         {session.user.name}
-        <br />
-        <Image
-          alt={session.user.name}
-          width={40}
-          height={40}
-          src={session.user.image}
-        />
-        <br />
         <Button onClick={() => signOut()}>
           <div>🔒</div>
         </Button>
@@ -37,20 +28,21 @@ const LoginContainer = styled.div`
   display: flex;
   flex-direction: row;
   gap: 10px;
+  align-items: center;
 `;
 
 const Button = styled.button`
   border: none;
-  background-color: rgba(255, 255, 255, 0.7);
-  box-shadow: 1px 1px 1px rgb(200, 200, 200);
+  background-color: transparent;
   cursor: pointer;
   &:active {
-    box-shadow: inset 1px 1px 1px rgb(200, 200, 200);
+    box-shadow: 1px 1px 1px #707070;
   }
   font-size: 1.2rem;
   width: 2rem;
   height: 2rem;
-  border-radius: 50%;
+  border-radius: 20%;
   display: flex;
   justify-content: center;
+  align-items: center;
 `;

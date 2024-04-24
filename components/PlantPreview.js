@@ -48,7 +48,7 @@ const PlantPreviewContainer = styled.div`
 const StyledCard = styled.div`
   width: 80vw;
   height: auto;
-  box-shadow: var(--box-shadow-default);
+  box-shadow: var(--card-shadow-default);
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -97,6 +97,7 @@ const OwnedPlantButtonStyled = styled.div`
   position: absolute;
   top: -26px;
   right: -5px;
+  z-index: 1;
 `;
 
 const Text = styled.p`

@@ -3,16 +3,24 @@ import Image from "next/image";
 
 export default function Logo() {
   return (
-    <StyledLogo
-      src="/img/StrangerPlants_red.png"
-      width={160}
-      height={140}
-      alt="GreenThumpCare"
-    />
+    <div>
+      <StyledLogo
+        src="/img/StrangerPlants_green.png"
+        sizes="22vh"
+        style={{
+          width: "100%",
+          height: "auto",
+        }}
+        width={400}
+        height={400}
+        alt="GreenThumpCare"
+      />
+    </div>
   );
 }
 
 const StyledLogo = styled(Image)`
   position: relative;
   z-index: 100;
+  margin: 0;
 `;
