@@ -119,13 +119,15 @@ export default function CalendarReminder() {
   return (
     <StyledWeek>
       <h2>{monthName}</h2>
-      <p>
+      <ul>
         Fertilizing this month:
         <br></br>
         {Array.isArray(plantsToFertilize) &&
           plantsToFertilize.length > 0 &&
-          plantsToFertilize.map((plant) => plant.name).join(", ")}
-      </p>
+          plantsToFertilize.map((plant) =>
+            plant.name ? <li key={plant._id}>{plant.name}</li> : null
+          )}
+      </ul>
       <StyledDay>
         <StyledDate>{dateText(0)}</StyledDate>
         <StyledPlantsOfDay>
@@ -190,14 +192,22 @@ const StyledDay = styled.div`
   border-radius: 10px;
   background-color: var(--bg-color1);
   box-shadow: var(--box-shadow-default);
-  width: 70%;
+  width: 90%;
   display: flex;
   justify-content: space-between;
+
+  @media (min-width: 901px) and (max-width: 1200px) {
+    width: var(--card-tablet);
+  }
+
+  @media (min-width: 1201px) {
+    width: var(--card-browser);
+  }
 `;
 
 const StyledWeek = styled.section`
   border-radius: 15px;
-  padding: 20px;
+  padding: 20px 0px;
   width: 80vw;
   box-shadow: var(--box-shadow-default);
   display: flex;
@@ -213,8 +223,28 @@ const StyledDate = styled.p`
   padding: 10px;
   width: 40%;
   font-weight: bold;
+  font-size: 0.7rem;
+  @media (min-width: 901px) and (max-width: 1200px) {
+    width: var(--card-tablet);
+  }
+
+  @media (min-width: 1201px) {
+    width: var(--card-browser);
+  }
 `;
 
 const StyledPlantsOfDay = styled.ul`
   width: 60%;
+  font-size: 0.8rem;
+  text-align: left;
+  list-style-type: "💧 ";
+  margin-left: -10px;
+
+  @media (min-width: 901px) and (max-width: 1200px) {
+    width: var(--card-tablet);
+  }
+
+  @media (min-width: 1201px) {
+    width: var(--card-browser);
+  }
 `;
