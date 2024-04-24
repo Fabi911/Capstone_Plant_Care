@@ -45,7 +45,7 @@ export default function App({
       id: 4,
       name: "Calendar",
       link: "/calendar",
-      icon: "/img/iconOverview.png",
+      icon: "/img/icon_calender.png",
     },
   ]);
 

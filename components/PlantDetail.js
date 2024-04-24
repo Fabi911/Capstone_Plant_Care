@@ -59,7 +59,7 @@ export default function PlantDetail({
         <IconBox>
           <EditLink plantDetail={plantDetail} />
           <TrashButton onClick={handleDelete}>
-            <Image src={trash_icon} alt="arrow" height={25} width={25} />
+            <Image src={trash_icon} alt="arrow" height={45} width={45} />
           </TrashButton>
         </IconBox>
       )}
@@ -88,6 +88,7 @@ const DetailTextBox = styled.p`
 const TrashButton = styled.button`
   background: transparent;
   border: none;
+  cursor: pointer;
 `;
 
 const StyledBox = styled.div`

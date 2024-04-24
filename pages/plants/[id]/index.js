@@ -161,8 +161,8 @@ export default function DetailPage({
         </GalleryShowcase>
         {confirmDelete !== null && (
           <Modal
-            handleConfirm={() => onClickDeleteImage(confirmDelete)}
-            handleCancel={handleCancel}
+            onConfirm={() => onClickDeleteImage(confirmDelete)}
+            onCancel={handleCancel}
             name="Image"
           />
         )}
